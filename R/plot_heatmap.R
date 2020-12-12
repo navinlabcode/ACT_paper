@@ -142,7 +142,7 @@ plot_heatmap <- function(df,
   )
 
   # genes annotation
-  browser()
+
   bins_bed <- bins_in_cna_pipeline %>%
     dplyr::filter(chr != "chrY") %>%
     mutate(regions = genomic_classes)
