@@ -38,8 +38,6 @@ plot_umap <- function(umap_df,
     xlab("umap1") +
     ylab("umap2")
 
-  print(umap_p)
-
   return(umap_p)
 
 }

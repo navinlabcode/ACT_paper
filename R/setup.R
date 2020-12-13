@@ -32,6 +32,7 @@ library(readr)
 library(DESeq2)
 library(Homo.sapiens)
 library(conflicted)
+plan(multiprocess, workers = 20)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:17:44 2020
 # resolving most frequent conflicts
@@ -55,6 +56,12 @@ conflicted::conflict_prefer("select", "dplyr")
 '%!in%' <- function(x,y)!('%in%'(x,y))
 head2 <- function(x) head(x)[,1:5]
 theme_set(theme_cowplot())
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Dec 12 14:03:04 2020
+# cna pipeline lib
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Dec 12 14:03:12 2020
+
+bins_in_cna_pipeline <- read.table("extdata/lib/bins_in_cna_pipeline.txt", header = T)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:10:51 2020
 # hg19 genes from Homo Sapiens package
@@ -97,4 +104,25 @@ get_colors <- function() {
 }
 
 colors_vector <- get_colors()
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Fri Dec 11 13:31:13 2020
+# Ploidy Scale
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Fri Dec 11 13:31:20 2020
+
+# this function ploidy scale and rounds value to integer numbers
+ploidy_scale <- function(ploidy_VAL, df, round = TRUE) {
+
+  # population segmenter returns log ratios, transforming back to ratios values
+  popseg_long_exp <- as.data.frame(2^df)
+
+  # correcting to ploidy
+  popseg_ploidy_cor <- as.data.frame(popseg_long_exp * ploidy_VAL)
+
+  if (round == TRUE) {
+    # rounding to the nearest integer values
+    popseg_round <- as.data.frame(round(popseg_ploidy_cor, 0))
+    return(popseg_round)
+  } else return(popseg_ploidy_cor)
+
+}
 
