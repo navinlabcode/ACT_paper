@@ -74,22 +74,6 @@ tn4_cov <- calc_coverage(path = here("extdata/covhist/TN4/")) %>%
   mutate(sample = "TN4",
          tech = "ACT")
 
-tn5_cov <- calc_coverage(path = here("extdata/covhist/TN5/")) %>% 
-  mutate(sample = "TN5",
-         tech = "ACT")
-
-tn6_cov <- calc_coverage(path = here("extdata/covhist/TN6/")) %>% 
-  mutate(sample = "TN6",
-         tech = "ACT")
-
-tn7_cov <- calc_coverage(path = here("extdata/covhist/TN7/")) %>% 
-  mutate(sample = "TN7",
-         tech = "ACT")
-
-tn8_cov <- calc_coverage(path = here("extdata/covhist/TN8/")) %>% 
-  mutate(sample = "TN8",
-         tech = "ACT")
-
 tn1_10xcnv_cov <-
   calc_coverage(path = here("extdata/covhist/TN1_10XCNA/")) %>%
   mutate(sample = "TN1",
@@ -132,14 +116,6 @@ TN3_bincounts <- readRDS(here("extdata/bincounts/TN3_bincounts.rds"))
 
 TN4_bincounts <- readRDS(here("extdata/bincounts/TN4_bincounts.rds"))
 
-TN5_bincounts <- readRDS(here("extdata/bincounts/TN5_bincounts.rds"))
-
-TN6_bincounts <- readRDS(here("extdata/bincounts/TN6_bincounts.rds"))
-
-TN7_bincounts <- readRDS(here("extdata/bincounts/TN7_bincounts.rds"))
-
-TN8_bincounts <- readRDS(here("extdata/bincounts/TN8_bincounts.rds"))
-
 TN1_10XCNA_bincounts <- readRDS(here("extdata/bincounts/TN1_10XCNA_bincounts.rds"))
 
 TN3_10XCNA_bincounts <- readRDS(here("extdata/bincounts/TN3_10XCNA_bincounts.rds"))
@@ -161,19 +137,15 @@ T10_DOPPCR_bincounts <- readRDS(here("extdata/bincounts/T10_DOPPCR_bincounts.rds
 all_cov <- rbind(tn2_cov,
                  tn1_cov,
                  tn1_10xcnv_cov,
-                 tn5_cov,
                  tn4_cov,
                  t2_doppcr_cov,
                  t4_doppcr_cov,
                  tn3_cov,
-                 tn7_cov,
-                 tn6_cov,
                  tn3_10xcnv_cov,
                  t8_doppcr_cov,
                  t10_doppcr_cov,
                  dlp_htert_cov,
-                 dlp_xeno_cov,
-                 tn8_cov)
+                 dlp_xeno_cov)
 
 p_breadth <- all_cov %>%
   mutate(tech = as.factor(tech)) %>% 
@@ -253,44 +225,6 @@ TN4_overdispersion <-  map_dfr(TN4_bincounts[,-c(1:3)],
   mutate(sample = "TN4",
          tech = "ACT",
          cells = names(TN4_bincounts)[-c(1:3)]) %>% 
-  dplyr::rename(iod = "V1")
-
-TN5_overdispersion <-  map_dfr(TN5_bincounts[,-c(1:3)], 
-                    overdispersion) %>%
-  t() %>%
-  as.data.frame() %>% 
-  mutate(sample = "TN5",
-         tech = "ACT",
-         cells = names(TN5_bincounts)[-c(1:3)]) %>% 
-  dplyr::rename(iod = "V1")
-
-TN6_overdispersion <-  map_dfr(TN6_bincounts[,-c(1:3)], 
-                    overdispersion) %>%
-  t() %>%
-  as.data.frame() %>% 
-  mutate(sample = "TN6",
-         tech = "ACT",
-         cells = names(TN6_bincounts)[-c(1:3)]) %>% 
-  mutate(cells = str_replace_all(cells, "\\.", "-")) %>% 
-  dplyr::rename(iod = "V1")
-
-TN7_overdispersion <-  map_dfr(TN7_bincounts[,-c(1:3)], 
-                    overdispersion) %>%
-  t() %>%
-  as.data.frame() %>% 
-  mutate(sample = "TN7",
-         tech = "ACT",
-         cells = names(TN7_bincounts)[-c(1:3)]) %>% 
-  mutate(cells = str_replace_all(cells, "\\.", "-")) %>% 
-  dplyr::rename(iod = "V1")
-
-TN8_overdispersion <-  map_dfr(TN8_bincounts[,-c(1:3)], 
-                    overdispersion) %>%
-  t() %>%
-  as.data.frame() %>% 
-  mutate(sample = "TN8",
-         tech = "ACT",
-         cells = names(TN8_bincounts)[-c(1:3)]) %>% 
   dplyr::rename(iod = "V1")
 
 #10X CNA
@@ -377,10 +311,6 @@ all_overdispersion <- bind_rows(
   TN2_overdispersion,
   TN3_overdispersion,
   TN4_overdispersion,
-  TN5_overdispersion,
-  TN6_overdispersion,
-  TN7_overdispersion,
-  TN8_overdispersion,
   T2_DOPPCR_overdispersion,
   T4_DOPPCR_overdispersion,
   T8_DOPPCR_overdispersion,
