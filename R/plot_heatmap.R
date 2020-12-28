@@ -20,7 +20,8 @@ plot_heatmap <- function(df,
                          genomic_classes = NULL,
                          keep_gene,
                          tree_order = NULL,
-                         show_legend = FALSE) {
+                         show_legend = FALSE,
+                         cocluster = FALSE) {
 
   if (!is.null(tree_order)) {
     clusters <- clusters[order(match(clusters$subclones, tree_order)), ]
@@ -111,12 +112,6 @@ plot_heatmap <- function(df,
   }
 
 
-  # removing cells from ann_df to be used as an annotation
-  ann_df <- clusters %>%
-    as.data.frame() %>%
-    dplyr::select(superclones,
-                  subclones)
-
   popseg_round <- ploidy_scale(ploidy_VAL, df)
   popseg_heatmap <- popseg_round
   popseg_heatmap[popseg_round > ploidy_trunc] <- ploidy_trunc
@@ -124,22 +119,58 @@ plot_heatmap <- function(df,
   colors_superclones <- colors_vector$superclones
   colors_subclones <- colors_vector$subclones
 
-  ann <- rowAnnotation(
-    df = ann_df,
-    col = list(subclones = colors_subclones,
-               superclones = colors_superclones),
-    show_annotation_name = TRUE,
-    annotation_name_gp = gpar(fontsize = 17),
-    simple_anno_size = unit(0.9, "cm"),
-    annotation_legend_param = list(
-      subclones = list(
-        labels = gtools::mixedsort(unique(as.character(clusters$subclones))),
-        at = gtools::mixedsort(unique(as.character(clusters$subclones)))
+  if (cocluster == TRUE) {
+    # removing cells from ann_df to be used as an annotation
+    ann_df <- clusters %>%
+      as.data.frame() %>%
+      mutate(type = case_when(str_detect(cells, "TN") ~ "ACT",
+                                    TRUE ~ "10X_CNV")) %>%
+      dplyr::select(type,
+                    subclones)
+
+    ann <- rowAnnotation(
+      df = ann_df,
+      col = list(subclones = colors_subclones,
+                 type = c("10X_CNV" = "#3C88C3",
+                          "ACT" =  "#C3773C")),
+      show_annotation_name = TRUE,
+      annotation_name_gp = gpar(fontsize = 17),
+      simple_anno_size = unit(0.9, "cm"),
+      annotation_legend_param = list(
+        subclones = list(
+          labels = gtools::mixedsort(unique(as.character(clusters$subclones))),
+          at = gtools::mixedsort(unique(as.character(clusters$subclones)))
+        )
       ),
-      superclones = list(labels = gtools::mixedsort(unique(clusters$superclones)))
-    ),
-    show_legend = show_legend
-  )
+      show_legend = show_legend
+    )
+
+  } else {
+    # removing cells from ann_df to be used as an annotation
+    ann_df <- clusters %>%
+      as.data.frame() %>%
+      dplyr::select(superclones,
+                    subclones)
+
+    ann <- rowAnnotation(
+      df = ann_df,
+      col = list(subclones = colors_subclones,
+                 superclones = colors_superclones),
+      show_annotation_name = TRUE,
+      annotation_name_gp = gpar(fontsize = 17),
+      simple_anno_size = unit(0.9, "cm"),
+      annotation_legend_param = list(
+        subclones = list(
+          labels = gtools::mixedsort(unique(as.character(clusters$subclones))),
+          at = gtools::mixedsort(unique(as.character(clusters$subclones)))
+        ),
+        superclones = list(labels = gtools::mixedsort(unique(clusters$superclones)))
+      ),
+      show_legend = show_legend
+    )
+
+  }
+
 
   # genes annotation
 

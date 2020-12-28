@@ -4,6 +4,7 @@
 #' @param clusters The results from clustering
 #' @param ploidy_VAL The inferred ploidy value. Will be used to scale the data
 #' @param rotate_nodes Nodes to be rotated
+#' @param plot Boolean. Prints the plot if true
 #'
 #' @return
 #' @export
@@ -12,7 +13,8 @@
 run_me_tree <- function(consensus_df,
                         clusters,
                         ploidy_VAL,
-                        rotate_nodes = NULL) {
+                        rotate_nodes = NULL,
+                        plot = TRUE) {
 
   consensus_int <- ploidy_scale(ploidy_VAL, consensus_df)
 
@@ -76,7 +78,7 @@ run_me_tree <- function(consensus_df,
     scale_color_manual(values = colors_vector_gg) +
     theme(legend.position = "none")
 
-  print(p)
+  if(plot) print(p)
 
   results <- list(tree = tree,
                   cs_plot = p,

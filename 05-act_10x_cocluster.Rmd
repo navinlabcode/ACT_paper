@@ -112,6 +112,43 @@ TN1_cocluster_p <- TN1_cocluster_p_act + TN1_cocluster_p_tenx + TN1_cocluster_p_
 TN1_cocluster_p
 ```
 
+```{r TN1_heatmap, fig.height=8}
+TN1_cocluster_ordered <- order_dataset(popseg_long = TN1_cocluster_popseg_long_ml,
+                             clustering = TN1_cocluster_cluster)
+
+TN1_cocluster_consensus <- calculate_consensus(df = TN1_cocluster_ordered$dataset_ordered,
+                                     clusters = TN1_cocluster_ordered$clustering_ordered$subclones)
+
+TN1_cocluster_gen_classes <- consensus_genomic_classes(TN1_cocluster_consensus,
+                                             ploidy_VAL = TN1_ploidy)
+
+TN1_cocluster_me_consensus_tree <- run_me_tree(consensus_df = TN1_cocluster_consensus,
+                                     clusters = TN1_cocluster_cluster,
+                                     ploidy_VAL = TN1_ploidy,
+                                     plot = FALSE)
+
+TN1_cocluster_annotation_genes <- c("BRCA1",
+                          "TP53",
+                          "FGFR4",
+                          "MDM2",
+                          "CCND1",
+                          "SHC1",
+                          "CKS1B",
+                          "MYC",
+                          "RB1",
+                          "MTDH")
+
+plot_heatmap(df = TN1_cocluster_ordered$dataset_ordered,
+             ploidy_VAL = TN1_ploidy,
+             ploidy_trunc = 2*(round(TN1_ploidy)),
+             clusters = TN1_cocluster_ordered$clustering_ordered,
+             genomic_classes = TN1_cocluster_gen_classes,
+             keep_gene = TN1_cocluster_annotation_genes,
+             tree_order = TN1_cocluster_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE,
+             cocluster = TRUE)
+```
+
 
 ## TN1 Gene Frequency Barplot
 ```{r TN1_freq_barplot}
@@ -247,4 +284,41 @@ cn_freq_barplot(
                "ESR1"),
   ploidy_VAL = TN3_ploidy
 )
+```
+
+```{r TN3_heatmap, fig.height=8}
+TN3_cocluster_ordered <- order_dataset(popseg_long = TN3_cocluster_popseg_long_ml,
+                             clustering = TN3_cocluster_cluster)
+
+TN3_cocluster_consensus <- calculate_consensus(df = TN3_cocluster_ordered$dataset_ordered,
+                                     clusters = TN3_cocluster_ordered$clustering_ordered$subclones)
+
+TN3_cocluster_gen_classes <- consensus_genomic_classes(TN3_cocluster_consensus,
+                                             ploidy_VAL = TN3_ploidy)
+
+TN3_cocluster_me_consensus_tree <- run_me_tree(consensus_df = TN3_cocluster_consensus,
+                                     clusters = TN3_cocluster_cluster,
+                                     ploidy_VAL = TN3_ploidy,
+                                     plot = FALSE)
+
+TN3_cocluster_annotation_genes <- c("BRCA1",
+                          "TP53",
+                          "FGFR4",
+                          "MDM2",
+                          "CCND1",
+                          "SHC1",
+                          "CKS1B",
+                          "MYC",
+                          "RB1",
+                          "MTDH")
+
+plot_heatmap(df = TN3_cocluster_ordered$dataset_ordered,
+             ploidy_VAL = TN3_ploidy,
+             ploidy_trunc = 2*(round(TN3_ploidy)),
+             clusters = TN3_cocluster_ordered$clustering_ordered,
+             genomic_classes = TN3_cocluster_gen_classes,
+             keep_gene = TN3_cocluster_annotation_genes,
+             tree_order = TN3_cocluster_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE,
+             cocluster = TRUE)
 ```
