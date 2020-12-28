@@ -1,0 +1,72 @@
+---
+author: "Darlan Conterno Minussi"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options: 
+  chunk_output_type: console
+---
+# ACT & 10X CNA
+
+```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
+source("R/setup.R")
+source("R/cn_freq_barplot.R")
+```
+
+## TN1
+```{r TN1}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN1_ploidy <- 3.45
+
+TN1_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_popseg_long_ml.rds"))
+TN1_10xcnv_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_10xcnv_popseg_long_ml.rds"))
+
+cn_freq_barplot(
+  act_df = TN1_popseg_long_ml,
+  tenx_df = TN1_10xcnv_popseg_long_ml,
+  keep_genes =  c(
+    "BRCA1",
+    "TP53",
+    "FGFR4",
+    "MDM2",
+    "CCND1",
+    "SHC1",
+    "CKS1B",
+    "MYC",
+    "RB1",
+    "MTDH"
+  ),
+  ploidy_VAL = TN1_ploidy
+)
+```
+
+
+## TN3
+```{r TN3}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN3_ploidy <- 3.44
+
+TN3_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_popseg_long_ml.rds"))
+TN3_10xcnv_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_10xcnv_popseg_long_ml.rds"))
+
+cn_freq_barplot(
+  act_df = TN3_popseg_long_ml,
+  tenx_df = TN3_10xcnv_popseg_long_ml,
+  keep_genes = c("BRCA1", 
+               "EGFR",
+               "MYC",
+               "RB1",
+               "CCND1",
+               "CDKN1B",
+               "PAK1",
+               "FHIT",
+               "FGFR1",
+               "ESR1"),
+  ploidy_VAL = TN3_ploidy
+)
+```
