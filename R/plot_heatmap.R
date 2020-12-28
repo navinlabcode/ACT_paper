@@ -25,6 +25,7 @@ plot_heatmap <- function(df,
 
   if (!is.null(tree_order)) {
     clusters <- clusters[order(match(clusters$subclones, tree_order)), ]
+    df <- df[clusters$cells,]
   }
 
   # check to avoid crashing with too many genes annotations
@@ -110,7 +111,6 @@ plot_heatmap <- function(df,
       names = c("0", "1", "2", "3", "4", "5", "6")
     )
   }
-
 
   popseg_round <- ploidy_scale(ploidy_VAL, df)
   popseg_heatmap <- popseg_round
