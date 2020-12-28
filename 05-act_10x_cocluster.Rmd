@@ -12,13 +12,112 @@ source("R/setup.R")
 source("R/cn_freq_barplot.R")
 ```
 
-## TN1
-```{r TN1}
+```{r plot_setup}
+cocluster_theme <- list(theme_cowplot(),
+  theme(axis.text.x= element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line = element_blank(),
+        legend.position = "none",
+        panel.grid.major = element_line(size = .25, color = 'gray70', linetype = "dashed"),
+        panel.grid.minor = element_line(size = .25, color = 'gray70', linetype = "dashed"),
+        legend.title = element_blank(),
+        plot.title = element_text(hjust = 0.5,
+                                  face = "plain"),
+        legend.text = element_text(size = 14),
+        panel.border = element_rect(color = "black", 
+                                    fill = NA,
+                                    size = 2)),
+  xlab("umap1"), ylab("umap2"),
+  guides(colour = guide_legend(override.aes = list(alpha=1)))
+  )
+```
+
+## TN1 Co-clustering umaps
+```{r TN1_coclustering, fig.width=10}
+TN1_ploidy <- 3.45
+
+TN1_cocluster_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_cocluster_popseg_long_ml.rds"))
+
+TN1_cocluster_umap <- run_umap(TN1_cocluster_popseg_long_ml,
+                               ploidy_VAL = TN1_ploidy,
+                               round = TRUE)
+
+TN1_cocluster_cluster <- run_clustering(TN1_cocluster_umap,
+                                        k_snn_minor = 35)
+
+TN1_cocluster_df <- TN1_cocluster_cluster %>% 
+  mutate(tech = case_when(
+  str_detect(cells, "TN") ~ "ACT",
+  TRUE ~ "10X CNA"
+))
+
+TN1_cocl_freq_plot <- TN1_cocluster_df %>% 
+  group_by(subclones) %>% 
+  count(tech) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  ggplot(aes(fct_reorder2(subclones, tech, freq),
+             freq)) +
+  geom_col(aes(fill = tech), color = "black") +
+  scale_fill_manual(values = c("#3C88C3", "#C3773C")) +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  ylab("frequency") +
+  xlab("") +
+  labs(fill = NULL) +
+  theme(axis.text.x = element_text(angle = 90,
+                                   hjust = 1,
+                                   vjust = .5))
+TN1_cocl_freq_plot
+
+TN1_cocluster_umap$sample <- case_when(
+  grepl("TN28", TN1_cocluster_umap$cell) ~ "ACT",
+  TRUE ~ "10X CNA"
+) 
+
+TN1_cocluster_umap <- TN1_cocluster_umap %>% 
+  arrange(sample) %>% 
+  left_join(TN1_cocluster_cluster, by = c("cell" = "cells"))
+
+TN1_cocluster_p_merge <-
+  ggplot(TN1_cocluster_umap) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#3C88C3", "#C3773C"))  +
+  ggtitle("merge") +
+  cocluster_theme + ylab("") + xlab("")
+  
+TN1_cocluster_p_act <- ggplot(TN1_cocluster_umap %>% filter(sample == "ACT")) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#C3773C"))  +
+  ggtitle("ACT") +
+  cocluster_theme  + xlab("")
+
+TN1_cocluster_p_tenx <- ggplot(TN1_cocluster_umap %>% filter(sample == "10X CNA")) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#3C88C3"))  +
+  ggtitle("10X CNA") +
+  cocluster_theme + ylab("") + xlab("")
+
+TN1_cocluster_p_cluster <-
+  ggplot(TN1_cocluster_umap) + 
+  geom_point(aes(x = V1, y =  V2, color = subclones), size = 2, alpha = 1) +
+  scale_color_manual(values = colors_vector$subclones) +
+  cocluster_theme + 
+  ggtitle("co-clustering") +
+  xlab("") + ylab("")
+
+TN1_cocluster_p <- TN1_cocluster_p_act + TN1_cocluster_p_tenx + TN1_cocluster_p_merge + TN1_cocluster_p_cluster + patchwork::plot_layout(nrow = 1)
+
+TN1_cocluster_p
+```
+
+
+## TN1 Gene Frequency Barplot
+```{r TN1_freq_barplot}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
 # Tumors Heatmaps/Consensus/Trees
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
-
-TN1_ploidy <- 3.45
 
 TN1_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_popseg_long_ml.rds"))
 TN1_10xcnv_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_10xcnv_popseg_long_ml.rds"))
@@ -43,7 +142,86 @@ cn_freq_barplot(
 ```
 
 
-## TN3
+## TN3 Co-clustering umaps
+```{r TN3_cocluster, fig.width=10}
+TN3_ploidy <- 3.44
+
+TN3_cocluster_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_cocluster_popseg_long_ml.rds"))
+
+TN3_cocluster_umap <- run_umap(TN3_cocluster_popseg_long_ml,
+                               ploidy_VAL = TN3_ploidy,
+                               round = TRUE)
+
+TN3_cocluster_cluster <- run_clustering(TN3_cocluster_umap,
+                                        k_snn_minor = 80)
+
+TN3_cocluster_df <- TN3_cocluster_cluster %>% 
+  mutate(tech = case_when(
+  str_detect(cells, "TN") ~ "ACT",
+  TRUE ~ "10X CNA"
+))
+
+TN3_cocl_freq_plot <- TN3_cocluster_df %>% 
+  group_by(subclones) %>% 
+  count(tech) %>% 
+  mutate(freq = n/sum(n)) %>% 
+  ggplot(aes(fct_reorder2(subclones, tech, freq),
+             freq)) +
+  geom_col(aes(fill = tech), color = "black") +
+  scale_fill_manual(values = c("#3C88C3", "#C3773C")) +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0)) +
+  ylab("frequency") +
+  xlab("") +
+  labs(fill = NULL) +
+  theme(axis.text.x = element_text(angle = 90,
+                                   hjust = 1,
+                                   vjust = .5))
+TN3_cocl_freq_plot
+
+TN3_cocluster_umap$sample <- case_when(
+  grepl("TN17", TN3_cocluster_umap$cell) ~ "ACT",
+  TRUE ~ "10X CNA"
+) 
+
+TN3_cocluster_umap <- TN3_cocluster_umap %>% 
+  arrange(sample) %>% 
+  left_join(TN3_cocluster_cluster, by = c("cell" = "cells"))
+
+TN3_cocluster_p_merge <-
+  ggplot(TN3_cocluster_umap) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#3C88C3", "#C3773C"))  +
+  ggtitle("merge") +
+  cocluster_theme + ylab("") + xlab("")
+  
+TN3_cocluster_p_act <- ggplot(TN3_cocluster_umap %>% filter(sample == "ACT")) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#C3773C"))  +
+  ggtitle("ACT") +
+  cocluster_theme  + xlab("")
+
+TN3_cocluster_p_tenx <- ggplot(TN3_cocluster_umap %>% filter(sample == "10X CNA")) + 
+  geom_point(aes(x = V1, y =  V2, color = sample), size = 2, alpha = 1) +
+  scale_color_manual(values = c("#3C88C3"))  +
+  ggtitle("10X CNA") +
+  cocluster_theme + ylab("") + xlab("")
+
+TN3_cocluster_p_cluster <-
+  ggplot(TN3_cocluster_umap) + 
+  geom_point(aes(x = V1, y =  V2, color = subclones), size = 2, alpha = 1) +
+  scale_color_manual(values = colors_vector$subclones) +
+  cocluster_theme + 
+  ggtitle("co-clustering") +
+  xlab("") + ylab("")
+
+TN3_cocluster_p <- TN3_cocluster_p_act + TN3_cocluster_p_tenx + TN3_cocluster_p_merge + TN3_cocluster_p_cluster + patchwork::plot_layout(nrow = 1)
+
+TN3_cocluster_p
+```
+
+
+## TN3 Gene Frequency Barplot
 ```{r TN3}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
 # Tumors Heatmaps/Consensus/Trees
