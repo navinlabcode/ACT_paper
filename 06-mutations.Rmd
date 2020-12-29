@@ -1,0 +1,266 @@
+---
+author: "Darlan Conterno Minussi"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options: 
+  chunk_output_type: console
+---
+# Exome and WGD
+
+```{r source_setup, message=FALSE, warning=FALSE}
+source("R/setup.R")
+source("R/vcf_filtering.R")
+source("R/parse_mtimer_vcf.R")
+```
+
+## Data
+```{r input_data}
+TN1_mutect <- read.vcfR(here("extdata/exome/mutect/TN1.vcf"))
+
+TN1_annovar <- read_delim(here("extdata/exome/annovar/TN1.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+TN2_mutect <- read.vcfR(here("extdata/exome/mutect/TN2.vcf"))
+
+TN2_annovar <- read_delim(here("extdata/exome/annovar/TN2.annovar.csv"),
+                           delim = ",") %>% 
+  rename(CHROM = "Chr",
+         POS = "Start")
+
+TN3_mutect <- read.vcfR(here("extdata/exome/mutect/TN3.vcf"))
+
+TN3_annovar <- read_delim(here("extdata/exome/annovar/TN3.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+TN4_mutect <- read.vcfR(here("extdata/exome/mutect/TN4.vcf"))
+
+TN4_annovar <- read_delim(here("extdata/exome/annovar/TN4.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+TN5_mutect <- read.vcfR(here("extdata/exome/mutect/TN5.vcf"))
+
+TN5_annovar <- read_delim(here("extdata/exome/annovar/TN5.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+TN6_mutect <- read.vcfR(here("extdata/exome/mutect/TN6.vcf"))
+
+TN6_annovar <- read_delim(here("extdata/exome/annovar/TN6.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+
+TN7_mutect <- read.vcfR(here("extdata/exome/mutect/TN7.vcf"))
+
+TN7_annovar <- read_delim(here("extdata/exome/annovar/TN7.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+
+TN8_mutect <- read.vcfR(here("extdata/exome/mutect/TN8.vcf"))
+
+TN8_annovar <- read_delim(here("extdata/exome/annovar/TN8.annovar.csv"),
+                           delim = ",") %>% 
+  dplyr::rename(CHROM = "Chr",
+         POS = "Start")
+```
+
+## Filtering
+```{r filtering} 
+TN1_mutations <- vcf_filtering(
+  mutect = TN1_mutect,
+  annovar = TN1_annovar,
+  min_AD = 1,
+  bulk_normal = "TN28N",
+  bulk_tumor = "TN28S1A"
+) %>% 
+  left_join(TN1_annovar)
+
+TN2_mutations <- vcf_filtering(
+  mutect = TN2_mutect,
+  annovar = TN2_annovar,
+  min_AD = 1,
+  bulk_normal = "TN20N",
+  bulk_tumor = "TN20S1A"
+) %>% 
+  left_join(TN2_annovar)
+
+TN3_mutations <- vcf_filtering(
+  mutect = TN3_mutect,
+  annovar = TN3_annovar,
+  min_AD = 1,
+  bulk_normal = "TN17N",
+  bulk_tumor = "TN17A"
+) %>% 
+  left_join(TN3_annovar)
+
+TN4_mutations <- vcf_filtering(
+  mutect = TN4_mutect,
+  annovar = TN4_annovar,
+  min_AD = 1,
+  bulk_normal = "TN26N",
+  bulk_tumor = "TN26S2A"
+) %>% 
+  left_join(TN4_annovar)
+
+TN5_mutations <- vcf_filtering(
+  mutect = TN5_mutect,
+  annovar = TN5_annovar,
+  min_AD = 1,
+  bulk_normal = "TN21N",
+  bulk_tumor = "TN21S1A"
+) %>% 
+  left_join(TN5_annovar)
+
+TN6_mutations <- vcf_filtering(
+  mutect = TN6_mutect,
+  annovar = TN6_annovar,
+  min_AD = 1,
+  bulk_normal = "BRCADN",
+  bulk_tumor = "BRCADT"
+) %>% 
+  left_join(TN6_annovar)
+
+TN7_mutations <- vcf_filtering(
+  mutect = TN7_mutect,
+  annovar = TN7_annovar,
+  min_AD = 1,
+  bulk_normal = "BRCACN",
+  bulk_tumor = "BRCACT"
+) %>% 
+  left_join(TN7_annovar)
+
+TN8_mutations <- vcf_filtering(
+  mutect = TN8_mutect,
+  annovar = TN8_annovar,
+  min_AD = 1,
+  bulk_normal = "TN27N",
+  bulk_tumor = "TN27A"
+) %>% 
+  left_join(TN8_annovar)
+
+# Unique data frame for mutations, excluding matched normal from the vcf
+TN_muts <- bind_rows(
+  TN1_mutations %>% filter(sample != "TN28N") %>% mutate(patient = "TN1"),
+  TN2_mutations %>% filter(sample != "TN20N") %>% mutate(patient = "TN2"),
+  TN3_mutations %>% filter(sample != "TN17N") %>% mutate(patient = "TN3"),
+  TN4_mutations %>% filter(sample != "TN26N") %>% mutate(patient = "TN4"),
+  TN5_mutations %>% filter(sample != "TN21N") %>% mutate(patient = "TN5"),
+  TN6_mutations %>% filter(sample != "BRCADN") %>% mutate(patient = "TN6"),
+  TN7_mutations %>% filter(sample != "BRCACN") %>% mutate(patient = "TN7"),
+  TN8_mutations %>% filter(sample != "TN27N") %>% mutate(patient = "TN8") 
+)
+```
+
+## Mut timer information
+```{r mut_timer, warning=FALSE}
+TN1_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN1_m_timer.vcf")) %>% mutate(patient = "TN1")
+
+TN2_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN2_m_timer.vcf")) %>% mutate(patient = "TN2")
+
+TN3_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN3_m_timer.vcf")) %>% mutate(patient = "TN3")
+
+TN4_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN4_m_timer.vcf")) %>% mutate(patient = "TN4")
+
+TN5_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN5_m_timer.vcf")) %>% mutate(patient = "TN5")
+
+TN6_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN6_m_timer.vcf")) %>% mutate(patient = "TN6")
+
+TN7_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN7_m_timer.vcf")) %>% mutate(patient = "TN7")
+
+TN8_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN8_m_timer.vcf")) %>% mutate(patient = "TN8")
+
+TN_mut_time <- bind_rows(
+  TN1_mut_time,
+  TN2_mut_time,
+  TN3_mut_time,
+  TN4_mut_time,
+  TN5_mut_time,
+  TN6_mut_time,
+  TN7_mut_time,
+  TN8_mut_time
+)
+```
+
+## Mutation burden
+```{r burden_plot}
+# merging with mutation timer
+TN_muts_j_time <- left_join(TN_muts, TN_mut_time) %>% 
+    filter(sample %in% c("TN28S1A", "TN20S1A", "TN17A", "TN26S2A", "TN21S1A", "BRCADT", "BRCACT", "TN27A"))  %>% 
+  mutate(indel = case_when(str_length(Alt) > 1 ~ "indel", TRUE ~ 'SNV')) %>% 
+  mutate(mutation_time = case_when(is.na(mutation_time) & str_length(Alt) > 1 ~ 'indel',
+                                   is.na(mutation_time) & str_length(Alt) == 1 ~ 'unclassified',
+                                   TRUE ~ mutation_time))
+
+p_mut_burden <- TN_muts_j_time %>%
+  group_by(sample) %>% 
+  filter(sample %in% c("TN28S1A", "TN20S1A", "TN17A", "TN26S2A", "TN21S1A", "BRCADT", "BRCACT", "TN27A"),
+         mutation_time != "indel") %>% 
+  add_count(patient, name = "mutation_total") %>% 
+  ggplot(aes(fct_reorder(patient, mutation_total), fill = mutation_time)) +
+  geom_bar(color = 'black', width = .7) +
+  scale_fill_manual(values = c("clonal" = "#625a94","subclonal" = "#f57946","indel" = "#ecc0a1",
+                               "unclassified" = "#4a3a3b")) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 10), 
+                     expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 90),
+        legend.position = "bottom") +
+  xlab("") +
+  ylab("exome mutations") +
+  labs(fill = "")
+
+p_mut_burden_1<- p_mut_burden + coord_cartesian(ylim = c(0, 200))
+p_mut_burden_2 <- p_mut_burden + coord_cartesian(ylim = c(1650, 1750)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 5)) +
+  theme(legend.position = "none",
+        axis.line.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) 
+
+p_mut_burden_break <- p_mut_burden_2/p_mut_burden_1 + plot_layout(heights = c(1,2))
+p_mut_burden_break
+```
+
+## Oncomap 
+```{r oncomap_plot}
+genes_upset <- TN_muts %>% 
+  filter(sample %in% c("TN28S1A", "TN20S1A", "TN17A", "TN26S2A", "TN21S1A", "BRCADT", "BRCACT", "TN27A"),
+         ExonicFunc.refGene != "synonymous SNV",
+         Polyphen2_HDIV_score > 0.85,
+         SIFT_score < 0.05) %>% 
+  group_by(patient) %>%  
+  ungroup() %>% 
+  count(Gene.refGene, sort = T) %>% 
+  filter(n > 1) %>%
+  pull(Gene.refGene)
+  
+oncomap <- TN_muts %>% 
+  filter(sample %in% c("TN28S1A", "TN20S1A", "TN17A", "TN26S2A", "TN21S1A", "BRCADT", "BRCACT", "TN27A"),
+         ExonicFunc.refGene != "synonymous SNV") %>% 
+  filter(Gene.refGene %in% genes_upset) %>% 
+  ggplot(aes(Gene.refGene,
+             patient)) +
+  geom_point(aes(fill = ExonicFunc.refGene),
+             size = 5,
+             shape = 21) +
+  scale_x_discrete(limits = genes_upset) +
+  scale_y_discrete(limits = rev(paste0("TN", 1:8))) +
+  scale_fill_manual(values = PNWColors::pnw_palette("Sunset", 3)) +
+  theme(axis.text.x = element_text(angle = 90,
+                                   vjust = .5,
+                                   hjust = 1)) +
+    labs(x = "gene",
+         y = "",
+         fill = "")
+
+oncomap
+```
+

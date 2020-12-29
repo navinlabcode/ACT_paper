@@ -35,6 +35,8 @@ library(readr)
 library(DESeq2)
 library(Homo.sapiens)
 library(conflicted)
+library(vcfR)
+library(jcolors)
 plan(multiprocess, workers = 20)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:17:44 2020

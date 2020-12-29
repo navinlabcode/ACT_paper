@@ -7,7 +7,7 @@ editor_options:
 ---
 # ACT & 10X CNA
 
-```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
+```{r source_setup, message=FALSE, warning=FALSE}
 source("R/setup.R")
 source("R/cn_freq_barplot.R")
 ```
