@@ -109,7 +109,7 @@ TN2_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN2_popseg_long_ml.rds"
 TN2_umap <- run_umap(TN2_popseg_long_ml)
 
 TN2_clustering <- run_clustering(TN2_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 63,
                                  k_snn_minor = 17)
 
 TN2_ordered <- order_dataset(popseg_long = TN2_popseg_long_ml,
@@ -188,7 +188,7 @@ TN3_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_popseg_long_ml.rds"
 TN3_umap <- run_umap(TN3_popseg_long_ml)
 
 TN3_clustering <- run_clustering(TN3_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 65,
                                  k_snn_minor = 17)
 
 TN3_ordered <- order_dataset(popseg_long = TN3_popseg_long_ml,
@@ -267,7 +267,7 @@ TN4_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN4_popseg_long_ml.rds"
 TN4_umap <- run_umap(TN4_popseg_long_ml)
 
 TN4_clustering <- run_clustering(TN4_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 75,
                                  k_snn_minor = 17)
 
 TN4_ordered <- order_dataset(popseg_long = TN4_popseg_long_ml,
@@ -348,7 +348,7 @@ TN5_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN5_popseg_long_ml.rds"
 TN5_umap <- run_umap(TN5_popseg_long_ml)
 
 TN5_clustering <- run_clustering(TN5_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 41,
                                  k_snn_minor = 17)
 
 TN5_ordered <- order_dataset(popseg_long = TN5_popseg_long_ml,
@@ -365,9 +365,8 @@ TN5_gen_classes <- consensus_genomic_classes(TN5_consensus,
 
 TN5_me_consensus_tree <- run_me_tree(consensus_df = TN5_consensus,
                                      clusters = TN5_clustering,
-                                     ploidy_VAL = TN5_ploidy)
-
-
+                                     ploidy_VAL = TN5_ploidy,
+                                     rotate_nodes = c(8,10,11))
 
 TN5_annotation_genes <-
   c(
@@ -430,7 +429,7 @@ TN6_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN6_popseg_long_ml.rds"
 TN6_umap <- run_umap(TN6_popseg_long_ml)
 
 TN6_clustering <- run_clustering(TN6_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 51,
                                  k_snn_minor = 17)
 
 TN6_ordered <- order_dataset(popseg_long = TN6_popseg_long_ml,
@@ -447,10 +446,8 @@ TN6_gen_classes <- consensus_genomic_classes(TN6_consensus,
 
 TN6_me_consensus_tree <- run_me_tree(consensus_df = TN6_consensus,
                                      clusters = TN6_clustering,
-                                     ploidy_VAL = TN6_ploidy)
-
-
-
+                                     ploidy_VAL = TN6_ploidy,
+                                     rotate_nodes = c(17:20, 22, 29))
 
 TN6_annotation_genes <-
   c(
@@ -513,7 +510,7 @@ TN7_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN7_popseg_long_ml.rds"
 TN7_umap <- run_umap(TN7_popseg_long_ml)
 
 TN7_clustering <- run_clustering(TN7_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 35,
                                  k_snn_minor = 17)
 
 TN7_ordered <- order_dataset(popseg_long = TN7_popseg_long_ml,
@@ -530,10 +527,8 @@ TN7_gen_classes <- consensus_genomic_classes(TN7_consensus,
 
 TN7_me_consensus_tree <- run_me_tree(consensus_df = TN7_consensus,
                                      clusters = TN7_clustering,
-                                     ploidy_VAL = TN7_ploidy)
-
-
-
+                                     ploidy_VAL = TN7_ploidy,
+                                     rotate_nodes = c(26, 27))
 
 TN7_annotation_genes <-
   c(
@@ -596,7 +591,7 @@ TN8_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN8_popseg_long_ml.rds"
 TN8_umap <- run_umap(TN8_popseg_long_ml)
 
 TN8_clustering <- run_clustering(TN8_umap,
-                                 k_snn_major = 45,
+                                 k_snn_major = 43,
                                  k_snn_minor = 17)
 
 TN8_ordered <- order_dataset(popseg_long = TN8_popseg_long_ml,
@@ -613,11 +608,8 @@ TN8_gen_classes <- consensus_genomic_classes(TN8_consensus,
 
 TN8_me_consensus_tree <- run_me_tree(consensus_df = TN8_consensus,
                                      clusters = TN8_clustering,
-                                     ploidy_VAL = TN8_ploidy)
-
-
-
-
+                                     ploidy_VAL = TN8_ploidy,
+                                     rotate_nodes = c(17,18, 25, 29))
 
 TN8_annotation_genes <-
   c(
