@@ -20,6 +20,24 @@ source("R/plot_heatmap.R")
 source("R/plot_consensus_heatmap.R")
 ```
 
+```{r theme_setup}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:11 2021
+# ggplot theme setup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:17 2021
+
+my_theme <- list(
+  ggplot2::theme(
+    axis.title.x = element_text(colour = "black", size = 16),
+    axis.text.x = element_text(size = 14),
+    axis.title.y = element_text(colour = "black", size = 16),
+    axis.text.y = element_text(size = 14),
+    legend.position = "top",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14)
+  )
+)
+```
+
 ## MDA-MB-231
 ```{r MDA-MB-231}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
@@ -422,4 +440,64 @@ plot_heatmap(df = bt20_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
+## Clones barplot
+```{r}
+n_clones_cl <- tibble(
+  sample = rep(c("MDA231 P",
+                  "MDA231 EX 1",
+                  "MDA231 EX 2",
+                  "MDA453",
+                  "MDA157",
+                  "BT-20"),2),
+  n_clones = c(
+    length(unique(mb231_clustering$superclones)),
+    length(unique(mb231ex1_clustering$superclones)),
+    length(unique(mb231ex2_clustering$superclones)),
+    length(unique(mb453_clustering$superclones)),
+    length(unique(mb157_clustering$superclones)),
+    length(unique(bt20_clustering$superclones)),
+    length(unique(mb231_clustering$subclones)),
+    length(unique(mb231ex1_clustering$subclones)),
+    length(unique(mb231ex2_clustering$subclones)),
+    length(unique(mb453_clustering$subclones)),
+    length(unique(mb157_clustering$subclones)),
+    length(unique(bt20_clustering$subclones))
+  ),
+  group = c(
+    rep("superclones",6),
+    rep("subclones", 6)
+  )
+) 
+
+p_nclones_cl <-  n_clones_cl %>%
+  ggplot() +
+  geom_col(
+    aes(
+      x = fct_relevel(sample, c("MDA231 P",
+                  "MDA231 EX 1",
+                  "MDA231 EX 2",
+                  "MDA453",
+                  "MDA157",
+                  "BT-20")),
+      y = n_clones,
+      fill = fct_relevel(group, c("superclones",
+                                  "subclones"))
+    ),
+    position = "dodge"
+  ) +
+  theme_classic() +
+  my_theme +
+  theme(axis.text.x = element_text(angle = 90, vjust = .5,
+                                   hjust = 1)) +
+  scale_y_continuous(
+    breaks = scales::pretty_breaks(n = 10),
+    limits = c(0, 22),
+    expand = c(0, 0)
+  ) +
+  paletteer::scale_fill_paletteer_d("yarrr::info") +
+  xlab("") +
+  ylab("number of clones")
+
+p_nclones_cl
+```
 

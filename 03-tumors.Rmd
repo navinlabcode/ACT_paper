@@ -18,7 +18,27 @@ source("R/consensus_genomic_classes.R")
 source("R/run_me_tree.R")
 source("R/plot_heatmap.R")
 source("R/plot_consensus_heatmap.R")
+source("R/gain_loss_percentage.R")
 ```
+
+```{r theme_setup}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:11 2021
+# ggplot theme setup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:17 2021
+
+my_theme <- list(
+  ggplot2::theme(
+    axis.title.x = element_text(colour = "black", size = 16),
+    axis.text.x = element_text(size = 14),
+    axis.title.y = element_text(colour = "black", size = 16),
+    axis.text.y = element_text(size = 14),
+    legend.position = "top",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 14)
+  )
+)
+```
+
 
 ## TN1
 ```{r TN1}
@@ -74,7 +94,7 @@ TN1_annotation_genes <- c("SHC1",
                           "CCND1")
 ```
 
-```{r TN1_heatmap, cache = TRUE, fig.height=8}
+```{r TN1_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = TN1_ordered$dataset_ordered,
              ploidy_VAL = TN1_ploidy,
              ploidy_trunc = 2*(round(TN1_ploidy)),
@@ -85,7 +105,7 @@ plot_heatmap(df = TN1_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN1_consensus_ht, cache=TRUE}
+```{r TN1_consensus_ht, cache=FALSE}
 plot_consensus_heatmap(df = TN1_consensus,
                        clusters = TN1_ordered$clustering_ordered,
                        ploidy_VAL = TN1_ploidy,
@@ -152,7 +172,7 @@ TN2_annotation_genes <- c(
 )
 ```
 
-```{r TN2_heatmap, cache = TRUE, fig.height=8}
+```{r TN2_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = TN2_ordered$dataset_ordered,
              ploidy_VAL = TN2_ploidy,
              ploidy_trunc = 2*(round(TN2_ploidy)),
@@ -163,7 +183,7 @@ plot_heatmap(df = TN2_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN2_consensus_ht, cache=TRUE}
+```{r TN2_consensus_ht, cache=FALSE}
 plot_consensus_heatmap(df = TN2_consensus,
                        clusters = TN2_ordered$clustering_ordered,
                        ploidy_VAL = TN2_ploidy,
@@ -232,7 +252,7 @@ TN3_annotation_genes <-
   )
 ```
 
-```{r TN3_heatmap, cache = TRUE, fig.height=8}
+```{r TN3_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = TN3_ordered$dataset_ordered,
              ploidy_VAL = TN3_ploidy,
              ploidy_trunc = 2*(round(TN3_ploidy)),
@@ -243,7 +263,7 @@ plot_heatmap(df = TN3_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN3_consensus_ht, cache=TRUE}
+```{r TN3_consensus_ht, cache=FALSE}
 plot_consensus_heatmap(df = TN3_consensus,
                        clusters = TN3_ordered$clustering_ordered,
                        ploidy_VAL = TN3_ploidy,
@@ -313,7 +333,7 @@ TN4_annotation_genes <-
   )
 ```
 
-```{r TN4_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+```{r TN4_heatmap, cache = FALSE, fig.height=8, warning=FALSE}
 plot_heatmap(df = TN4_ordered$dataset_ordered,
              ploidy_VAL = TN4_ploidy,
              ploidy_trunc = 2*(round(TN4_ploidy)),
@@ -324,7 +344,7 @@ plot_heatmap(df = TN4_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN4_consensus_ht, cache=TRUE, warning=FALSE}
+```{r TN4_consensus_ht, cache=FALSE, warning=FALSE}
 plot_consensus_heatmap(df = TN4_consensus,
                        clusters = TN4_ordered$clustering_ordered,
                        ploidy_VAL = TN4_ploidy,
@@ -394,7 +414,7 @@ TN5_annotation_genes <-
   )
 ```
 
-```{r TN5_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+```{r TN5_heatmap, cache = FALSE, fig.height=8, warning=FALSE}
 plot_heatmap(df = TN5_ordered$dataset_ordered,
              ploidy_VAL = TN5_ploidy,
              ploidy_trunc = 2*(round(TN5_ploidy)),
@@ -405,7 +425,7 @@ plot_heatmap(df = TN5_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN5_consensus_ht, cache=TRUE, warning=FALSE}
+```{r TN5_consensus_ht, cache=FALSE, warning=FALSE}
 plot_consensus_heatmap(df = TN5_consensus,
                        clusters = TN5_ordered$clustering_ordered,
                        ploidy_VAL = TN5_ploidy,
@@ -475,7 +495,7 @@ TN6_annotation_genes <-
   )
 ```
 
-```{r TN6_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+```{r TN6_heatmap, cache = FALSE, fig.height=8, warning=FALSE}
 plot_heatmap(df = TN6_ordered$dataset_ordered,
              ploidy_VAL = TN6_ploidy,
              ploidy_trunc = 2*(round(TN6_ploidy)),
@@ -486,7 +506,7 @@ plot_heatmap(df = TN6_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN6_consensus_ht, cache=TRUE, warning=FALSE}
+```{r TN6_consensus_ht, cache=FALSE, warning=FALSE}
 plot_consensus_heatmap(df = TN6_consensus,
                        clusters = TN6_ordered$clustering_ordered,
                        ploidy_VAL = TN6_ploidy,
@@ -556,7 +576,7 @@ TN7_annotation_genes <-
   )
 ```
 
-```{r TN7_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+```{r TN7_heatmap, cache = FALSE, fig.height=8, warning=FALSE}
 plot_heatmap(df = TN7_ordered$dataset_ordered,
              ploidy_VAL = TN7_ploidy,
              ploidy_trunc = 2*(round(TN7_ploidy)),
@@ -567,7 +587,7 @@ plot_heatmap(df = TN7_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN7_consensus_ht, cache=TRUE, warning=FALSE}
+```{r TN7_consensus_ht, cache=FALSE, warning=FALSE}
 plot_consensus_heatmap(df = TN7_consensus,
                        clusters = TN7_ordered$clustering_ordered,
                        ploidy_VAL = TN7_ploidy,
@@ -631,7 +651,7 @@ TN8_annotation_genes <-
   )
 ```
 
-```{r TN8_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+```{r TN8_heatmap, cache = FALSE, fig.height=8, warning=FALSE}
 plot_heatmap(df = TN8_ordered$dataset_ordered,
              ploidy_VAL = TN8_ploidy,
              ploidy_trunc = 2*(round(TN8_ploidy)),
@@ -642,7 +662,7 @@ plot_heatmap(df = TN8_ordered$dataset_ordered,
              show_legend = TRUE)
 ```
 
-```{r TN8_consensus_ht, cache=TRUE, warning=FALSE}
+```{r TN8_consensus_ht, cache=FALSE, warning=FALSE}
 plot_consensus_heatmap(df = TN8_consensus,
                        clusters = TN8_ordered$clustering_ordered,
                        ploidy_VAL = TN8_ploidy,
@@ -654,18 +674,276 @@ plot_consensus_heatmap(df = TN8_consensus,
 ```
 
 
+## Clones barplot
+```{r clones_barplot}
+n_clones_tumors <- tibble(
+  sample = rep(c(
+    "TN1",
+    "TN2",
+    "TN3",
+    "TN4",
+    "TN5",
+    "TN6",
+    "TN7",
+    "TN8"
+  ),2),
+  n_clones = c(
+    length(unique(TN1_clustering$superclones)),
+    length(unique(TN2_clustering$superclones)),
+    length(unique(TN3_clustering$superclones)),
+    length(unique(TN4_clustering$superclones)),
+    length(unique(TN5_clustering$superclones)),
+    length(unique(TN6_clustering$superclones)),
+    length(unique(TN7_clustering$superclones)),
+    length(unique(TN8_clustering$superclones)),
+    length(unique(TN1_clustering$subclones)),
+    length(unique(TN2_clustering$subclones)),
+    length(unique(TN3_clustering$subclones)),
+    length(unique(TN4_clustering$subclones)),
+    length(unique(TN5_clustering$subclones)),
+    length(unique(TN6_clustering$subclones)),
+    length(unique(TN7_clustering$subclones)),
+    length(unique(TN8_clustering$subclones))
+  ),
+  group = c(
+    rep("superclones",8),
+    rep("subclones", 8)
+  )
+) 
+
+p_clones_tumors <- n_clones_tumors %>%
+  ggplot() +
+  geom_col(
+    aes(
+      x = sample,
+      y = n_clones,
+      fill = fct_relevel(group, c("superclones",
+                                  "subclones"))
+    ),
+    position = "dodge"
+  ) +
+  theme_classic() +
+  my_theme +
+  theme(axis.text.x = element_text(angle = 90, vjust = .5)) +
+  scale_y_continuous(
+    breaks = scales::pretty_breaks(n = 10),
+    limits = c(0, 22),
+    expand = c(0, 0)
+  ) +
+  paletteer::scale_fill_paletteer_d("yarrr::info") +
+  xlab("") +
+  ylab("number of clones")
+
+p_clones_tumors
+```
+
+## Shannon diversity
+```{r shannon_diversity, warning=FALSE}
+shan <- function(data, indices) {
+  data_ind <- data[indices]
+  prop <- janitor::tabyl(data_ind) %>% pull(percent) 
+  div <- -sum(prop*log(prop))
+  return(div)
+}
+
+TN1_proportions <- janitor::tabyl(TN1_clustering$subclones) %>% pull(percent)
+TN2_proportions <- janitor::tabyl(TN2_clustering$subclones) %>% pull(percent)
+TN3_proportions <- janitor::tabyl(TN3_clustering$subclones) %>% pull(percent)
+TN4_proportions <- janitor::tabyl(TN4_clustering$subclones) %>% pull(percent)
+TN5_proportions <- janitor::tabyl(TN5_clustering$subclones) %>% pull(percent)
+TN6_proportions <- janitor::tabyl(TN6_clustering$subclones) %>% pull(percent)
+TN7_proportions <- janitor::tabyl(TN7_clustering$subclones) %>% pull(percent)
+TN8_proportions <- janitor::tabyl(TN8_clustering$subclones) %>% pull(percent)
+
+TN1_diver <- -sum(TN1_proportions*log(TN1_proportions))
+TN2_diver <- -sum(TN2_proportions*log(TN2_proportions))
+TN3_diver <- -sum(TN3_proportions*log(TN3_proportions))
+TN4_diver <- -sum(TN4_proportions*log(TN4_proportions))
+TN5_diver <- -sum(TN5_proportions*log(TN5_proportions))
+TN6_diver <- -sum(TN6_proportions*log(TN6_proportions))
+TN7_diver <- -sum(TN7_proportions*log(TN7_proportions))
+TN8_diver <- -sum(TN8_proportions*log(TN8_proportions))
+
+boot_TN1 <- boot::boot(TN1_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN1_ci <- boot::boot.ci(boot_TN1)
+
+boot_TN2 <- boot::boot(TN2_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN2_ci <- boot::boot.ci(boot_TN2)
+
+boot_TN3 <- boot::boot(TN3_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN3_ci <- boot::boot.ci(boot_TN3)
+
+boot_TN4 <- boot::boot(TN4_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN4_ci <- boot::boot.ci(boot_TN4)
+
+boot_TN5 <- boot::boot(TN5_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN5_ci <- boot::boot.ci(boot_TN5)
+
+boot_TN6 <- boot::boot(TN6_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN6_ci <- boot::boot.ci(boot_TN6)
+
+boot_TN7 <- boot::boot(TN7_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN7_ci <- boot::boot.ci(boot_TN7)
+
+boot_TN8 <- boot::boot(TN8_clustering$subclones, statistic = shan,  R = 3000)
+boot_TN8_ci <- boot::boot.ci(boot_TN8)
 
 
+div_table <- tibble(
+  sample = c("TN1",
+             "TN2",
+             "TN3",
+             "TN4",
+             "TN5",
+             "TN6",
+             "TN7",
+             "TN8"),
+  shannon_index = c(
+    TN1_diver,
+    TN2_diver,
+    TN3_diver,
+    TN4_diver,
+    TN5_diver,
+    TN6_diver,
+    TN7_diver,
+    TN8_diver
+  ),
+  lci = c(
+    boot_TN1_ci$normal[2],
+    boot_TN2_ci$normal[2],
+    boot_TN3_ci$normal[2],
+    boot_TN4_ci$normal[2],
+    boot_TN5_ci$normal[2],
+    boot_TN6_ci$normal[2],
+    boot_TN7_ci$normal[2],
+    boot_TN8_ci$normal[2]
+  ),
+  uci = c(
+    boot_TN1_ci$normal[3],
+    boot_TN2_ci$normal[3],
+    boot_TN3_ci$normal[3],
+    boot_TN4_ci$normal[3],
+    boot_TN5_ci$normal[3],
+    boot_TN6_ci$normal[3],
+    boot_TN7_ci$normal[3],
+    boot_TN8_ci$normal[3]
+  )
+)
+
+# error bar = 95% confidence interval
+p_tumors_diver <- div_table %>%
+  ggplot() +
+  geom_errorbar(aes(
+    x = fct_reorder(sample, shannon_index),
+    ymin = lci,
+    ymax = uci
+  ),
+  width = .1,
+  size = 2) +
+  geom_point(aes(
+    x = fct_reorder(sample, shannon_index),
+    y = shannon_index,
+    color = sample
+  ), size = 4) +
+  theme_classic() +
+  my_theme +
+  theme(legend.position = "none",
+        axis.text.x = element_text(
+          angle = 90,
+          vjust = 0.5,
+          hjust = 1
+        )) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 12)) +
+  scale_color_manual(values = c(rcartocolor::carto_pal(8, "Safe"))) +
+  ylab("shannon diversity index") +
+  xlab("")
+
+p_tumors_diver
+```
+
+## Gains/Losses plot
+```{r}
 
 
+TN1_alt_perc <-
+  gain_loss_percentage(consensus = TN1_consensus,
+                       ploidy_VAL = TN1_ploidy,
+                       sample = "TN1")
+
+TN2_alt_perc <-
+  gain_loss_percentage(consensus = TN2_consensus,
+                       ploidy = TN2_ploidy,
+                       sample = "TN2")
+
+TN3_alt_perc <-
+  gain_loss_percentage(consensus = TN3_consensus,
+                       ploidy = TN3_ploidy,
+                       sample = "TN3")
+
+TN4_alt_perc <-
+  gain_loss_percentage(consensus = TN4_consensus,
+                       ploidy = TN4_ploidy,
+                       sample = "TN4")
+
+TN5_alt_perc <-
+  gain_loss_percentage(consensus = TN5_consensus,
+                       ploidy = TN5_ploidy,
+                       sample = "TN5")
+
+TN6_alt_perc <-
+  gain_loss_percentage(consensus = TN6_consensus,
+                       ploidy = TN6_ploidy,
+                       sample = "TN6")
+
+TN7_alt_perc <-
+  gain_loss_percentage(consensus = TN7_consensus,
+                       ploidy = TN7_ploidy,
+                       sample = "TN7")
+
+TN8_alt_perc <-
+  gain_loss_percentage(consensus = TN8_consensus,
+                       ploidy = TN8_ploidy,
+                       sample = "TN8")
 
 
+all_tumors_gainloss_percentage <- 
+  bind_rows(TN2_alt_perc,
+            TN3_alt_perc,
+            TN4_alt_perc,
+            TN1_alt_perc,
+            TN5_alt_perc,
+            TN6_alt_perc,
+            TN7_alt_perc,
+            TN8_alt_perc
+            ) %>% 
+  dplyr::rename(percent = n)
 
+p_gain_loss <- ggplot() +
+  geom_col(data = all_tumors_gainloss_percentage, 
+           aes(x = fct_relevel(clone, rev(unique(gtools::mixedsort(all_tumors_gainloss_percentage$clone)))),
+               y = percent,
+               fill = class
+           ),
+           color = "black") +
+  facet_wrap(vars(sample), ncol = 4, scales = "free_y") +
+  scale_fill_manual(values = c("ground_state" = "white",
+                               "gain" = "firebrick3",
+                               "loss" = "steelblue"),
+                    label = c("loss",
+                              "neutral",
+                              "gain"),
+                    breaks = c("loss",
+                               "ground_state",
+                               "gain")) +
+  theme_cowplot() +
+    theme(strip.background = element_rect(fill = "white"),
+        legend.title = element_blank(),
+        legend.position = "top",
+        axis.text = element_text(size = 10)) +
+  coord_flip() +
+  xlab("") 
+  # ggtitle("Percentage of gain_loss per subclone")
 
-
-
-
-
-
-
+p_gain_loss
+```
 
