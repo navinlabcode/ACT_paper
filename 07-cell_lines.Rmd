@@ -1,0 +1,419 @@
+---
+author: "Darlan Conterno Minussi"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options: 
+  chunk_output_type: console
+---
+# Cell lines
+
+```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
+source("R/setup.R")
+source("R/run_umap.R")
+source("R/run_clustering.R")
+source("R/order_dataset.R")
+source("R/plot_umap.R")
+source("R/calculate_consensus.R")
+source("R/consensus_genomic_classes.R")
+source("R/run_me_tree.R")
+source("R/plot_heatmap.R")
+source("R/plot_consensus_heatmap.R")
+```
+
+## MDA-MB-231
+```{r MDA-MB-231}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# MDA-MB-231
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+mb231_ploidy <- 2.41
+
+mb231_popseg_long_ml <- readRDS(here("extdata/merge_levels/mdamb231_popp31_popseg_long_ml.rds"))
+
+mb231_umap <- run_umap(mb231_popseg_long_ml,
+                       seed = 206)
+
+mb231_clustering <- run_clustering(mb231_umap,
+                                 k_snn_major = 93,
+                                 k_snn_minor = 15)
+
+mb231_ordered <- order_dataset(popseg_long = mb231_popseg_long_ml,
+                             clustering = mb231_clustering)
+
+plot_umap(umap_df = mb231_umap,
+          clustering = mb231_clustering)
+
+mb231_consensus <- calculate_consensus(df = mb231_ordered$dataset_ordered,
+                                     clusters = mb231_ordered$clustering_ordered$subclones)
+
+mb231_gen_classes <- consensus_genomic_classes(mb231_consensus,
+                                             ploidy_VAL = mb231_ploidy)
+
+mb231_me_consensus_tree <- run_me_tree(consensus_df = mb231_consensus,
+                                     clusters = mb231_clustering,
+                                     ploidy_VAL = mb231_ploidy)
+
+
+mb231_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "CDKN1A",
+    "EGFR",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "PGR",
+    "BCL2",
+    "AURKA",
+    "AKT3",
+    "BCAS2",
+    "FGFR3",
+    "LIFR",
+    "MET",
+    "PDGFRA",
+    "VEGFC"
+  )
+```
+
+```{r mb231_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = mb231_ordered$dataset_ordered,
+             ploidy_VAL = mb231_ploidy,
+             ploidy_trunc = 2*(round(mb231_ploidy))+2,
+             clusters = mb231_ordered$clustering_ordered,
+             genomic_classes = mb231_gen_classes,
+             keep_gene = mb231_annotation_genes,
+             tree_order = mb231_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+## MDA-MB-231-EX1
+```{r MDA-MB-231-EX1}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# MDA-MB-231-EX1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+mb231ex1_ploidy <- 2.41
+
+mb231ex1_popseg_long_ml <- readRDS(here("extdata/merge_levels/mdamb231ex1_popseg_long_ml.rds"))
+
+mb231ex1_umap <- run_umap(mb231ex1_popseg_long_ml,
+                       seed = 206)
+
+mb231ex1_clustering <- run_clustering(mb231ex1_umap,
+                                 k_snn_major = 55,
+                                 k_snn_minor = 15)
+
+mb231ex1_ordered <- order_dataset(popseg_long = mb231ex1_popseg_long_ml,
+                             clustering = mb231ex1_clustering)
+
+plot_umap(umap_df = mb231ex1_umap,
+          clustering = mb231ex1_clustering)
+
+mb231ex1_consensus <- calculate_consensus(df = mb231ex1_ordered$dataset_ordered,
+                                     clusters = mb231ex1_ordered$clustering_ordered$subclones)
+
+mb231ex1_gen_classes <- consensus_genomic_classes(mb231ex1_consensus,
+                                             ploidy_VAL = mb231ex1_ploidy)
+
+mb231ex1_me_consensus_tree <- run_me_tree(consensus_df = mb231ex1_consensus,
+                                     clusters = mb231ex1_clustering,
+                                     ploidy_VAL = mb231ex1_ploidy,
+                                     rotate_nodes = c(16:23))
+
+
+
+mb231ex1_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "EGFR",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "CCND1",
+    "BRCA2",
+    "RB1",
+    "STARD3",
+    "PPM1D",
+    "BCL2",
+    "CCNE1",
+    "NCOA3",
+    "AURKA")
+```
+
+```{r mb231ex1_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = mb231ex1_ordered$dataset_ordered,
+             ploidy_VAL = mb231ex1_ploidy,
+             ploidy_trunc = 2*(round(mb231ex1_ploidy))+2,
+             clusters = mb231ex1_ordered$clustering_ordered,
+             genomic_classes = mb231ex1_gen_classes,
+             keep_gene = mb231ex1_annotation_genes,
+             tree_order = mb231ex1_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+## MDA-MB-231-EX2
+```{r MDA-MB-231-ex2}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# MDA-MB-231-ex2
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+mb231ex2_ploidy <- 2.41
+
+mb231ex2_popseg_long_ml <- readRDS(here("extdata/merge_levels/mdamb231ex2_popseg_long_ml.rds"))
+
+mb231ex2_umap <- run_umap(mb231ex2_popseg_long_ml,
+                       seed = 206)
+
+mb231ex2_clustering <- run_clustering(mb231ex2_umap,
+                                 k_snn_major = 17,
+                                 k_snn_minor = 15)
+
+mb231ex2_ordered <- order_dataset(popseg_long = mb231ex2_popseg_long_ml,
+                             clustering = mb231ex2_clustering)
+
+plot_umap(umap_df = mb231ex2_umap,
+          clustering = mb231ex2_clustering)
+
+mb231ex2_consensus <- calculate_consensus(df = mb231ex2_ordered$dataset_ordered,
+                                     clusters = mb231ex2_ordered$clustering_ordered$subclones)
+
+mb231ex2_gen_classes <- consensus_genomic_classes(mb231ex2_consensus,
+                                             ploidy_VAL = mb231ex2_ploidy)
+
+mb231ex2_me_consensus_tree <- run_me_tree(consensus_df = mb231ex2_consensus,
+                                     clusters = mb231ex2_clustering,
+                                     ploidy_VAL = mb231ex2_ploidy)
+
+mb231ex2_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "EGFR",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "CCND1",
+    "STARD3",
+    "RPS6KB1",
+    "PPM1D",
+    "BCL2",
+    "NCOA3",
+    "AURKA")
+```
+
+```{r mb231ex2_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = mb231ex2_ordered$dataset_ordered,
+             ploidy_VAL = mb231ex2_ploidy,
+             ploidy_trunc = 2*(round(mb231ex2_ploidy))+2,
+             clusters = mb231ex2_ordered$clustering_ordered,
+             genomic_classes = mb231ex2_gen_classes,
+             keep_gene = mb231ex2_annotation_genes,
+             tree_order = mb231ex2_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+
+## MDA-MB-453
+```{r MDA-MB-453}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# MDA-MB-453
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+mb453_ploidy <- 4.17
+
+mb453_popseg_long_ml <- readRDS(here("extdata/merge_levels/mb453_popseg_long_ml.rds"))
+
+mb453_umap <- run_umap(mb453_popseg_long_ml,
+                       seed = 206)
+
+mb453_clustering <- run_clustering(mb453_umap,
+                                 k_snn_major = 65,
+                                 k_snn_minor = 15)
+
+mb453_ordered <- order_dataset(popseg_long = mb453_popseg_long_ml,
+                             clustering = mb453_clustering)
+
+plot_umap(umap_df = mb453_umap,
+          clustering = mb453_clustering)
+
+mb453_consensus <- calculate_consensus(df = mb453_ordered$dataset_ordered,
+                                     clusters = mb453_ordered$clustering_ordered$subclones)
+
+mb453_gen_classes <- consensus_genomic_classes(mb453_consensus,
+                                             ploidy_VAL = mb453_ploidy)
+
+mb453_me_consensus_tree <- run_me_tree(consensus_df = mb453_consensus,
+                                     clusters = mb453_clustering,
+                                     ploidy_VAL = mb453_ploidy,
+                                     rotate_nodes = c(21))
+
+mb453_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "CDKN1A",
+    "EGFR",
+    "MTDH",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "CCND1",
+    "PAK1",
+    "RB1",
+    "STARD3",
+    "PPM1D",
+    "BCL2",
+    "CCNE1",
+    "NCOA3",
+    "AURKA"
+  )
+```
+
+```{r mb453_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = mb453_ordered$dataset_ordered,
+             ploidy_VAL = mb453_ploidy,
+             ploidy_trunc = 2*(round(mb453_ploidy)),
+             clusters = mb453_ordered$clustering_ordered,
+             genomic_classes = mb453_gen_classes,
+             keep_gene = mb453_annotation_genes,
+             tree_order = mb453_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+## MDA-MB-157
+```{r MDA-MB-157}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# MDA-MB-157
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+mb157_ploidy <- 2.55
+
+mb157_popseg_long_ml <- readRDS(here("extdata/merge_levels/mb157_popseg_long_ml.rds"))
+
+mb157_umap <- run_umap(mb157_popseg_long_ml,
+                       seed = 206)
+
+mb157_clustering <- run_clustering(mb157_umap,
+                                 k_snn_major = 75,
+                                 k_snn_minor = 15)
+
+mb157_ordered <- order_dataset(popseg_long = mb157_popseg_long_ml,
+                             clustering = mb157_clustering)
+
+plot_umap(umap_df = mb157_umap,
+          clustering = mb157_clustering)
+
+mb157_consensus <- calculate_consensus(df = mb157_ordered$dataset_ordered,
+                                     clusters = mb157_ordered$clustering_ordered$subclones)
+
+mb157_gen_classes <- consensus_genomic_classes(mb157_consensus,
+                                             ploidy_VAL = mb157_ploidy)
+
+mb157_me_consensus_tree <- run_me_tree(consensus_df = mb157_consensus,
+                                     clusters = mb157_clustering,
+                                     ploidy_VAL = mb157_ploidy,
+                                     rotate_nodes = c(29,30))
+
+
+mb157_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "CDKN1A",
+    "EGFR",
+    "MTDH",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "CCND1",
+    "PAK1",
+    "RB1",
+    "STARD3",
+    "PPM1D",
+    "BCL2",
+    "CCNE1",
+    "NCOA3",
+    "AURKA"
+  )
+```
+
+```{r mb157_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = mb157_ordered$dataset_ordered,
+             ploidy_VAL = mb157_ploidy,
+             ploidy_trunc = 2*(round(mb157_ploidy)),
+             clusters = mb157_ordered$clustering_ordered,
+             genomic_classes = mb157_gen_classes,
+             keep_gene = mb157_annotation_genes,
+             tree_order = mb157_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+
+## BT20
+```{r BT20}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:10 2021
+# BT20
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 10:00:26 2021
+
+bt20_ploidy <- 2.7
+
+bt20_popseg_long_ml <- readRDS(here("extdata/merge_levels/bt20_popseg_long_ml.rds"))
+
+bt20_umap <- run_umap(bt20_popseg_long_ml,
+                       seed = 206)
+
+bt20_clustering <- run_clustering(bt20_umap,
+                                 k_snn_major = 55,
+                                 k_snn_minor = 15)
+
+bt20_ordered <- order_dataset(popseg_long = bt20_popseg_long_ml,
+                             clustering = bt20_clustering)
+
+plot_umap(umap_df = bt20_umap,
+          clustering = bt20_clustering)
+
+bt20_consensus <- calculate_consensus(df = bt20_ordered$dataset_ordered,
+                                     clusters = bt20_ordered$clustering_ordered$subclones)
+
+bt20_gen_classes <- consensus_genomic_classes(bt20_consensus,
+                                             ploidy_VAL = bt20_ploidy)
+
+bt20_me_consensus_tree <- run_me_tree(consensus_df = bt20_consensus,
+                                     clusters = bt20_clustering,
+                                     ploidy_VAL = bt20_ploidy)
+
+bt20_annotation_genes <-
+  c(
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "EGFR",
+    "MYC",
+    "GATA3",
+    "PTEN",
+    "BCL2",
+    "CCNE1",
+    "NCOA3",
+    "AURKA"
+  )
+```
+
+```{r bt20_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = bt20_ordered$dataset_ordered,
+             ploidy_VAL = bt20_ploidy,
+             ploidy_trunc = 2*(round(bt20_ploidy)),
+             clusters = bt20_ordered$clustering_ordered,
+             genomic_classes = bt20_gen_classes,
+             keep_gene = bt20_annotation_genes,
+             tree_order = bt20_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+
