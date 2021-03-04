@@ -19,6 +19,7 @@ source("R/run_me_tree.R")
 source("R/plot_heatmap.R")
 source("R/plot_consensus_heatmap.R")
 source("R/gain_loss_percentage.R")
+source("R/calc_genclass_length.R")
 ```
 
 ```{r theme_setup}
@@ -945,5 +946,151 @@ p_gain_loss <- ggplot() +
   # ggtitle("Percentage of gain_loss per subclone")
 
 p_gain_loss
+```
+
+## Genomic classes plots
+
+### Counts
+
+```{r gen_class_setup, warning=FALSE}
+ah <- AnnotationHub()
+cytoband <- ah[["AH5012"]]
+
+popseg_bed <- bins_in_cna_pipeline %>%
+  makeGRangesFromDataFrame(keep.extra.columns = T, ignore.strand = T)
+
+olaps <- findOverlaps(popseg_bed, cytoband)
+
+olaps_df <- as.data.frame(olaps) %>%
+  distinct(queryHits, .keep_all = T)
+
+mk_df <- tibble(pos = olaps_df$queryHits,
+                chrom = str_extract(seqnames(cytoband), "([0-9]+|[XY])")[olaps_df$subjectHits],
+                                arm = str_extract(cytoband$name[olaps_df$subjectHits], "[pq]")) %>%
+  mutate(chrom_and_arm = paste0(chrom, arm))
+
+bins_in_cna_pipeline <- bins_in_cna_pipeline %>%
+  mutate(chrom_and_arm = mk_df$chrom_and_arm)
+
+TN1_seg_length <- calc_genclass_length(TN1_gen_classes) %>% 
+  mutate(sample = "TN1")
+
+TN2_seg_length <- calc_genclass_length(TN2_gen_classes) %>% 
+  mutate(sample = "TN2")
+
+TN3_seg_length <- calc_genclass_length(TN3_gen_classes) %>% 
+  mutate(sample = "TN3")
+
+TN4_seg_length <- calc_genclass_length(TN4_gen_classes) %>% 
+  mutate(sample = "TN4")
+
+TN5_seg_length <- calc_genclass_length(TN5_gen_classes) %>% 
+  mutate(sample = "TN5")
+
+TN6_seg_length <- calc_genclass_length(TN6_gen_classes) %>% 
+  mutate(sample = "TN6")
+
+TN7_seg_length <- calc_genclass_length(TN7_gen_classes) %>% 
+  mutate(sample = "TN7")
+
+TN8_seg_length <- calc_genclass_length(TN8_gen_classes) %>% 
+  mutate(sample = "TN8")
+
+df_cna <- bind_rows(TN1_seg_length,
+                    TN2_seg_length,
+                    TN3_seg_length,
+                    TN4_seg_length,
+                    TN5_seg_length,
+                    TN6_seg_length,
+                    TN7_seg_length,
+                    TN8_seg_length)
+
+```
+
+```{r gen_class_counts}
+p_count_cna <- df_cna %>%
+  dplyr::group_by(sample) %>%
+  dplyr::count(class) %>%
+  dplyr::mutate(class = fct_relevel(class,
+                                    c("uCNA",
+                                      "sCNA",
+                                      "cCNA"))) %>%
+  ggplot()  +
+  geom_bar(
+    aes(x =  sample,
+        y = n,
+        fill = class),
+    position = "stack",
+    stat = "identity",
+    width = .6
+  ) +
+  scale_fill_manual(
+    values = c(
+      "cCNA" = "#414451",
+      "sCNA" = "#A5ACAF",
+      "uCNA" = "#FF800E"
+    ),
+    breaks = c("cCNA",
+               "sCNA",
+               "uCNA"),
+    labels = c("cCNA",
+               "sCNA",
+               "uCNA")
+  ) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 15),
+                     expand = c(0, 0)) +
+  theme_classic() +
+  my_theme +
+  theme(legend.position = 'top',
+        axis.text.x = element_text(angle = 90,
+                                   vjust = .5,
+                                   hjust = 1),
+        axis.text = element_text(color = 'black')) +
+  xlab("") +
+  ylab("CNA class count")
+
+p_count_cna
+```
+
+### Segment length
+```{r}
+p_seg_box <- df_cna %>%
+  dplyr::mutate(class = fct_relevel(class,
+                                    c("cCNA",
+                                      "sCNA",
+                                      "uCNA"))) %>%
+  ggplot() +
+  geom_boxplot(
+    aes(x = sample,
+        y = seg_length,
+        fill = class),
+    outlier.shape = 21,
+    outlier.alpha = .3
+  ) +
+  scale_fill_manual(
+    values = c(
+      "cCNA" = "#414451",
+      "sCNA" = "#A5ACAF",
+      "uCNA" = "#FF800E"
+    ),
+    breaks = c("cCNA",
+               "sCNA",
+               "uCNA"),
+    labels = c("cCNA",
+               "sCNA",
+               "uCNA")
+  ) +
+  theme_classic() +
+  my_theme +
+  theme(axis.text = element_text(color = "black")) +
+  scale_y_continuous(
+    breaks = scales::pretty_breaks(n = 10),
+    labels = scales::unit_format(unit = "",
+                                 scale = 1e-6)
+  ) +
+  xlab("") +
+  ylab("segment length (Mb)")
+
+p_seg_box
 ```
 

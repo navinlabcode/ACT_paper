@@ -96,7 +96,7 @@ mb231_annotation_genes <-
   )
 ```
 
-```{r mb231_heatmap, cache = TRUE, fig.height=8}
+```{r mb231_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = mb231_ordered$dataset_ordered,
              ploidy_VAL = mb231_ploidy,
              ploidy_trunc = 2*(round(mb231_ploidy))+2,
@@ -165,7 +165,7 @@ mb231ex1_annotation_genes <-
     "AURKA")
 ```
 
-```{r mb231ex1_heatmap, cache = TRUE, fig.height=8}
+```{r mb231ex1_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = mb231ex1_ordered$dataset_ordered,
              ploidy_VAL = mb231ex1_ploidy,
              ploidy_trunc = 2*(round(mb231ex1_ploidy))+2,
@@ -227,7 +227,7 @@ mb231ex2_annotation_genes <-
     "AURKA")
 ```
 
-```{r mb231ex2_heatmap, cache = TRUE, fig.height=8}
+```{r mb231ex2_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = mb231ex2_ordered$dataset_ordered,
              ploidy_VAL = mb231ex2_ploidy,
              ploidy_trunc = 2*(round(mb231ex2_ploidy))+2,
@@ -297,7 +297,7 @@ mb453_annotation_genes <-
   )
 ```
 
-```{r mb453_heatmap, cache = TRUE, fig.height=8}
+```{r mb453_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = mb453_ordered$dataset_ordered,
              ploidy_VAL = mb453_ploidy,
              ploidy_trunc = 2*(round(mb453_ploidy)),
@@ -367,7 +367,7 @@ mb157_annotation_genes <-
   )
 ```
 
-```{r mb157_heatmap, cache = TRUE, fig.height=8}
+```{r mb157_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = mb157_ordered$dataset_ordered,
              ploidy_VAL = mb157_ploidy,
              ploidy_trunc = 2*(round(mb157_ploidy)),
@@ -429,7 +429,7 @@ bt20_annotation_genes <-
   )
 ```
 
-```{r bt20_heatmap, cache = TRUE, fig.height=8}
+```{r bt20_heatmap, cache = FALSE, fig.height=8}
 plot_heatmap(df = bt20_ordered$dataset_ordered,
              ploidy_VAL = bt20_ploidy,
              ploidy_trunc = 2*(round(bt20_ploidy)),
