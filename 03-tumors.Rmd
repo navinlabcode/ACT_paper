@@ -9,6 +9,15 @@ editor_options:
 
 ```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
 source("R/setup.R")
+source("R/run_umap.R")
+source("R/run_clustering.R")
+source("R/order_dataset.R")
+source("R/plot_umap.R")
+source("R/calculate_consensus.R")
+source("R/consensus_genomic_classes.R")
+source("R/run_me_tree.R")
+source("R/plot_heatmap.R")
+source("R/plot_consensus_heatmap.R")
 ```
 
 ## TN1
@@ -86,5 +95,585 @@ plot_consensus_heatmap(df = TN1_consensus,
                        plot_title = NULL,
                        genomic_classes = TN1_gen_classes)
 ```
+
+## TN2
+```{r TN2}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN2_ploidy <- 3.03
+
+TN2_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN2_popseg_long_ml.rds"))
+
+TN2_umap <- run_umap(TN2_popseg_long_ml)
+
+TN2_clustering <- run_clustering(TN2_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN2_ordered <- order_dataset(popseg_long = TN2_popseg_long_ml,
+                             clustering = TN2_clustering)
+
+plot_umap(umap_df = TN2_umap,
+          clustering = TN2_clustering)
+
+TN2_consensus <- calculate_consensus(df = TN2_ordered$dataset_ordered,
+                                     clusters = TN2_ordered$clustering_ordered$subclones)
+
+TN2_gen_classes <- consensus_genomic_classes(TN2_consensus,
+                                             ploidy_VAL = TN2_ploidy)
+
+TN2_me_consensus_tree <- run_me_tree(consensus_df = TN2_consensus,
+                                     clusters = TN2_clustering,
+                                     ploidy_VAL = TN2_ploidy)
+
+TN2_annotation_genes <- c(
+  "SHC1",
+  "PIK3CA",
+  "FGFR4",
+  "CDKN1A",
+  "EGFR",
+  "MTDH",
+  "MYC",
+  "GATA3",
+  "PTEN",
+  "CCND1",
+  "PGR",
+  "CDK4",
+  "MDM2",
+  "LRP1B",
+  "BRCA2",
+  "TP53",
+  "BRCA1",
+  "BCL2",
+  "CCNE1",
+  "AURKA"
+)
+```
+
+```{r TN2_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = TN2_ordered$dataset_ordered,
+             ploidy_VAL = TN2_ploidy,
+             ploidy_trunc = 2*(round(TN2_ploidy)),
+             clusters = TN2_ordered$clustering_ordered,
+             genomic_classes = TN2_gen_classes,
+             keep_gene = TN2_annotation_genes,
+             tree_order = TN2_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN2_consensus_ht, cache=TRUE}
+plot_consensus_heatmap(df = TN2_consensus,
+                       clusters = TN2_ordered$clustering_ordered,
+                       ploidy_VAL = TN2_ploidy,
+                       ploidy_trunc = 2*(round(TN2_ploidy)),
+                       keep_gene = TN2_annotation_genes,
+                       tree_order = TN2_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN2_gen_classes)
+```
+
+
+## TN3
+```{r TN3}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN3_ploidy <- 3.44
+
+TN3_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_popseg_long_ml.rds"))
+
+TN3_umap <- run_umap(TN3_popseg_long_ml)
+
+TN3_clustering <- run_clustering(TN3_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN3_ordered <- order_dataset(popseg_long = TN3_popseg_long_ml,
+                             clustering = TN3_clustering)
+
+plot_umap(umap_df = TN3_umap,
+          clustering = TN3_clustering)
+
+TN3_consensus <- calculate_consensus(df = TN3_ordered$dataset_ordered,
+                                     clusters = TN3_ordered$clustering_ordered$subclones)
+
+TN3_gen_classes <- consensus_genomic_classes(TN3_consensus,
+                                             ploidy_VAL = TN3_ploidy)
+
+TN3_me_consensus_tree <- run_me_tree(consensus_df = TN3_consensus,
+                                     clusters = TN3_clustering,
+                                     ploidy_VAL = TN3_ploidy)
+
+TN3_annotation_genes <-
+  c(
+    "CDKN2C",
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "EGFR",
+    "FGFR1",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "CCND1",
+    "CDK4",
+    "MDM2",
+    "RB1",
+    "TP53",
+    "BRCA1",
+    "BCL2",
+    "CCNE1",
+    "AURKA",
+    "LRP1B"
+  )
+```
+
+```{r TN3_heatmap, cache = TRUE, fig.height=8}
+plot_heatmap(df = TN3_ordered$dataset_ordered,
+             ploidy_VAL = TN3_ploidy,
+             ploidy_trunc = 2*(round(TN3_ploidy)),
+             clusters = TN3_ordered$clustering_ordered,
+             genomic_classes = TN3_gen_classes,
+             keep_gene = TN3_annotation_genes,
+             tree_order = TN3_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN3_consensus_ht, cache=TRUE}
+plot_consensus_heatmap(df = TN3_consensus,
+                       clusters = TN3_ordered$clustering_ordered,
+                       ploidy_VAL = TN3_ploidy,
+                       ploidy_trunc = 2*(round(TN3_ploidy)),
+                       keep_gene = TN3_annotation_genes,
+                       tree_order = TN3_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN3_gen_classes)
+```
+
+## TN4
+```{r TN4, warning=FALSE}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN4_ploidy <- 3.81
+
+TN4_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN4_popseg_long_ml.rds"))
+
+TN4_umap <- run_umap(TN4_popseg_long_ml)
+
+TN4_clustering <- run_clustering(TN4_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN4_ordered <- order_dataset(popseg_long = TN4_popseg_long_ml,
+                             clustering = TN4_clustering)
+
+plot_umap(umap_df = TN4_umap,
+          clustering = TN4_clustering)
+
+TN4_consensus <- calculate_consensus(df = TN4_ordered$dataset_ordered,
+                                     clusters = TN4_ordered$clustering_ordered$subclones)
+
+TN4_gen_classes <- consensus_genomic_classes(TN4_consensus,
+                                             ploidy_VAL = TN4_ploidy)
+
+TN4_me_consensus_tree <- run_me_tree(consensus_df = TN4_consensus,
+                                     clusters = TN4_clustering,
+                                     ploidy_VAL = TN4_ploidy)
+
+
+TN4_annotation_genes <-
+  c(
+    "CDKN2C",
+    "SHC1",
+    "PIK3CA",
+    "CDKN1A",
+    "ESR1",
+    "EGFR",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "MDM2",
+    "BRCA2",
+    "RB1",
+    "TP53",
+    "BRCA1",
+    "BCL2",
+    "CCNE1",
+    "NCOA3",
+    "AURKA",
+    "IGF1R",
+    "NCOA1"
+  )
+```
+
+```{r TN4_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+plot_heatmap(df = TN4_ordered$dataset_ordered,
+             ploidy_VAL = TN4_ploidy,
+             ploidy_trunc = 2*(round(TN4_ploidy)),
+             clusters = TN4_ordered$clustering_ordered,
+             genomic_classes = TN4_gen_classes,
+             keep_gene = TN4_annotation_genes,
+             tree_order = TN4_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN4_consensus_ht, cache=TRUE, warning=FALSE}
+plot_consensus_heatmap(df = TN4_consensus,
+                       clusters = TN4_ordered$clustering_ordered,
+                       ploidy_VAL = TN4_ploidy,
+                       ploidy_trunc = 2*(round(TN4_ploidy)),
+                       keep_gene = TN4_annotation_genes,
+                       tree_order = TN4_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN4_gen_classes)
+```
+
+## TN5
+```{r TN5, warning=FALSE}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN5_ploidy <- 2.65
+
+TN5_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN5_popseg_long_ml.rds"))
+
+TN5_umap <- run_umap(TN5_popseg_long_ml)
+
+TN5_clustering <- run_clustering(TN5_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN5_ordered <- order_dataset(popseg_long = TN5_popseg_long_ml,
+                             clustering = TN5_clustering)
+
+plot_umap(umap_df = TN5_umap,
+          clustering = TN5_clustering)
+
+TN5_consensus <- calculate_consensus(df = TN5_ordered$dataset_ordered,
+                                     clusters = TN5_ordered$clustering_ordered$subclones)
+
+TN5_gen_classes <- consensus_genomic_classes(TN5_consensus,
+                                             ploidy_VAL = TN5_ploidy)
+
+TN5_me_consensus_tree <- run_me_tree(consensus_df = TN5_consensus,
+                                     clusters = TN5_clustering,
+                                     ploidy_VAL = TN5_ploidy)
+
+
+
+TN5_annotation_genes <-
+  c(
+    "CDKN2C",
+    "GADD45A",
+    "SHC1",
+    "PIK3CA",
+    "FGFR4",
+    "EGFR",
+    "FGFR1",
+    "MYC",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "CCND1",
+    "MDM2",
+    "BRCA2",
+    "RB1",
+    "TP53",
+    "BRCA1",
+    "PPM1D",
+    "CCNE1",
+    "ERBB2",
+    "ESR1"
+  )
+```
+
+```{r TN5_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+plot_heatmap(df = TN5_ordered$dataset_ordered,
+             ploidy_VAL = TN5_ploidy,
+             ploidy_trunc = 2*(round(TN5_ploidy)),
+             clusters = TN5_ordered$clustering_ordered,
+             genomic_classes = TN5_gen_classes,
+             keep_gene = TN5_annotation_genes,
+             tree_order = TN5_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN5_consensus_ht, cache=TRUE, warning=FALSE}
+plot_consensus_heatmap(df = TN5_consensus,
+                       clusters = TN5_ordered$clustering_ordered,
+                       ploidy_VAL = TN5_ploidy,
+                       ploidy_trunc = 2*(round(TN5_ploidy)),
+                       keep_gene = TN5_annotation_genes,
+                       tree_order = TN5_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN5_gen_classes)
+```
+
+## TN6
+```{r TN6, warning=FALSE}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN6_ploidy <- 3.17
+
+TN6_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN6_popseg_long_ml.rds"))
+
+TN6_umap <- run_umap(TN6_popseg_long_ml)
+
+TN6_clustering <- run_clustering(TN6_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN6_ordered <- order_dataset(popseg_long = TN6_popseg_long_ml,
+                             clustering = TN6_clustering)
+
+plot_umap(umap_df = TN6_umap,
+          clustering = TN6_clustering)
+
+TN6_consensus <- calculate_consensus(df = TN6_ordered$dataset_ordered,
+                                     clusters = TN6_ordered$clustering_ordered$subclones)
+
+TN6_gen_classes <- consensus_genomic_classes(TN6_consensus,
+                                             ploidy_VAL = TN6_ploidy)
+
+TN6_me_consensus_tree <- run_me_tree(consensus_df = TN6_consensus,
+                                     clusters = TN6_clustering,
+                                     ploidy_VAL = TN6_ploidy)
+
+
+
+
+TN6_annotation_genes <-
+  c(
+    "CDKN2C",
+    "SHC1",
+    "RUVBL1",
+    "PIK3CA",
+    "CDKN1A",
+    "EGFR",
+    "FGFR1",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "CDK4",
+    "MDM2",
+    "BRCA2",
+    "RB1",
+    "TP53",
+    "BRCA1",
+    "BCL2",
+    "NCOA3",
+    "AURKA",
+    "GATA3",
+    "PGR"
+  )
+```
+
+```{r TN6_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+plot_heatmap(df = TN6_ordered$dataset_ordered,
+             ploidy_VAL = TN6_ploidy,
+             ploidy_trunc = 2*(round(TN6_ploidy)),
+             clusters = TN6_ordered$clustering_ordered,
+             genomic_classes = TN6_gen_classes,
+             keep_gene = TN6_annotation_genes,
+             tree_order = TN6_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN6_consensus_ht, cache=TRUE, warning=FALSE}
+plot_consensus_heatmap(df = TN6_consensus,
+                       clusters = TN6_ordered$clustering_ordered,
+                       ploidy_VAL = TN6_ploidy,
+                       ploidy_trunc = 2*(round(TN6_ploidy)),
+                       keep_gene = TN6_annotation_genes,
+                       tree_order = TN6_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN6_gen_classes)
+```
+
+## TN7
+```{r TN7, warning=FALSE}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN7_ploidy <- 3.15
+
+TN7_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN7_popseg_long_ml.rds"))
+
+TN7_umap <- run_umap(TN7_popseg_long_ml)
+
+TN7_clustering <- run_clustering(TN7_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN7_ordered <- order_dataset(popseg_long = TN7_popseg_long_ml,
+                             clustering = TN7_clustering)
+
+plot_umap(umap_df = TN7_umap,
+          clustering = TN7_clustering)
+
+TN7_consensus <- calculate_consensus(df = TN7_ordered$dataset_ordered,
+                                     clusters = TN7_ordered$clustering_ordered$subclones)
+
+TN7_gen_classes <- consensus_genomic_classes(TN7_consensus,
+                                             ploidy_VAL = TN7_ploidy)
+
+TN7_me_consensus_tree <- run_me_tree(consensus_df = TN7_consensus,
+                                     clusters = TN7_clustering,
+                                     ploidy_VAL = TN7_ploidy)
+
+
+
+
+TN7_annotation_genes <-
+  c(
+    "CDKN2C",
+    "SHC1",
+    "RUVBL1",
+    "PIK3CA",
+    "CDKN1A",
+    "EGFR",
+    "FGFR1",
+    "CDKN2A",
+    "GATA3",
+    "PTEN",
+    "CDK4",
+    "MDM2",
+    "BRCA2",
+    "RB1",
+    "TP53",
+    "BRCA1",
+    "BCL2",
+    "NCOA3",
+    "AURKA",
+    "GATA3",
+    "PGR"
+  )
+```
+
+```{r TN7_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+plot_heatmap(df = TN7_ordered$dataset_ordered,
+             ploidy_VAL = TN7_ploidy,
+             ploidy_trunc = 2*(round(TN7_ploidy)),
+             clusters = TN7_ordered$clustering_ordered,
+             genomic_classes = TN7_gen_classes,
+             keep_gene = TN7_annotation_genes,
+             tree_order = TN7_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN7_consensus_ht, cache=TRUE, warning=FALSE}
+plot_consensus_heatmap(df = TN7_consensus,
+                       clusters = TN7_ordered$clustering_ordered,
+                       ploidy_VAL = TN7_ploidy,
+                       ploidy_trunc = 2*(round(TN7_ploidy)),
+                       keep_gene = TN7_annotation_genes,
+                       tree_order = TN7_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN7_gen_classes)
+```
+
+## TN8
+```{r TN8, warning=FALSE}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
+# Tumors Heatmaps/Consensus/Trees
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
+
+TN8_ploidy <- 3.95
+
+TN8_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN8_popseg_long_ml.rds"))
+
+TN8_umap <- run_umap(TN8_popseg_long_ml)
+
+TN8_clustering <- run_clustering(TN8_umap,
+                                 k_snn_major = 45,
+                                 k_snn_minor = 17)
+
+TN8_ordered <- order_dataset(popseg_long = TN8_popseg_long_ml,
+                             clustering = TN8_clustering)
+
+plot_umap(umap_df = TN8_umap,
+          clustering = TN8_clustering)
+
+TN8_consensus <- calculate_consensus(df = TN8_ordered$dataset_ordered,
+                                     clusters = TN8_ordered$clustering_ordered$subclones)
+
+TN8_gen_classes <- consensus_genomic_classes(TN8_consensus,
+                                             ploidy_VAL = TN8_ploidy)
+
+TN8_me_consensus_tree <- run_me_tree(consensus_df = TN8_consensus,
+                                     clusters = TN8_clustering,
+                                     ploidy_VAL = TN8_ploidy)
+
+
+
+
+
+TN8_annotation_genes <-
+  c(
+    "CDKN2C",
+    "SHC1",
+    "ESR1",
+    "MTDH",
+    "MYC",
+    "GATA3",
+    "PTEN",
+    "PGR",
+    "MDM2",
+    "BRCA2",
+    "RB1",
+    "BCL2",
+    "NCOA3",
+    "AURKA",
+    "CHEK2"
+  )
+```
+
+```{r TN8_heatmap, cache = TRUE, fig.height=8, warning=FALSE}
+plot_heatmap(df = TN8_ordered$dataset_ordered,
+             ploidy_VAL = TN8_ploidy,
+             ploidy_trunc = 2*(round(TN8_ploidy)),
+             clusters = TN8_ordered$clustering_ordered,
+             genomic_classes = TN8_gen_classes,
+             keep_gene = TN8_annotation_genes,
+             tree_order = TN8_me_consensus_tree$cs_tree_order,
+             show_legend = TRUE)
+```
+
+```{r TN8_consensus_ht, cache=TRUE, warning=FALSE}
+plot_consensus_heatmap(df = TN8_consensus,
+                       clusters = TN8_ordered$clustering_ordered,
+                       ploidy_VAL = TN8_ploidy,
+                       ploidy_trunc = 2*(round(TN8_ploidy)),
+                       keep_gene = TN8_annotation_genes,
+                       tree_order = TN8_me_consensus_tree$cs_tree_order,
+                       plot_title = NULL,
+                       genomic_classes = TN8_gen_classes)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
