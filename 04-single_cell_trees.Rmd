@@ -8,7 +8,7 @@ editor_options:
 
 # Single-Cell Trees
 
-Function used to generate the trees using `ape::fastme.bal()` is `make_single_cell_tree`. It is not terribly slow but, for convinience, trees generated from the following function are provided in the directory `data/trees`
+Function used to generate the trees using `ape::fastme.bal()` is `make_single_cell_tree`. Trees generated from the following function are provided in the directory `data/trees`
 
 
 ```{r eval=FALSE}
