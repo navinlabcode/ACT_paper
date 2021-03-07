@@ -21,7 +21,8 @@ plot_heatmap <- function(df,
                          keep_gene,
                          tree_order = NULL,
                          show_legend = FALSE,
-                         cocluster = FALSE) {
+                         cocluster = FALSE,
+                         mda_cocluster = FALSE) {
 
   if (!is.null(tree_order)) {
     clusters <- clusters[order(match(clusters$subclones, tree_order)), ]
@@ -145,6 +146,32 @@ plot_heatmap <- function(df,
       show_legend = show_legend
     )
 
+  } else if (mda_cocluster == TRUE) {
+    ann_df <- clusters %>%
+      as.data.frame() %>%
+      mutate(type = case_when(str_detect(cells, "gDNA") ~ "bulk",
+                              TRUE ~ "single-cell")) %>%
+      dplyr::select(type,
+                    superclones,
+                    subclones)
+
+    ann <- rowAnnotation(
+      df = ann_df,
+      col = list(superclones = colors_superclones,
+        subclones = colors_subclones,
+                 type = c("bulk" = "black",
+                          "single-cell" =  "firebrick3")),
+      show_annotation_name = TRUE,
+      annotation_name_gp = gpar(fontsize = 17),
+      simple_anno_size = unit(0.9, "cm"),
+      annotation_legend_param = list(
+        subclones = list(
+          labels = gtools::mixedsort(unique(as.character(clusters$subclones))),
+          at = gtools::mixedsort(unique(as.character(clusters$subclones)))
+        )
+      ),
+      show_legend = show_legend
+    )
   } else {
     # removing cells from ann_df to be used as an annotation
     ann_df <- clusters %>%
@@ -173,65 +200,72 @@ plot_heatmap <- function(df,
 
 
   # genes annotation
+ if (mda_cocluster == FALSE) {
+   bins_bed <- bins_in_cna_pipeline %>%
+     dplyr::filter(chr != "chrY") %>%
+     mutate(regions = genomic_classes)
 
-  bins_bed <- bins_in_cna_pipeline %>%
-    dplyr::filter(chr != "chrY") %>%
-    mutate(regions = genomic_classes)
+   bins_gr <- bins_bed %>%
+     makeGRangesFromDataFrame(keep.extra.columns = T, ignore.strand = T)
 
-  bins_gr <- bins_bed %>%
-    makeGRangesFromDataFrame(keep.extra.columns = T, ignore.strand = T)
+   #extras for mdamb231
+   hg19_genes <- GenomicFeatures::genes(txdb, columns = "SYMBOL")
 
-  #extras for mdamb231
-  hg19_genes <- GenomicFeatures::genes(txdb, columns = "SYMBOL")
+   hg19_genes <- hg19_genes %>%
+     as.data.frame() %>%
+     filter(SYMBOL %in% keep_gene) %>%
+     select(seqnames, start, end, SYMBOL) %>%
+     dplyr::rename(chr = "seqnames",
+                   symbol = "SYMBOL") %>%
+     mutate(symbol = as.character(symbol))
 
-  hg19_genes <- hg19_genes %>%
-    as.data.frame() %>%
-    filter(SYMBOL %in% keep_gene) %>%
-    select(seqnames, start, end, SYMBOL) %>%
-    dplyr::rename(chr = "seqnames",
-                  symbol = "SYMBOL") %>%
-    mutate(symbol = as.character(symbol))
+   bed <- hg19_genes %>%
+     makeGRangesFromDataFrame(ignore.strand = T, keep.extra.columns = T)
 
-  bed <- hg19_genes %>%
-    makeGRangesFromDataFrame(ignore.strand = T, keep.extra.columns = T)
+   olaps <- findOverlaps(bed, bins_gr)
 
-  olaps <- findOverlaps(bed, bins_gr)
+   mk_df <- tibble(
+     gene = bed$symbol[queryHits(olaps)],
+     pos = subjectHits(olaps),
+     region = bins_bed$regions[subjectHits(olaps)]
+   ) %>%
+     dplyr::distinct(gene, .keep_all = TRUE) %>%
+     mutate(color = case_when(
+       str_detect(region, "cCNA") ~ "#414451",
+       str_detect(region, "sCNA") ~ "gray65",
+       str_detect(region, "uCNA") ~ "#FF800E"
+     ))
 
-  mk_df <- tibble(
-    gene = bed$symbol[queryHits(olaps)],
-    pos = subjectHits(olaps),
-    region = bins_bed$regions[subjectHits(olaps)]
-  ) %>%
-    dplyr::distinct(gene, .keep_all = TRUE) %>%
-    mutate(color = case_when(
-      str_detect(region, "cCNA") ~ "#414451",
-      str_detect(region, "sCNA") ~ "gray65",
-      str_detect(region, "uCNA") ~ "#FF800E"
-    ))
+   if (!is.null(keep_gene)) {
+     mk_df <- mk_df %>%
+       dplyr::filter(gene %in% keep_gene)
+   }
 
-  if (!is.null(keep_gene)) {
-    mk_df <- mk_df %>%
-      dplyr::filter(gene %in% keep_gene)
-  }
+   mk <-
+     ComplexHeatmap::columnAnnotation(
+       df = genomic_classes,
+       foo = anno_mark(
+         at = mk_df$pos,
+         labels = mk_df$gene,
+         side = "bottom",
+         labels_gp = gpar(fontsize = 17, col = mk_df$color)
+       ),
+       col = list(df = c(
+         "cCNA" = "#414451",
+         "sCNA" = "gray65",
+         "uCNA" = "#FF800E"
+       )),
+       show_annotation_name = FALSE,
+       show_legend = FALSE
+     )
 
-  mk <-
-    ComplexHeatmap::columnAnnotation(
-      df = genomic_classes,
-      foo = anno_mark(
-        at = mk_df$pos,
-        labels = mk_df$gene,
-        side = "bottom",
-        labels_gp = gpar(fontsize = 17, col = mk_df$color)
-      ),
-      col = list(df = c(
-        "cCNA" = "#414451",
-        "sCNA" = "gray65",
-        "uCNA" = "#FF800E"
-      )),
-      show_annotation_name = FALSE,
-      show_legend = FALSE
-    )
+   r_title <- paste(nrow(popseg_heatmap), "single cells")
 
+ } else {
+   # Avoids genomic class annotation and corrects title
+   r_title <- paste(nrow(popseg_heatmap), "samples")
+   mk <- NULL
+ }
 
   ht <- Heatmap(
     popseg_heatmap,
@@ -242,7 +276,7 @@ plot_heatmap <- function(df,
     top_annotation = chr_bar,
     cluster_rows = FALSE,
     border = TRUE,
-    row_title = paste(nrow(popseg_heatmap), "single cells"),
+    row_title = r_title,
     row_title_gp = gpar(fontsize = 24),
     row_title_side = "right",
     cluster_columns = FALSE,

@@ -114,4 +114,15 @@ mda_cocluster_me_tree <- run_me_tree(consensus_df = mda_consensus,
                                      ploidy_VAL = mda_ploidy)
 ```
 
+```{r}
+plot_heatmap(df = mda_ordered$dataset_ordered,
+             ploidy_VAL = mda_ploidy,
+             ploidy_trunc = 2*(round(mda_ploidy))+2,
+             clusters = mda_ordered$clustering_ordered,
+             genomic_classes = NULL,
+             keep_gene = NULL,
+             tree_order = mda_cocluster_me_tree$cs_tree_order,
+             show_legend = TRUE,
+             mda_cocluster = TRUE)
+```
 
