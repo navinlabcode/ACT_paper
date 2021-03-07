@@ -66,7 +66,6 @@ tn8_tree <- read.tree(here("extdata/trees/tn8_sc_tree.tree"))
 
 ```{r plots, fig.height=8}
 source(here("R/plot_sctree.R"))
-source(here("R/plot_sctree.R"))
 
 plot_sctree(tn1_tree, title = "TN1")
 plot_sctree(tn2_tree, title = "TN2")

@@ -1,0 +1,117 @@
+---
+author: "Darlan Conterno Minussi"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options: 
+  chunk_output_type: console
+---
+
+# MDA-231 DNA & RNA
+
+Transcript abundances for expanded clones triplicates were quantified by Salmon (v.0.14) with GENCODE transcript v30 and options -l A -1 read1 -2 read2 -p 40 --validateMappings --seqBias --gcBias. Quantified transcripts were imported into R with ‘tximport’ (v 1.14). Expanded clones e7, e39 and e71 had one technical replicate excluded due to poor RNA quality
+
+```{r setup}
+source("R/run_umap.R")
+```
+
+
+```{r data}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Mar  6 17:34:47 2021
+# RNA
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Mar  6 17:34:51 2021
+
+# reading RNA data
+dds <- readRDS(here("extdata/rna/mdamb231_rna_dds.rds"))
+
+# Quality filtering
+keep <- rowSums(counts(dds) >= 5) >= 3
+dds <- dds[keep,]
+
+# computation of size factors which normalize for 
+# differences in sequencing depth among samples
+dds <- estimateSizeFactors(dds)
+boxplot(log10(counts(dds,normalized=TRUE)+1), las = 2)
+
+# variance-stabilizing transformation
+vsd <- vst(dds)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Mar  6 17:34:56 2021
+# DNA
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sat Mar  6 17:35:01 2021
+
+mda_ploidy <- 2.41
+
+# data from DNA bulk expanded clones 
+# and from mda-mb-231 single-cell were merged to the same dataframe
+
+mdamb231_sc_bulk_cna_ml <- readRDS(here("extdata/merge_levels/mdamb231_sc_bulk_cna_ml.rds"))
+```
+
+## Co-clustering
+
+```{r}
+mdamb231_sc_bulk_umap <- run_umap(mdamb231_sc_bulk_cna_ml,
+                                  umap_n_neighbors = 25,
+                                  seed = 5)
+
+mdamb231_sc_bulk_clustering <- run_clustering(mdamb231_sc_bulk_umap,
+                                 k_snn_major = 43,
+                                 k_snn_minor = 14) 
+
+mdamb231_sc_bulk_clustering_umap <- left_join(mdamb231_sc_bulk_umap,
+                                              mdamb231_sc_bulk_clustering, 
+                                              by = c("cell" = "cells"))
+
+mdamb231_sc_bulk_clustering_umap <- mdamb231_sc_bulk_clustering_umap %>%
+  mutate(
+    type = case_when(str_detect(cell, "gDNA") ~ "bulk",
+                     TRUE ~ subclones),
+    shape = case_when(str_detect(cell, "gDNA") ~ 8,
+                      TRUE ~ 20),
+    size = case_when(str_detect(cell, "gDNA") ~ 1.2,
+                     TRUE ~ 1),
+  )
+
+p1 <- mdamb231_sc_bulk_clustering_umap %>% arrange(desc(type)) %>% 
+  ggplot() + 
+  geom_point(aes(V1,V2, color = superclones), size = 6) +
+  geom_point(aes(V1,V2, color = type, shape = shape, size = size), stroke = 1.5) +
+  scale_color_manual(values = c(colors_vector$superclones, colors_vector$subclones, "bulk" = "black")) +
+  scale_shape_identity() + 
+  scale_size_identity() +
+  theme_classic() +
+  theme(axis.title.x=element_text(colour = "gray50", size = 20),
+        axis.text.x= element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y = element_text(colour = "gray50", size = 20),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line = element_blank(),
+        legend.position = "none",
+        panel.border = element_rect(color = "black", 
+                                    fill = NA,
+                                    size = 2),
+        # legend.position = "null"
+  )  +
+  labs(color = "") + 
+  xlab("umap1") +
+  ylab("umap2") 
+
+p1
+```
+
+```{r more_setup}
+# this setup will be used to plot the heatmap later
+
+mda_ordered <- order_dataset(popseg_long = mdamb231_sc_bulk_cna_ml,
+                             clustering = mdamb231_sc_bulk_clustering)
+
+mda_cocluster_consensus <- calculate_consensus(df = mda_ordered$dataset_ordered,
+                                     clusters = mda_ordered$clustering_ordered$subclones)
+
+mda_cocluster_me_tree <- run_me_tree(consensus_df = mda_consensus,
+                                     clusters = mdamb231_sc_bulk_clustering,
+                                     ploidy_VAL = mda_ploidy)
+```
+
+
