@@ -114,6 +114,8 @@ mda_cocluster_me_tree <- run_me_tree(consensus_df = mda_consensus,
                                      ploidy_VAL = mda_ploidy)
 ```
 
+## Single-cell + Bulk Heatmap
+
 ```{r}
 plot_heatmap(df = mda_ordered$dataset_ordered,
              ploidy_VAL = mda_ploidy,
@@ -122,6 +124,29 @@ plot_heatmap(df = mda_ordered$dataset_ordered,
              genomic_classes = NULL,
              keep_gene = NULL,
              tree_order = mda_cocluster_me_tree$cs_tree_order,
+             show_legend = TRUE,
+             mda_cocluster = TRUE)
+```
+
+## Bulk Heatmap
+```{r}
+mdamb231_bulk_cna_long <- mda_ordered$dataset_ordered[str_detect(rownames(mda_ordered$dataset_ordered), "gDNA"),]
+
+# clustering info
+mdamb231_bulk_cl_info <- mda_ordered$clustering_ordered %>% 
+  filter(str_detect(cells, "gDNA")) %>% 
+  arrange(superclones, subclones)
+
+# matching order
+mdamb231_bulk_ordered <- mdamb231_bulk_cna_long[mdamb231_bulk_cl_info$cells,]
+
+plot_heatmap(df = mdamb231_bulk_ordered,
+             ploidy_VAL = mda_ploidy,
+             ploidy_trunc = 2*(round(mda_ploidy))+2,
+             clusters = mdamb231_bulk_cl_info,
+             genomic_classes = NULL,
+             keep_gene = NULL,
+             tree_order = NULL,
              show_legend = TRUE,
              mda_cocluster = TRUE)
 ```
