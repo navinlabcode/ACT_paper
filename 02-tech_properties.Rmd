@@ -46,7 +46,7 @@ do
     printf "%s\n" "samtools sort -o $OUTBAM $INSAMPLEBASE.sam" >> sort_commands.sh
     # Delete the unsorted SAM files
     printf "%s\n" "rm $INSAMPLEBASE.sam" >> delete_commands.sh
-    # Calculate coverage
+    # Calculate coverage maximum read size of 50 to all reads
     printf "genomeCoverageBed -ibam $OUTBAM -fs 50 -g genomes/human.hg19.genome > $COVHISTFILE\n" >> genomecoveragebed_commands.sh
 done
 parallel --jobs 30 < mark_duplicates_commands.sh
@@ -191,40 +191,40 @@ all_cov %>%
 
 ## Overdispersion
 ```{r calculate_overdispersion}
-TN1_overdispersion <-  map_dfr(TN1_bincounts[,-c(1:3)], 
+TN1_overdispersion <-  map_dfr(TN1_bincounts, 
                     overdispersion) %>%
   t() %>%
   as.data.frame() %>% 
   mutate(sample = "TN1",
          tech = "ACT",
-         cells = names(TN1_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN1_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
-TN2_overdispersion <-  map_dfr(TN2_bincounts[,-c(1:3)], 
+TN2_overdispersion <-  map_dfr(TN2_bincounts, 
                     overdispersion) %>%
   t() %>%
   as.data.frame() %>% 
   mutate(sample = "TN2",
          tech = "ACT",
-         cells = names(TN2_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN2_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
-TN3_overdispersion <-  map_dfr(TN3_bincounts[,-c(1:3)], 
+TN3_overdispersion <-  map_dfr(TN3_bincounts, 
                     overdispersion) %>%
   t() %>%
   as.data.frame() %>% 
   mutate(sample = "TN3",
          tech = "ACT",
-         cells = names(TN3_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN3_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
-TN4_overdispersion <-  map_dfr(TN4_bincounts[,-c(1:3)], 
+TN4_overdispersion <-  map_dfr(TN4_bincounts, 
                     overdispersion) %>%
   t() %>%
   as.data.frame() %>% 
   mutate(sample = "TN4",
          tech = "ACT",
-         cells = names(TN4_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN4_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
 #10X CNA
