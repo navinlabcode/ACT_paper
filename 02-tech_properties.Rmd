@@ -230,20 +230,20 @@ TN4_overdispersion <-  map_dfr(TN4_bincounts,
 #10X CNA
 names(TN1_10XCNA_bincounts) <- str_replace(names(TN1_10XCNA_bincounts), "\\.", "-")
 
-TN1_10XCNA_overdispersion <- map_dfr(TN1_10XCNA_bincounts[,-c(1:3)], 
+TN1_10XCNA_overdispersion <- map_dfr(TN1_10XCNA_bincounts, 
                           overdispersion) %>% t() %>% as.data.frame() %>% 
   mutate(sample = "TN1",
          tech = "10X CNA",
-         cells = names(TN1_10XCNA_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN1_10XCNA_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
 names(TN3_10XCNA_bincounts) <- str_replace(names(TN3_10XCNA_bincounts), "\\.", "-")
 
-TN3_10XCNA_overdispersion <- map_dfr(TN3_10XCNA_bincounts[,-c(1:3)], 
+TN3_10XCNA_overdispersion <- map_dfr(TN3_10XCNA_bincounts, 
                           overdispersion) %>% t() %>% as.data.frame() %>% 
   mutate(sample = "TN3",
          tech = "10X CNA",
-         cells = names(TN3_10XCNA_bincounts)[-c(1:3)]) %>% 
+         cells = names(TN3_10XCNA_bincounts)) %>% 
   dplyr::rename(iod = "V1")
 
 # DLP
