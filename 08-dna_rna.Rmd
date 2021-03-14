@@ -151,3 +151,146 @@ plot_heatmap(df = mdamb231_bulk_ordered,
              mda_cocluster = TRUE)
 ```
 
+## DNA & RNA
+
+```{r merging}
+# Biomart
+grch37 <-
+  useMart(
+    biomart = "ENSEMBL_MART_ENSEMBL",
+    host = "grch37.ensembl.org",
+    path = "/biomart/martservice",
+    dataset = "hsapiens_gene_ensembl"
+  )
+
+# hg19 chromosome positions from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes
+hg19_chrom_sizes <- readRDS(here("extdata/lib/hg19.chrom.sizes.rds"))
+
+# transforming into a named vector and sorting by chrom
+hg19_chrom_sizes <- hg19_chrom_sizes[1:23,]
+hg19_chrom_sizes <- deframe(hg19_chrom_sizes)
+hg19_chrom_sizes <- hg19_chrom_sizes[gtools::mixedsort(names(hg19_chrom_sizes))]
+
+# obtaining the position for every ensembl gene id 
+bms <- list()
+
+for(i in 1:length(hg19_chrom_sizes)) {
+  chrom <- str_remove(names(hg19_chrom_sizes)[i], "chr")
+  
+  if (chrom != "X")
+    chrom <- as.numeric(chrom)
+  
+  length_chrom <- hg19_chrom_sizes[i]
+  
+  bms[[i]] <-
+    getBM(
+      c(
+        "ensembl_gene_id",
+        "hgnc_symbol",
+        "start_position",
+        "end_position"
+      ),
+      filters = c("chromosome_name", "start", "end"),
+      values = list(chrom,
+                    0, length_chrom),
+      mart = grch37
+    )
+  
+  bms[[i]] <- bms[[i]] %>% arrange(start_position)
+  
+  names(bms)[[i]] <- names(hg19_chrom_sizes)[i]
+}
+
+bms_df <- bind_rows(bms, .id = "chr") %>%
+  dplyr::rename(gene = "hgnc_symbol",
+                gene_id = "ensembl_gene_id")
+
+# obtaining the count matrix of the MDAMB231 bulk RNAseq
+cnt <- assay(vsd)
+
+# gene id clean up
+rownames(cnt) <- str_extract(rownames(cnt), "[A-Z]+[0-9]+")
+
+# averaging the expression of the RNA triplicates and calculating a zscore
+cnt_long <- cnt %>% 
+  as.data.frame() %>% 
+  tibble::rownames_to_column("gene_id") %>% 
+  tidyr::gather(key = "sample",
+                value = "count",
+                -gene_id) %>% 
+  mutate(sample = str_remove(sample, "[A-C]$"))
+
+cnt_long_avg <- cnt_long %>%
+  group_by(gene_id, sample) %>% 
+  summarise(count_avg = mean(count)) %>% 
+  ungroup()  %>% 
+  group_by(gene_id) %>%
+  mutate(z_score = (count_avg-mean(count_avg))/sd(count_avg)) %>%
+  ungroup() 
+
+# wide df will be used later for moving average
+cnt_avg <- tidyr::pivot_wider(cnt_long_avg,
+                              names_from = sample,
+                              values_from = z_score,
+                              id_cols = gene_id)
+
+
+cnt_avg <- as.data.frame(cnt_avg)
+rownames(cnt_avg) <- cnt_avg$gene_id
+cnt_avg <- cnt_avg %>%
+  dplyr::select(-gene_id)
+
+```
+
+## * Moving averages
+```{r}
+# Methods:
+# DNA copy number profiles from the expanded clusters are shown 
+# by taking the mode of the ith segment from their profiles 
+# according to the co-clustering identities.
+```
+
+## RNA PCA
+```{r}
+pcaData <- plotPCA(vst(dds), "cluster", returnData = T) %>% 
+  mutate(triplicate = str_extract(name, "C[0-9]+"),
+         triplicate = tolower(triplicate),
+         triplicate = paste0("e", triplicate)) %>% 
+  mutate(sample = str_extract(name, "MDAMB231C[0-9]+"))
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+
+cluster_anno <- sc_bulk_231_leiden_umap$mc_classification %>% 
+  filter(str_detect(cells, "gDNA")) %>% 
+  mutate(sample = str_remove(cells, "gDNA")) %>% 
+  mutate(sample = str_extract(sample, "MDAMB231C[0-9]+"))
+
+pcaData <- pcaData %>% 
+  left_join(cluster_anno, by = c("group" = "hdb", "sample" = "sample"))
+
+p_pca <- ggplot(pcaData, aes(x = PC1,
+                             y = PC2)) +
+  scale_color_manual(values = c(sc_bulk_231_umap_colors$subclones,sc_bulk_231_umap_colors$superclones)) +
+  geom_point(aes(color = fct_relevel(g_cl, gtools::mixedsort(unique(as.character(pcaData$g_cl))))), size = 8) +
+  geom_point(aes(color = fct_relevel(group, gtools::mixedsort(unique(as.character(pcaData$group))))), size = 3) + 
+  # xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  # ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  xlab("PC1") +
+  ylab("PC2") +
+  # coord_fixed() +
+  theme_cowplot() + 
+  theme(axis.title.x=element_text(size = 16),
+        axis.text.x= element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y = element_text(size = 16),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        panel.border = element_rect(color = "black", 
+                                    fill = NA,
+                                    size = 2)) +
+  labs(color = "subclone")
+```
+
+
