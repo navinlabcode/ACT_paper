@@ -49,6 +49,8 @@ my_theme <- list(
 
 TN1_ploidy <- 3.45
 
+TN1_popseg <- readRDS(here("extdata/popseg/TN1_popseg.rds"))
+
 TN1_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN1_popseg_long_ml.rds"))
 
 TN1_umap <- run_umap(TN1_popseg_long_ml)
@@ -124,6 +126,8 @@ plot_consensus_heatmap(df = TN1_consensus,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
 
 TN2_ploidy <- 3.03
+
+TN2_popseg <- readRDS(here("extdata/popseg/TN2_popseg.rds"))
 
 TN2_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN2_popseg_long_ml.rds"))
 
@@ -204,6 +208,8 @@ plot_consensus_heatmap(df = TN2_consensus,
 
 TN3_ploidy <- 3.44
 
+TN3_popseg <- readRDS(here("extdata/popseg/TN3_popseg.rds"))
+
 TN3_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN3_popseg_long_ml.rds"))
 
 TN3_umap <- run_umap(TN3_popseg_long_ml)
@@ -282,6 +288,8 @@ plot_consensus_heatmap(df = TN3_consensus,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
 
 TN4_ploidy <- 3.81
+
+TN4_popseg <- readRDS(here("extdata/popseg/TN4_popseg.rds"))
 
 TN4_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN4_popseg_long_ml.rds"))
 
@@ -364,6 +372,8 @@ plot_consensus_heatmap(df = TN4_consensus,
 
 TN5_ploidy <- 2.65
 
+TN5_popseg <- readRDS(here("extdata/popseg/TN5_popseg.rds"))
+
 TN5_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN5_popseg_long_ml.rds"))
 
 TN5_umap <- run_umap(TN5_popseg_long_ml)
@@ -444,6 +454,8 @@ plot_consensus_heatmap(df = TN5_consensus,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
 
 TN6_ploidy <- 3.17
+
+TN6_popseg <- readRDS(here("extdata/popseg/TN6_popseg.rds"))
 
 TN6_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN6_popseg_long_ml.rds"))
 
@@ -526,6 +538,8 @@ plot_consensus_heatmap(df = TN6_consensus,
 
 TN7_ploidy <- 3.15
 
+TN7_popseg <- readRDS(here("extdata/popseg/TN7_popseg.rds"))
+
 TN7_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN7_popseg_long_ml.rds"))
 
 TN7_umap <- run_umap(TN7_popseg_long_ml)
@@ -606,6 +620,8 @@ plot_consensus_heatmap(df = TN7_consensus,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
 
 TN8_ploidy <- 3.95
+
+TN8_popseg <- readRDS(here("extdata/popseg/TN8_popseg.rds"))
 
 TN8_popseg_long_ml <- readRDS(here("extdata/merge_levels/TN8_popseg_long_ml.rds"))
 
@@ -953,47 +969,44 @@ p_gain_loss
 ### Counts
 
 ```{r gen_class_setup, warning=FALSE}
-ah <- AnnotationHub()
-cytoband <- ah[["AH5012"]]
-
-popseg_bed <- bins_in_cna_pipeline %>%
-  makeGRangesFromDataFrame(keep.extra.columns = T, ignore.strand = T)
-
-olaps <- findOverlaps(popseg_bed, cytoband)
-
-olaps_df <- as.data.frame(olaps) %>%
-  distinct(queryHits, .keep_all = T)
-
-mk_df <- tibble(pos = olaps_df$queryHits,
-                chrom = str_extract(seqnames(cytoband), "([0-9]+|[XY])")[olaps_df$subjectHits],
-                                arm = str_extract(cytoband$name[olaps_df$subjectHits], "[pq]")) %>%
-  mutate(chrom_and_arm = paste0(chrom, arm))
-
-bins_in_cna_pipeline <- bins_in_cna_pipeline %>%
-  mutate(chrom_and_arm = mk_df$chrom_and_arm)
-
-TN1_seg_length <- calc_genclass_length(TN1_gen_classes) %>% 
+TN1_seg_length <- calc_genclass_length(TN1_gen_classes,
+                                       popseg = TN1_popseg,
+                                       popseg_long = TN1_popseg_long_ml) %>% 
   mutate(sample = "TN1")
 
-TN2_seg_length <- calc_genclass_length(TN2_gen_classes) %>% 
+TN2_seg_length <- calc_genclass_length(TN2_gen_classes,
+                                       popseg = TN2_popseg,
+                                       popseg_long = TN2_popseg_long_ml) %>% 
   mutate(sample = "TN2")
 
-TN3_seg_length <- calc_genclass_length(TN3_gen_classes) %>% 
+TN3_seg_length <- calc_genclass_length(TN3_gen_classes,
+                                       popseg = TN3_popseg,
+                                       popseg_long = TN3_popseg_long_ml) %>% 
   mutate(sample = "TN3")
 
-TN4_seg_length <- calc_genclass_length(TN4_gen_classes) %>% 
+TN4_seg_length <- calc_genclass_length(TN4_gen_classes,
+                                       popseg = TN4_popseg,
+                                       popseg_long = TN4_popseg_long_ml) %>% 
   mutate(sample = "TN4")
 
-TN5_seg_length <- calc_genclass_length(TN5_gen_classes) %>% 
+TN5_seg_length <- calc_genclass_length(TN5_gen_classes,
+                                       popseg = TN5_popseg,
+                                       popseg_long = TN5_popseg_long_ml) %>% 
   mutate(sample = "TN5")
 
-TN6_seg_length <- calc_genclass_length(TN6_gen_classes) %>% 
+TN6_seg_length <- calc_genclass_length(TN6_gen_classes,
+                                       popseg = TN6_popseg,
+                                       popseg_long = TN6_popseg_long_ml) %>% 
   mutate(sample = "TN6")
 
-TN7_seg_length <- calc_genclass_length(TN7_gen_classes) %>% 
+TN7_seg_length <- calc_genclass_length(TN7_gen_classes,
+                                       popseg = TN7_popseg,
+                                       popseg_long = TN7_popseg_long_ml) %>% 
   mutate(sample = "TN7")
 
-TN8_seg_length <- calc_genclass_length(TN8_gen_classes) %>% 
+TN8_seg_length <- calc_genclass_length(TN8_gen_classes,
+                                       popseg = TN8_popseg,
+                                       popseg_long = TN8_popseg_long_ml) %>% 
   mutate(sample = "TN8")
 
 df_cna <- bind_rows(TN1_seg_length,
@@ -1010,7 +1023,8 @@ df_cna <- bind_rows(TN1_seg_length,
 ```{r gen_class_counts}
 p_count_cna <- df_cna %>%
   dplyr::group_by(sample) %>%
-  dplyr::count(class) %>%
+  dplyr::distinct(seg_index, .keep_all = TRUE) %>% 
+  dplyr::count(class) %>% 
   dplyr::mutate(class = fct_relevel(class,
                                     c("uCNA",
                                       "sCNA",
@@ -1055,6 +1069,8 @@ p_count_cna
 ### Segment length
 ```{r}
 p_seg_box <- df_cna %>%
+    dplyr::group_by(sample) %>%
+  dplyr::distinct(seg_index, .keep_all = TRUE) %>% 
   dplyr::mutate(class = fct_relevel(class,
                                     c("cCNA",
                                       "sCNA",
