@@ -74,7 +74,7 @@ TN8_annovar <- read_delim(here("extdata/exome/annovar/TN8.annovar.csv"),
 ```
 
 ## Filtering
-```{r filtering} 
+```{r filtering, warning=FALSE, message=FALSE} 
 TN1_mutations <- vcf_filtering(
   mutect = TN1_mutect,
   annovar = TN1_annovar,
@@ -161,7 +161,7 @@ TN_muts <- bind_rows(
 ```
 
 ## Mut timer information
-```{r mut_timer, warning=FALSE}
+```{r mut_timer, warning=FALSE, message=FALSE}
 TN1_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN1_m_timer.vcf")) %>% mutate(patient = "TN1")
 
 TN2_mut_time <- parse_mtimer_vcf(here("extdata/exome/mut_timer/TN2_m_timer.vcf")) %>% mutate(patient = "TN2")
