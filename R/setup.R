@@ -45,6 +45,7 @@ library(jsonlite)
 library(readr)
 library(ComplexHeatmap)
 library(DESeq2)
+library(patchwork)
 theme_set(theme_cowplot())
 plan(multiprocess, workers = 20)
 

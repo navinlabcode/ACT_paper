@@ -11,7 +11,16 @@ editor_options:
 Transcript abundances for expanded clones triplicates were quantified by Salmon (v.0.14) with GENCODE transcript v30 and options -l A -1 read1 -2 read2 -p 40 --validateMappings --seqBias --gcBias. Quantified transcripts were imported into R with ‘tximport’ (v 1.14). Expanded clones e7, e39 and e71 had one technical replicate excluded due to poor RNA quality
 
 ```{r setup_functions}
+source("R/setup.R")
 source("R/run_umap.R")
+source("R/run_clustering.R")
+source("R/order_dataset.R")
+source("R/plot_umap.R")
+source("R/calculate_consensus.R")
+source("R/consensus_genomic_classes.R")
+source("R/run_me_tree.R")
+source("R/plot_heatmap.R")
+source("R/plot_moving_averages.R")
 ```
 
 
@@ -44,6 +53,7 @@ mda_ploidy <- 2.41
 # data from DNA bulk expanded clones 
 # and from mda-mb-231 single-cell were merged to the same dataframe
 
+mdamb231_sc_bulk_cna_popseg <- readRDS(here("extdata/popseg/mdamb231_sc_bulk_cna_popseg.rds"))
 mdamb231_sc_bulk_cna_ml <- readRDS(here("extdata/merge_levels/mdamb231_sc_bulk_cna_ml.rds"))
 ```
 
@@ -240,14 +250,125 @@ rownames(cnt_avg) <- cnt_avg$gene_id
 cnt_avg <- cnt_avg %>%
   dplyr::select(-gene_id)
 
+
+
+
 ```
 
 ## Moving averages
 ```{r moving_averages}
-# Methods:
-# DNA copy number profiles from the expanded clusters are shown 
-# by taking the mode of the ith segment from their profiles 
-# according to the co-clustering identities.
+# adding segments from population segmentation information
+mdamb231_bulk_cna_id <- mdamb231_sc_bulk_cna_popseg %>% 
+  mutate(seg_index = 1:nrow(mdamb231_sc_bulk_cna_popseg))
+
+# clustering information
+cl_info <- mdamb231_bulk_cl_info %>% 
+  mutate(sample =str_remove(cells, "gDNA"),
+         sample = str_extract(sample, "MDAMB231C[0-9]+"))
+
+seg_ids_long <- rep.int(mdamb231_bulk_cna_id$seg_index, mdamb231_sc_bulk_cna_popseg$n.probes)
+
+# bulk integer df
+mdamb231_bulk_cna_long_int <- ploidy_scale(ploidy_VAL = 2.41,
+                                           df = mdamb231_bulk_ordered)
+
+rownames(mdamb231_bulk_cna_long_int) <- str_remove(rownames(mdamb231_bulk_cna_long_int), "gDNA") %>% 
+  str_remove("_S[0-9]+")
+
+blk_long <- as.data.frame(t(mdamb231_bulk_cna_long_int))
+
+# adding pipeline information
+blk_long$chr <- bins_in_cna_pipeline$chr[1:nrow(blk_long)]
+blk_long$start <- bins_in_cna_pipeline$start[1:nrow(blk_long)]
+blk_long$end <- bins_in_cna_pipeline$end[1:nrow(blk_long)]
+blk_long$abspos <- bins_in_cna_pipeline$abspos[1:nrow(blk_long)]
+blk_long$seg_index <- seg_ids_long
+
+# creating a long file with a position vector according to the number of rows
+blk_long_g <- blk_long %>% 
+  mutate(pos = 1:nrow(blk_long)) %>% 
+  gather(key = "sample",
+         value = "cn",
+         -c(chr, start, end, abspos, pos, seg_index))
+
+# obataining gene positions Grange
+txdb <- Homo.sapiens
+
+hg19_genes <- GenomicFeatures::genes(txdb, columns = "SYMBOL")
+hg19_genes_df <- as.data.frame(hg19_genes) %>% 
+  mutate(SYMBOL = as.character(SYMBOL))
+
+bins_gr <- bins_in_cna_pipeline  %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = T, ignore.strand = T)  
+
+olaps <- findOverlaps(hg19_genes, bins_gr)
+
+# finding which index (bin in the 200kb pipeline the gene is located) 
+# saving to a data frame
+mk_df <- tibble(gene = hg19_genes_df$SYMBOL[queryHits(olaps)],
+                pos = subjectHits(olaps)) %>% 
+  dplyr::distinct(gene, .keep_all = TRUE)
+
+mk_df_j <- inner_join(mk_df, bms_df) 
+
+# all triplicates in long form
+cnt_long_trip <- cnt %>% 
+  as.data.frame() %>% 
+  tibble::rownames_to_column("gene_id") %>% 
+  tidyr::gather(key = "sample_trip",
+                value = "count",
+                -gene_id) %>% 
+  mutate(sample= str_remove(sample_trip, "[A-C]$"))
+
+cnt_long_gene_trip <- inner_join(cnt_long_all_zc, mk_df_j)
+
+cnt_long_gene_trip <- inner_join(cnt_long_gene_trip, cl_info) %>% 
+  arrange(chr, start_position)
+
+cnt_long_all_zc <- cnt_long_trip %>%
+  group_by(gene_id) %>%
+  mutate(z_score = (count-mean(count))/sd(count)) %>%
+  ungroup()
+
+# joining the copy number long data with the gene positions on their respective bins
+blk_long_gj <- inner_join(blk_long_g, mk_df)
+
+# adding the ensembl gene id information and the cluster information
+blk_long_gj <- inner_join(blk_long_gj, bms_df) %>% 
+  arrange(pos) %>% 
+  left_join(cl_info)
+
+# full dna rna table with counts merged by sample and ensemblgene_id
+dna_rna <- inner_join(blk_long_gj,
+                      cnt_long_avg)
+
+
+# jitter to be able to visualize all the copy number tracks
+jitter <- seq(-0.14, 0.17, 0.03) 
+
+cls <- gtools::mixedsort(unique(levels(droplevels(as.factor(blk_long_gj$subclones)))))
+
+blk_long_gj_jit <- blk_long_gj %>% 
+  mutate(cn = case_when(
+    subclones == cls[1] ~ cn + jitter[1],
+    subclones == cls[2] ~ cn + jitter[2],
+    subclones == cls[3] ~ cn + jitter[3],
+    subclones == cls[4] ~ cn + jitter[4],
+    subclones == cls[5] ~ cn + jitter[5],
+    subclones == cls[6] ~ cn + jitter[6],
+    subclones == cls[7] ~ cn + jitter[7],
+    subclones == cls[8] ~ cn + jitter[8],
+    subclones == cls[9] ~ cn + jitter[9],
+    subclones == cls[10] ~ cn + jitter[10]
+  ))
+
+plot_moving_average(chr = "chr19",
+                    genes = c("SH3GL1","PIK3R2"))
+ 
+plot_moving_average(chr = "chr11",
+                    genes = c("ATM","CBL"))
+
+ 
 ```
 
 ## RNA PCA
