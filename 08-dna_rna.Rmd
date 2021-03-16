@@ -437,4 +437,182 @@ p_pca <- ggplot(pcaData, aes(x = PC1,
   labs(color = "subclone")
 ```
 
+## FGSEA
+```{r}
+# Thanks to https://stephenturner.github.io/deseq-to-fgsea/
+
+fgseaResTidy <- list()
+
+for (x in 1:length(clusters)) {
+  res <-
+    results(dds,
+            contrast = list(
+              paste0("cluster", clusters[x]),
+              paste0(
+                "cluster",
+                clusters[clusters %!in% clusters[x]]
+              )
+            ),
+            listValues = c(1, -1 / 10))
+  
+  rownames(res) <- str_replace(rownames(res),
+                               ".[0-9]+$", "")
+  
+
+  res$symbol <- mapIds(
+    org.Hs.eg.db,
+    keys = row.names(res),
+    column = "SYMBOL",
+    keytype = "ENSEMBL",
+    multiVals = "first"
+  )
+  
+  res$map <- mapIds(
+    org.Hs.eg.db,
+    keys = row.names(res),
+    column = "MAP",
+    keytype = "ENSEMBL",
+    multiVals = "first"
+  )
+  head(res[order(res$padj), ], 20)
+  
+  res$gene_map <- paste0(res$symbol, " ", "(", res$map, ")")
+  
+  res <- drop_na(as.data.frame(res))
+  
+  res2_de <- res %>%
+    as_tibble() %>%
+    dplyr::select(symbol,
+                  stat) %>%
+    na.omit() %>%
+    distinct() %>%
+    group_by(symbol) %>%
+    summarize(stat = mean(stat))
+  
+  ranks_de <- deframe(res2_de)
+
+  pathways.hallmark <-
+    gmtPathways(
+      here("extdata/lib/h.all.v6.2.symbols.gmt")
+    )
+  
+  fgseaRes <-
+    fgsea(pathways = pathways.hallmark,
+          stats = ranks_de,
+          nperm = 2000)
+  
+  fgseaResTidy[[x]] <- fgseaRes %>%
+    as_tibble()
+  
+  names(fgseaResTidy)[x] <- clusters[x]
+  
+  
+}
+
+fgseaResTidy_res <- bind_rows(fgseaResTidy, .id = "comparison")
+
+# keeping only the significant pathways in x or more hallmarks
+sig_path <- fgseaResTidy_res %>%
+  filter(padj < 0.05) %>%
+  group_by(pathway) %>%
+  dplyr::count() %>%
+  arrange(desc(n)) %>%
+  filter(n > 3) %>%
+  pull(pathway)
+
+
+fgseaResTidy_res_f <- fgseaResTidy_res %>%
+  filter(pathway %in% sig_path) %>%
+  mutate(pathway = str_remove(pathway, "HALLMARK_")) %>%
+  mutate(pathway = str_replace_all(pathway, "_", " ")) %>%
+  mutate(pathway = str_to_lower(pathway))  %>%
+  mutate(comparison = paste0("e", comparison))
+
+fg_cl <- pivot_wider(
+  fgseaResTidy_res_f,
+  names_from = pathway,
+  values_from = NES,
+  id_cols = comparison
+) %>%
+  as.data.frame()
+
+rownames(fg_cl) <- fg_cl[, 1]
+
+fg_cl_hclust <- hclust(dist(fg_cl[, -1],
+                            method = "euclidean"),
+                       method = "ward.D")
+
+
+fg_path <- pivot_wider(
+  fgseaResTidy_res_f,
+  names_from =
+    comparison,
+  values_from = NES,
+  id_cols = pathway
+) %>%
+  as.data.frame()
+
+rownames(fg_path) <- fg_path[, 1]
+
+fg_path_hclust <- hclust(dist(fg_path[, -1],
+                              method = "euclidean"),
+                         method = "ward.D")
+
+
+# thanks to https://mgrcbioinfo.github.io/my_GSEA_plot/
+
+myGseaPlot <- function(gseaDataFrame, adjPCutoff = 0.05) {
+  # subset data frame using p value cutoff and add status factor
+  toPlot <- subset(gseaDataFrame, padj <= adjPCutoff) %>%
+    mutate(status = case_when(NES > 0 ~ "Up", NES < 0 ~ "Down")) %>%
+    mutate(status = factor(status, levels = c("Up", "Down")))
+  
+  # create plot
+  p <-
+    ggplot(
+      data = toPlot,
+      mapping = aes(
+        x = fct_relevel(comparison,
+                        rownames(fg_cl)[fg_cl_hclust$order]),
+        y = fct_relevel(pathway,
+                        rownames(fg_path)[fg_path_hclust$order]),
+        color = status,
+        shape = status,
+        fill = NES,
+        size = -log10(padj)
+      )
+    ) +
+    geom_point() +
+    scale_shape_manual(values = c(24, 25)) +
+    scale_fill_gradient2(
+      high = "firebrick3",
+      low = "deepskyblue3",
+      mid = "white",
+      midpoint = 0
+    ) +
+    scale_color_manual(values = c(Up = "coral3", Down = "deepskyblue3")) +
+    ggtitle(paste0("GSEA")) +
+    theme_bw() +
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 18),
+      axis.title.x = element_text(size = 16),
+      panel.grid = element_blank(),
+      legend.position = "bottom",
+      axis.text.x = element_text(
+        angle = 90,
+        hjust = 1,
+        size = 16,
+        vjust = .5
+      ),
+      axis.text.y = element_text(size = 14)
+    ) +
+    ylab("") +
+    xlab("expanded clusters")
+  
+  return(p)
+}
+
+hallmarks_plot <-
+  myGseaPlot(gseaDataFrame = fgseaResTidy_res_f, adjPCutoff = 0.05)
+```
 
