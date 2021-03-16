@@ -163,7 +163,7 @@ plot_heatmap(df = mdamb231_bulk_ordered,
 
 ## DNA & RNA
 
-```{r merging, message = FALSE}
+```{r merging, warning=FALSE, message=FALSE}
 # Biomart
 grch37 <-
   useMart(
@@ -256,7 +256,7 @@ cnt_avg <- cnt_avg %>%
 ```
 
 ## Moving averages
-```{r moving_averages}
+```{r moving_averages, warning=FALSE, message=FALSE}
 # adding segments from population segmentation information
 mdamb231_bulk_cna_id <- mdamb231_sc_bulk_cna_popseg %>% 
   mutate(seg_index = 1:nrow(mdamb231_sc_bulk_cna_popseg))
@@ -371,47 +371,70 @@ plot_moving_average(chr = "chr11",
  
 ```
 
+## DE
+```{r de}
+samples <- as.data.frame(colData(dds)) %>% 
+  mutate(sample_name = str_extract(sample, "MDAMB231C[0-9]+"))
+
+samples_cl <- left_join(samples, cl_info, by = c("sample_name" = "sample"))
+#sanity check
+samples_cl <- samples_cl[match(samples_cl$sample, colData(dds)$sample),]
+
+# removing unused levels
+colData(dds)$cluster <- droplevels(as.factor(samples_cl$subclones))
+
+design(dds) <- formula(~ cluster)
+register(BatchtoolsParam(workers = 60), default = TRUE)
+dds <- DESeq(dds, parallel = TRUE, betaPrior = T)
+resultsNames(dds)
+
+clusters <- samples_cl %>%
+  droplevels() %>% 
+  distinct(subclones) %>% 
+  pull() %>%
+  as.character()
+
+```
+
 ## RNA PCA
 ```{r rna_pca}
-# pcaData <- plotPCA(vst(dds), "cluster", returnData = T) %>% 
-#   mutate(triplicate = str_extract(name, "C[0-9]+"),
-#          triplicate = tolower(triplicate),
-#          triplicate = paste0("e", triplicate)) %>% 
-#   mutate(sample = str_extract(name, "MDAMB231C[0-9]+"))
-# percentVar <- round(100 * attr(pcaData, "percentVar"))
-# 
-# cluster_anno <- sc_bulk_231_leiden_umap$mc_classification %>% 
-#   filter(str_detect(cells, "gDNA")) %>% 
-#   mutate(sample = str_remove(cells, "gDNA")) %>% 
-#   mutate(sample = str_extract(sample, "MDAMB231C[0-9]+"))
-# 
-# pcaData <- pcaData %>% 
-#   left_join(cluster_anno, by = c("group" = "hdb", "sample" = "sample"))
-# 
-# p_pca <- ggplot(pcaData, aes(x = PC1,
-#                              y = PC2)) +
-#   scale_color_manual(values = c(sc_bulk_231_umap_colors$subclones,sc_bulk_231_umap_colors$superclones)) +
-#   geom_point(aes(color = fct_relevel(g_cl, gtools::mixedsort(unique(as.character(pcaData$g_cl))))), size = 8) +
-#   geom_point(aes(color = fct_relevel(group, gtools::mixedsort(unique(as.character(pcaData$group))))), size = 3) + 
-#   # xlab(paste0("PC1: ", percentVar[1], "% variance")) +
-#   # ylab(paste0("PC2: ", percentVar[2], "% variance")) +
-#   xlab("PC1") +
-#   ylab("PC2") +
-#   # coord_fixed() +
-#   theme_cowplot() + 
-#   theme(axis.title.x=element_text(size = 16),
-#         axis.text.x= element_blank(),
-#         axis.ticks.x=element_blank(),
-#         axis.title.y = element_text(size = 16),
-#         axis.text.y = element_blank(),
-#         axis.ticks.y = element_blank(),
-#         axis.line = element_blank(),
-#         plot.title = element_text(hjust = 0.5),
-#         legend.position = "none",
-#         panel.border = element_rect(color = "black", 
-#                                     fill = NA,
-#                                     size = 2)) +
-#   labs(color = "subclone")
+pcaData <- plotPCA(vst(dds), "cluster", returnData = T) %>%
+  mutate(triplicate = str_extract(name, "C[0-9]+"),
+         triplicate = tolower(triplicate)) %>%
+  mutate(sample = str_extract(name, "MDAMB231C[0-9]+"))
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+
+cluster_anno <- mdamb231_sc_bulk_clustering %>%
+  filter(str_detect(cells, "gDNA")) %>%
+  mutate(sample = str_remove(cells, "gDNA")) %>%
+  mutate(sample = str_extract(sample, "MDAMB231C[0-9]+"))
+
+pcaData <- pcaData %>%
+  left_join(cluster_anno, by = c("group" = "subclones", 
+                                 "sample" = "sample"))
+
+p_pca <- ggplot(pcaData, aes(x = PC1,
+                             y = PC2)) +
+  scale_color_manual(values = c(colors_vector$subclones,
+                                colors_vector$superclones)) +
+  geom_point(aes(color = fct_relevel(superclones, gtools::mixedsort(unique(as.character(pcaData$superclones))))), size = 8) +
+  geom_point(aes(color = fct_relevel(group, gtools::mixedsort(unique(as.character(pcaData$group))))), size = 3) +
+  xlab("PC1") +
+  ylab("PC2") +
+  theme_cowplot() +
+  theme(axis.title.x=element_text(size = 16),
+        axis.text.x= element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y = element_text(size = 16),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = "none",
+        panel.border = element_rect(color = "black",
+                                    fill = NA,
+                                    size = 2)) +
+  labs(color = "subclone")
 ```
 
 
