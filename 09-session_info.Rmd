@@ -1,0 +1,25 @@
+---
+author: "Darlan Conterno Minussi"
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::gitbook
+editor_options: 
+  chunk_output_type: console
+---
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+```{r, warning=FALSE, message=FALSE}
+suppressPackageStartupMessages(library("containerit"))
+my_dockerfile <- containerit::dockerfile(from = utils::sessionInfo(),
+                                         versioned_libs = TRUE,
+                                         versioned_packages = TRUE)
+```
+
+## Dockerfile
+```{r}
+print(my_dockerfile)
+```
+

@@ -12,8 +12,6 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:07:15 2020
 library(paletteer)
 library(here)
-library(Rphenograph)
-library(aplot)
 library(rstatix)
 library(parallel)
 library(patchwork)
