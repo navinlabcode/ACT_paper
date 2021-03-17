@@ -11,6 +11,6 @@ Expansion*
 Scripts are provided in the format of a package to reproduce paper
 figures.
 
-Bincounts and segmentated cells dataset are available in `extdata/`.
+Bincounts and segmented cells dataset are available in `extdata/`.
 
 Scripts are available in the folder `R`.

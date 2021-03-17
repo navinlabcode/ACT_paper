@@ -67,19 +67,23 @@ parallel --jobs 70 < genomecoveragebed_commands.sh
 ```{r reading_data_tech}
 tn1_cov <- calc_coverage(path = here("extdata/covhist/TN1/")) %>% 
   mutate(sample = "TN1",
-         tech = "ACT")
+         tech = "ACT",
+         cellname = str_replace(cellname, "TN28", "TN1"))
 
 tn2_cov <- calc_coverage(path = here("extdata/covhist/TN2/")) %>% 
   mutate(sample = "TN2",
-         tech = "ACT")
+         tech = "ACT",
+         cellname = str_replace(cellname, "TN20", "TN2")) 
 
 tn3_cov <- calc_coverage(path = here("extdata/covhist/TN3/")) %>% 
   mutate(sample = "TN3",
-         tech = "ACT")
+         tech = "ACT",
+         cellname = str_replace(cellname, "TN17", "TN3"))
 
 tn4_cov <- calc_coverage(path = here("extdata/covhist/TN4/")) %>% 
   mutate(sample = "TN4",
-         tech = "ACT")
+         tech = "ACT",
+         cellname = str_replace(cellname, "TN26", "TN4"))
 
 tn1_10xcnv_cov <-
   calc_coverage(path = here("extdata/covhist/TN1_10XCNA/")) %>%
