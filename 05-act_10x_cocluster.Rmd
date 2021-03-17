@@ -7,9 +7,17 @@ editor_options:
 ---
 # ACT & 10X CNA
 
-```{r source_setup, message=FALSE, warning=FALSE}
+```{r setup_cocluster, message=FALSE, warning=FALSE}
 source("R/setup.R")
 source("R/cn_freq_barplot.R")
+source("R/run_umap.R")
+source("R/run_clustering.R")
+source("R/order_dataset.R")
+source("R/plot_umap.R")
+source("R/calculate_consensus.R")
+source("R/consensus_genomic_classes.R")
+source("R/run_me_tree.R")
+source("R/plot_heatmap.R")
 ```
 
 ```{r plot_setup}
@@ -112,7 +120,7 @@ TN1_cocluster_p <- TN1_cocluster_p_act + TN1_cocluster_p_tenx + TN1_cocluster_p_
 TN1_cocluster_p
 ```
 
-```{r TN1_heatmap, fig.height=8}
+```{r TN1_heatmap_coclustering, fig.height=8}
 TN1_cocluster_ordered <- order_dataset(popseg_long = TN1_cocluster_popseg_long_ml,
                              clustering = TN1_cocluster_cluster)
 
@@ -259,7 +267,7 @@ TN3_cocluster_p
 
 
 ## TN3 Gene Frequency Barplot
-```{r TN3}
+```{r TN3_genefreq}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020
 # Tumors Heatmaps/Consensus/Trees
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020
@@ -286,7 +294,7 @@ cn_freq_barplot(
 )
 ```
 
-```{r TN3_heatmap, fig.height=8}
+```{r TN3_heatmap_coclustering, fig.height=8}
 TN3_cocluster_ordered <- order_dataset(popseg_long = TN3_cocluster_popseg_long_ml,
                              clustering = TN3_cocluster_cluster)
 

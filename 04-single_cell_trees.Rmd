@@ -6,6 +6,13 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup_sc_trees, message=FALSE, warning=FALSE}
+source(here("R/setup.R"))
+source(here("R/calc_sctree_dists.R"))
+source(here("R/plot_sctree.R"))
+```
+
+
 # Single-Cell Trees
 
 Function used to generate the trees using `ape::fastme.bal()` is `make_single_cell_tree`. Trees generated from the following function are provided in the directory `extdata/trees`

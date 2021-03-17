@@ -14,6 +14,13 @@ Code to generate *.covhist files. `covhist` files are included in the `extdata/c
 
 For ACT, 100 cells were sampled from each dataset.
 
+```{r setup_tech, message=FALSE, warning=FALSE}
+source("R/setup.R")
+source("R/calc_coverage.R")
+source("R/overdispersion.R")
+```
+
+
 ```{r eval=FALSE}
 > headers_commands.sh
 > reads_commands.sh
@@ -57,7 +64,7 @@ parallel --jobs 70 < delete_commands.sh
 parallel --jobs 70 < genomecoveragebed_commands.sh
 ```
 
-```{r reading_data}
+```{r reading_data_tech}
 tn1_cov <- calc_coverage(path = here("extdata/covhist/TN1/")) %>% 
   mutate(sample = "TN1",
          tech = "ACT")

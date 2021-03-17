@@ -7,7 +7,7 @@ editor_options:
 ---
 # Cell lines
 
-```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
+```{r setup_cell_lines, message=FALSE, warning=FALSE}
 source("R/setup.R")
 source("R/run_umap.R")
 source("R/run_clustering.R")
@@ -20,7 +20,7 @@ source("R/plot_heatmap.R")
 source("R/plot_consensus_heatmap.R")
 ```
 
-```{r theme_setup}
+```{r theme_setup_cl}
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:11 2021
 # ggplot theme setup
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:17 2021

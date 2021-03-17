@@ -10,7 +10,7 @@ editor_options:
 
 Transcript abundances for expanded clones triplicates were quantified by Salmon (v.0.14) with GENCODE transcript v30 and options -l A -1 read1 -2 read2 -p 40 --validateMappings --seqBias --gcBias. Quantified transcripts were imported into R with ‘tximport’ (v 1.14). Expanded clones e7, e39 and e71 had one technical replicate excluded due to poor RNA quality
 
-```{r setup_functions}
+```{r setup_dna_rna, message=FALSE, warning=FALSE}
 source("R/setup.R")
 source("R/run_umap.R")
 source("R/run_clustering.R")
@@ -256,7 +256,7 @@ cnt_avg <- cnt_avg %>%
 ```
 
 ## Moving averages
-```{r moving_averages, warning=FALSE, message=FALSE}
+```{r moving_averages, warning=FALSE, message=FALSE, fig.height=8}
 # adding segments from population segmentation information
 mdamb231_bulk_cna_id <- mdamb231_sc_bulk_cna_popseg %>% 
   mutate(seg_index = 1:nrow(mdamb231_sc_bulk_cna_popseg))
@@ -320,15 +320,15 @@ cnt_long_trip <- cnt %>%
                 -gene_id) %>% 
   mutate(sample= str_remove(sample_trip, "[A-C]$"))
 
-cnt_long_gene_trip <- inner_join(cnt_long_all_zc, mk_df_j)
-
-cnt_long_gene_trip <- inner_join(cnt_long_gene_trip, cl_info) %>% 
-  arrange(chr, start_position)
-
 cnt_long_all_zc <- cnt_long_trip %>%
   group_by(gene_id) %>%
   mutate(z_score = (count-mean(count))/sd(count)) %>%
   ungroup()
+
+cnt_long_gene_trip <- inner_join(cnt_long_all_zc, mk_df_j)
+
+cnt_long_gene_trip <- inner_join(cnt_long_gene_trip, cl_info) %>% 
+  arrange(chr, start_position)
 
 # joining the copy number long data with the gene positions on their respective bins
 blk_long_gj <- inner_join(blk_long_g, mk_df)
@@ -438,7 +438,7 @@ p_pca <- ggplot(pcaData, aes(x = PC1,
 ```
 
 ## FGSEA
-```{r}
+```{r fgsea, message=FALSE, warning=FALSE, fig.height=6}
 # Thanks to https://stephenturner.github.io/deseq-to-fgsea/
 
 fgseaResTidy <- list()
@@ -614,5 +614,7 @@ myGseaPlot <- function(gseaDataFrame, adjPCutoff = 0.05) {
 
 hallmarks_plot <-
   myGseaPlot(gseaDataFrame = fgseaResTidy_res_f, adjPCutoff = 0.05)
+
+hallmarks_plot
 ```
 

@@ -7,7 +7,7 @@ editor_options:
 ---
 # Tumors
 
-```{r source_setup, message=FALSE, warning=FALSE, echo=FALSE}
+```{r setup_tumors, message=FALSE, warning=FALSE, echo=FALSE}
 source("R/setup.R")
 source("R/run_umap.R")
 source("R/run_clustering.R")

@@ -7,7 +7,7 @@ editor_options:
 ---
 # Exome and WGD
 
-```{r source_setup, message=FALSE, warning=FALSE}
+```{r setup_mutations, message=FALSE, warning=FALSE}
 source("R/setup.R")
 source("R/vcf_filtering.R")
 source("R/parse_mtimer_vcf.R")
