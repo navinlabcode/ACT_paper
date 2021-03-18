@@ -10,16 +10,16 @@
 
   <meta property="og:title" content="8 MDA-231 DNA &amp; RNA | ACT Paper" />
   <meta property="og:type" content="book" />
-  
-  
-  
-  
+
+
+
+
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="8 MDA-231 DNA &amp; RNA | ACT Paper" />
-  
-  
-  
+
+
+
 
 <meta name="author" content="Darlan Conterno Minussi" />
 
@@ -28,8 +28,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
+
+
 <link rel="prev" href="cell-lines.html"/>
 <link rel="next" href="session-info.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -126,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="instructions.html"><a href="instructions.html"><i class="fa fa-check"></i><b>1</b> Instructions</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instructions</a></li>
 <li class="chapter" data-level="2" data-path="technical-properties.html"><a href="technical-properties.html"><i class="fa fa-check"></i><b>2</b> Technical properties</a><ul>
 <li class="chapter" data-level="2.1" data-path="technical-properties.html"><a href="technical-properties.html#breadth-of-coverage"><i class="fa fa-check"></i><b>2.1</b> Breadth of coverage</a></li>
 <li class="chapter" data-level="2.2" data-path="technical-properties.html"><a href="technical-properties.html#overdispersion"><i class="fa fa-check"></i><b>2.2</b> Overdispersion</a></li>
@@ -588,12 +588,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## final dispersion estimates, MLE betas: 60 workers</code></pre>
 <pre><code>## fitting model and testing: 60 workers</code></pre>
 <pre><code>## -- replacing outliers and refitting for 7 genes
-## -- DESeq argument &#39;minReplicatesForReplace&#39; = 7 
+## -- DESeq argument &#39;minReplicatesForReplace&#39; = 7
 ## -- original counts are preserved in counts(dds)</code></pre>
 <pre><code>## estimating dispersions</code></pre>
 <pre><code>## fitting model and testing</code></pre>
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1"><span class="kw">resultsNames</span>(dds)</a></code></pre></div>
-<pre><code>##  [1] &quot;Intercept&quot;  &quot;clusterc11&quot; &quot;clusterc12&quot; &quot;clusterc13&quot; &quot;clusterc5&quot;  &quot;clusterc6&quot;  &quot;clusterc8&quot;  &quot;clusterc3&quot; 
+<pre><code>##  [1] &quot;Intercept&quot;  &quot;clusterc11&quot; &quot;clusterc12&quot; &quot;clusterc13&quot; &quot;clusterc5&quot;  &quot;clusterc6&quot;  &quot;clusterc8&quot;  &quot;clusterc3&quot;
 ##  [9] &quot;clusterc4&quot;  &quot;clusterc1&quot;  &quot;clusterc2&quot;</code></pre>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">clusters &lt;-<span class="st"> </span>samples_cl <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb353-2" data-line-number="2"><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
