@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Tumors | ACT Paper</title>
+  <meta name="description" content="3 Tumors | ACT Paper" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Tumors | ACT Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Tumors | ACT Paper" />
+  
+  
+  
+
+<meta name="author" content="Darlan Conterno Minussi" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="technical-properties.html"/>
+<link rel="next" href="single-cell-trees.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="instructions.html"><a href="instructions.html"><i class="fa fa-check"></i><b>1</b> Instructions</a></li>
+<li class="chapter" data-level="2" data-path="technical-properties.html"><a href="technical-properties.html"><i class="fa fa-check"></i><b>2</b> Technical properties</a><ul>
+<li class="chapter" data-level="2.1" data-path="technical-properties.html"><a href="technical-properties.html#breadth-of-coverage"><i class="fa fa-check"></i><b>2.1</b> Breadth of coverage</a></li>
+<li class="chapter" data-level="2.2" data-path="technical-properties.html"><a href="technical-properties.html#overdispersion"><i class="fa fa-check"></i><b>2.2</b> Overdispersion</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tumors.html"><a href="tumors.html"><i class="fa fa-check"></i><b>3</b> Tumors</a><ul>
+<li class="chapter" data-level="3.1" data-path="tumors.html"><a href="tumors.html#tn1"><i class="fa fa-check"></i><b>3.1</b> TN1</a></li>
+<li class="chapter" data-level="3.2" data-path="tumors.html"><a href="tumors.html#tn2"><i class="fa fa-check"></i><b>3.2</b> TN2</a></li>
+<li class="chapter" data-level="3.3" data-path="tumors.html"><a href="tumors.html#tn3"><i class="fa fa-check"></i><b>3.3</b> TN3</a></li>
+<li class="chapter" data-level="3.4" data-path="tumors.html"><a href="tumors.html#tn4"><i class="fa fa-check"></i><b>3.4</b> TN4</a></li>
+<li class="chapter" data-level="3.5" data-path="tumors.html"><a href="tumors.html#tn5"><i class="fa fa-check"></i><b>3.5</b> TN5</a></li>
+<li class="chapter" data-level="3.6" data-path="tumors.html"><a href="tumors.html#tn6"><i class="fa fa-check"></i><b>3.6</b> TN6</a></li>
+<li class="chapter" data-level="3.7" data-path="tumors.html"><a href="tumors.html#tn7"><i class="fa fa-check"></i><b>3.7</b> TN7</a></li>
+<li class="chapter" data-level="3.8" data-path="tumors.html"><a href="tumors.html#tn8"><i class="fa fa-check"></i><b>3.8</b> TN8</a></li>
+<li class="chapter" data-level="3.9" data-path="tumors.html"><a href="tumors.html#clones-barplot"><i class="fa fa-check"></i><b>3.9</b> Clones barplot</a></li>
+<li class="chapter" data-level="3.10" data-path="tumors.html"><a href="tumors.html#shannon-diversity"><i class="fa fa-check"></i><b>3.10</b> Shannon diversity</a></li>
+<li class="chapter" data-level="3.11" data-path="tumors.html"><a href="tumors.html#gainslosses-plot"><i class="fa fa-check"></i><b>3.11</b> Gains/Losses plot</a></li>
+<li class="chapter" data-level="3.12" data-path="tumors.html"><a href="tumors.html#genomic-classes-plots"><i class="fa fa-check"></i><b>3.12</b> Genomic classes plots</a><ul>
+<li class="chapter" data-level="3.12.1" data-path="tumors.html"><a href="tumors.html#counts"><i class="fa fa-check"></i><b>3.12.1</b> Counts</a></li>
+<li class="chapter" data-level="3.12.2" data-path="tumors.html"><a href="tumors.html#segment-length"><i class="fa fa-check"></i><b>3.12.2</b> Segment length</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="single-cell-trees.html"><a href="single-cell-trees.html"><i class="fa fa-check"></i><b>4</b> Single-Cell Trees</a></li>
+<li class="chapter" data-level="5" data-path="act-10x-cna.html"><a href="act-10x-cna.html"><i class="fa fa-check"></i><b>5</b> ACT &amp; 10X CNA</a><ul>
+<li class="chapter" data-level="5.1" data-path="act-10x-cna.html"><a href="act-10x-cna.html#tn1-co-clustering-umaps"><i class="fa fa-check"></i><b>5.1</b> TN1 Co-clustering umaps</a></li>
+<li class="chapter" data-level="5.2" data-path="act-10x-cna.html"><a href="act-10x-cna.html#tn1-gene-frequency-barplot"><i class="fa fa-check"></i><b>5.2</b> TN1 Gene Frequency Barplot</a></li>
+<li class="chapter" data-level="5.3" data-path="act-10x-cna.html"><a href="act-10x-cna.html#tn3-co-clustering-umaps"><i class="fa fa-check"></i><b>5.3</b> TN3 Co-clustering umaps</a></li>
+<li class="chapter" data-level="5.4" data-path="act-10x-cna.html"><a href="act-10x-cna.html#tn3-gene-frequency-barplot"><i class="fa fa-check"></i><b>5.4</b> TN3 Gene Frequency Barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html"><i class="fa fa-check"></i><b>6</b> Exome and WGD</a><ul>
+<li class="chapter" data-level="6.1" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#data"><i class="fa fa-check"></i><b>6.1</b> Data</a></li>
+<li class="chapter" data-level="6.2" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#filtering"><i class="fa fa-check"></i><b>6.2</b> Filtering</a></li>
+<li class="chapter" data-level="6.3" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#mut-timer-information"><i class="fa fa-check"></i><b>6.3</b> Mut timer information</a></li>
+<li class="chapter" data-level="6.4" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#mutation-burden"><i class="fa fa-check"></i><b>6.4</b> Mutation burden</a></li>
+<li class="chapter" data-level="6.5" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#oncomap"><i class="fa fa-check"></i><b>6.5</b> Oncomap</a></li>
+<li class="chapter" data-level="6.6" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#wgd-estimation-in-mutational-timing"><i class="fa fa-check"></i><b>6.6</b> WGD estimation in mutational timing</a></li>
+<li class="chapter" data-level="6.7" data-path="exome-and-wgd.html"><a href="exome-and-wgd.html#wgd-estimations-in-copy-number-time"><i class="fa fa-check"></i><b>6.7</b> WGD estimations in copy number time</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cell-lines.html"><a href="cell-lines.html"><i class="fa fa-check"></i><b>7</b> Cell lines</a><ul>
+<li class="chapter" data-level="7.1" data-path="cell-lines.html"><a href="cell-lines.html#mda-mb-231"><i class="fa fa-check"></i><b>7.1</b> MDA-MB-231</a></li>
+<li class="chapter" data-level="7.2" data-path="cell-lines.html"><a href="cell-lines.html#mda-mb-231-ex1"><i class="fa fa-check"></i><b>7.2</b> MDA-MB-231-EX1</a></li>
+<li class="chapter" data-level="7.3" data-path="cell-lines.html"><a href="cell-lines.html#mda-mb-231-ex2"><i class="fa fa-check"></i><b>7.3</b> MDA-MB-231-EX2</a></li>
+<li class="chapter" data-level="7.4" data-path="cell-lines.html"><a href="cell-lines.html#mda-mb-453"><i class="fa fa-check"></i><b>7.4</b> MDA-MB-453</a></li>
+<li class="chapter" data-level="7.5" data-path="cell-lines.html"><a href="cell-lines.html#mda-mb-157"><i class="fa fa-check"></i><b>7.5</b> MDA-MB-157</a></li>
+<li class="chapter" data-level="7.6" data-path="cell-lines.html"><a href="cell-lines.html#bt20"><i class="fa fa-check"></i><b>7.6</b> BT20</a></li>
+<li class="chapter" data-level="7.7" data-path="cell-lines.html"><a href="cell-lines.html#clones-barplot-1"><i class="fa fa-check"></i><b>7.7</b> Clones barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html"><i class="fa fa-check"></i><b>8</b> MDA-231 DNA &amp; RNA</a><ul>
+<li class="chapter" data-level="8.1" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#co-clustering"><i class="fa fa-check"></i><b>8.1</b> Co-clustering</a></li>
+<li class="chapter" data-level="8.2" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#single-cell-bulk-heatmap"><i class="fa fa-check"></i><b>8.2</b> Single-cell + Bulk Heatmap</a></li>
+<li class="chapter" data-level="8.3" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#bulk-heatmap"><i class="fa fa-check"></i><b>8.3</b> Bulk Heatmap</a></li>
+<li class="chapter" data-level="8.4" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#dna-rna"><i class="fa fa-check"></i><b>8.4</b> DNA &amp; RNA</a></li>
+<li class="chapter" data-level="8.5" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#moving-averages"><i class="fa fa-check"></i><b>8.5</b> Moving averages</a></li>
+<li class="chapter" data-level="8.6" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#de"><i class="fa fa-check"></i><b>8.6</b> DE</a></li>
+<li class="chapter" data-level="8.7" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#rna-pca"><i class="fa fa-check"></i><b>8.7</b> RNA PCA</a></li>
+<li class="chapter" data-level="8.8" data-path="mda-231-dna-rna.html"><a href="mda-231-dna-rna.html#fgsea"><i class="fa fa-check"></i><b>8.8</b> FGSEA</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a><ul>
+<li class="chapter" data-level="9.1" data-path="session-info.html"><a href="session-info.html#dockerfile"><i class="fa fa-check"></i><b>9.1</b> Dockerfile</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="instructions-1.html"><a href="instructions-1.html"><i class="fa fa-check"></i><b>10</b> Instructions</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ACT Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tumors" class="section level1">
+<h1><span class="header-section-number">3</span> Tumors</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:11 2021</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># ggplot theme setup</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Thu Mar  4 14:23:17 2021</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">my_theme &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  ggplot2<span class="op">::</span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">16</span>),</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">    <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">14</span>),</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">16</span>),</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">    <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">14</span>),</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">    <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">    <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">    <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">14</span>)</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">  )</a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">)</a></code></pre></div>
+<div id="tn1" class="section level2">
+<h2><span class="header-section-number">3.1</span> TN1</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">TN1_ploidy &lt;-<span class="st"> </span><span class="fl">3.45</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">TN1_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN1_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">TN1_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN1_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">TN1_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN1_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">TN1_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN1_umap,</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">45</span>,</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  32 0.02909091
+##      c10  24 0.02181818
+##      c11  45 0.04090909
+##      c12  19 0.01727273
+##      c13  79 0.07181818
+##      c14  23 0.02090909
+##      c15  51 0.04636364
+##      c16  23 0.02090909
+##      c17 149 0.13545455
+##       c2  56 0.05090909
+##       c3 134 0.12181818
+##       c4  66 0.06000000
+##       c5  40 0.03636364
+##       c6  39 0.03545455
+##       c7  74 0.06727273
+##       c8 228 0.20727273
+##       c9  18 0.01636364</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">TN1_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN1_popseg_long_ml,</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">                             <span class="dt">clustering =</span> TN1_clustering)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN1_umap,</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">          <span class="dt">clustering =</span> TN1_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">TN1_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN1_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN1_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">TN1_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN1_consensus,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN1_ploidy)</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">TN1_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN1_consensus,</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN1_clustering,</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN1_ploidy)</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN1-2.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">TN1_annotation_genes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">                          <span class="st">&quot;RUVBL1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">                          <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">                          <span class="st">&quot;FGFR4&quot;</span>,</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">                          <span class="st">&quot;CDKN1A&quot;</span>,</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">                          <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">                          <span class="st">&quot;FGFR1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">                          <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">                          <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">                          <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb24-11" data-line-number="11">                          <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb24-12" data-line-number="12">                          <span class="st">&quot;CDK4&quot;</span>,</a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">                          <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb24-14" data-line-number="14">                          <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb24-15" data-line-number="15">                          <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-16" data-line-number="16">                          <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb24-17" data-line-number="17">                          <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-18" data-line-number="18">                          <span class="st">&quot;CCNE1&quot;</span>,</a>
+<a class="sourceLine" id="cb24-19" data-line-number="19">                          <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb24-20" data-line-number="20">                          <span class="st">&quot;CCND1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN1_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN1_ploidy,</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN1_ploidy)),</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">             <span class="dt">clusters =</span> TN1_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN1_gen_classes,</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN1_annotation_genes,</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">             <span class="dt">tree_order =</span> TN1_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN1_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN1_consensus,</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">                       <span class="dt">clusters =</span> TN1_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN1_ploidy,</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN1_ploidy)),</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN1_annotation_genes,</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN1_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN1_gen_classes)</a></code></pre></div>
+<pre><code>## Warning: Setting row names on a tibble is deprecated.</code></pre>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN1_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn2" class="section level2">
+<h2><span class="header-section-number">3.2</span> TN2</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">TN2_ploidy &lt;-<span class="st"> </span><span class="fl">3.03</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">TN2_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN2_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb32-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">TN2_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN2_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">TN2_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN2_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">TN2_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN2_umap,</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">63</span>,</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  23 0.02246094
+##      c10 147 0.14355469
+##      c11  31 0.03027344
+##      c12 140 0.13671875
+##      c13  43 0.04199219
+##      c14  34 0.03320312
+##      c15 156 0.15234375
+##       c2  22 0.02148438
+##       c3  55 0.05371094
+##       c4  51 0.04980469
+##       c5  44 0.04296875
+##       c6  44 0.04296875
+##       c7  28 0.02734375
+##       c8 170 0.16601562
+##       c9  36 0.03515625</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">TN2_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN2_popseg_long_ml,</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">                             <span class="dt">clustering =</span> TN2_clustering)</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN2_umap,</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">          <span class="dt">clustering =</span> TN2_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">TN2_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN2_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN2_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">TN2_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN2_consensus,</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN2_ploidy)</a>
+<a class="sourceLine" id="cb41-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb41-7" data-line-number="7">TN2_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN2_consensus,</a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN2_clustering,</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN2_ploidy)</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN2-2.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">TN2_annotation_genes &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">  <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="st">&quot;FGFR4&quot;</span>,</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">  <span class="st">&quot;CDKN1A&quot;</span>,</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">  <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb42-7" data-line-number="7">  <span class="st">&quot;MTDH&quot;</span>,</a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">  <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9">  <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">  <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb42-11" data-line-number="11">  <span class="st">&quot;CCND1&quot;</span>,</a>
+<a class="sourceLine" id="cb42-12" data-line-number="12">  <span class="st">&quot;PGR&quot;</span>,</a>
+<a class="sourceLine" id="cb42-13" data-line-number="13">  <span class="st">&quot;CDK4&quot;</span>,</a>
+<a class="sourceLine" id="cb42-14" data-line-number="14">  <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb42-15" data-line-number="15">  <span class="st">&quot;LRP1B&quot;</span>,</a>
+<a class="sourceLine" id="cb42-16" data-line-number="16">  <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb42-17" data-line-number="17">  <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb42-18" data-line-number="18">  <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb42-19" data-line-number="19">  <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb42-20" data-line-number="20">  <span class="st">&quot;CCNE1&quot;</span>,</a>
+<a class="sourceLine" id="cb42-21" data-line-number="21">  <span class="st">&quot;AURKA&quot;</span></a>
+<a class="sourceLine" id="cb42-22" data-line-number="22">)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN2_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN2_ploidy,</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN2_ploidy)),</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">             <span class="dt">clusters =</span> TN2_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN2_gen_classes,</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN2_annotation_genes,</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">             <span class="dt">tree_order =</span> TN2_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN2_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN2_consensus,</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">                       <span class="dt">clusters =</span> TN2_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN2_ploidy,</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN2_ploidy)),</a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN2_annotation_genes,</a>
+<a class="sourceLine" id="cb46-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN2_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb46-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb46-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN2_gen_classes)</a></code></pre></div>
+<pre><code>## Warning: Setting row names on a tibble is deprecated.</code></pre>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN2_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn3" class="section level2">
+<h2><span class="header-section-number">3.3</span> TN3</h2>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">TN3_ploidy &lt;-<span class="st"> </span><span class="fl">3.44</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7">TN3_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN3_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9">TN3_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN3_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb50-11" data-line-number="11">TN3_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN3_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">TN3_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN3_umap,</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">65</span>,</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  67 0.06085377
+##       c2  71 0.06448683
+##       c3  63 0.05722071
+##       c4 450 0.40871935
+##       c5  33 0.02997275
+##       c6  32 0.02906449
+##       c7  77 0.06993642
+##       c8 106 0.09627611
+##       c9 202 0.18346957</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">TN3_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN3_popseg_long_ml,</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">                             <span class="dt">clustering =</span> TN3_clustering)</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN3_umap,</a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">          <span class="dt">clustering =</span> TN3_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">TN3_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN3_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN3_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">TN3_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN3_consensus,</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN3_ploidy)</a>
+<a class="sourceLine" id="cb59-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7">TN3_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN3_consensus,</a>
+<a class="sourceLine" id="cb59-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN3_clustering,</a>
+<a class="sourceLine" id="cb59-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN3_ploidy)</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN3-2.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">TN3_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">    <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">    <span class="st">&quot;FGFR4&quot;</span>,</a>
+<a class="sourceLine" id="cb60-7" data-line-number="7">    <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb60-8" data-line-number="8">    <span class="st">&quot;FGFR1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-9" data-line-number="9">    <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb60-10" data-line-number="10">    <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb60-11" data-line-number="11">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb60-12" data-line-number="12">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb60-13" data-line-number="13">    <span class="st">&quot;CCND1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-14" data-line-number="14">    <span class="st">&quot;CDK4&quot;</span>,</a>
+<a class="sourceLine" id="cb60-15" data-line-number="15">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb60-16" data-line-number="16">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-17" data-line-number="17">    <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb60-18" data-line-number="18">    <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-19" data-line-number="19">    <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb60-20" data-line-number="20">    <span class="st">&quot;CCNE1&quot;</span>,</a>
+<a class="sourceLine" id="cb60-21" data-line-number="21">    <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb60-22" data-line-number="22">    <span class="st">&quot;LRP1B&quot;</span></a>
+<a class="sourceLine" id="cb60-23" data-line-number="23">  )</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN3_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN3_ploidy,</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN3_ploidy)),</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">             <span class="dt">clusters =</span> TN3_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN3_gen_classes,</a>
+<a class="sourceLine" id="cb61-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN3_annotation_genes,</a>
+<a class="sourceLine" id="cb61-7" data-line-number="7">             <span class="dt">tree_order =</span> TN3_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb61-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN3_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN3_consensus,</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">                       <span class="dt">clusters =</span> TN3_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN3_ploidy,</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN3_ploidy)),</a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN3_annotation_genes,</a>
+<a class="sourceLine" id="cb64-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN3_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb64-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb64-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN3_gen_classes)</a></code></pre></div>
+<pre><code>## Warning: Setting row names on a tibble is deprecated.</code></pre>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
+<p><img src="_main_files/figure-html/TN3_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn4" class="section level2">
+<h2><span class="header-section-number">3.4</span> TN4</h2>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb68-5" data-line-number="5">TN4_ploidy &lt;-<span class="st"> </span><span class="fl">3.81</span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb68-7" data-line-number="7">TN4_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN4_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb68-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb68-9" data-line-number="9">TN4_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN4_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb68-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb68-11" data-line-number="11">TN4_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN4_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">TN4_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN4_umap,</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">75</span>,</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1 255 0.19510329
+##      c10  29 0.02218822
+##      c11  42 0.03213466
+##      c12  46 0.03519510
+##      c13  32 0.02448355
+##      c14  45 0.03442999
+##      c15 220 0.16832441
+##      c16  29 0.02218822
+##      c17  70 0.05355777
+##      c18  37 0.02830910
+##      c19  27 0.02065800
+##       c2  31 0.02371844
+##      c20  36 0.02754399
+##      c21  66 0.05049732
+##      c22  26 0.01989288
+##       c3  31 0.02371844
+##       c4  56 0.04284621
+##       c5  29 0.02218822
+##       c6  66 0.05049732
+##       c7  54 0.04131599
+##       c8  48 0.03672533
+##       c9  32 0.02448355</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">TN4_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN4_popseg_long_ml,</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">                             <span class="dt">clustering =</span> TN4_clustering)</a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN4_umap,</a>
+<a class="sourceLine" id="cb75-5" data-line-number="5">          <span class="dt">clustering =</span> TN4_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">TN4_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN4_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb77-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN4_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4">TN4_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN4_consensus,</a>
+<a class="sourceLine" id="cb77-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN4_ploidy)</a>
+<a class="sourceLine" id="cb77-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb77-7" data-line-number="7">TN4_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN4_consensus,</a>
+<a class="sourceLine" id="cb77-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN4_clustering,</a>
+<a class="sourceLine" id="cb77-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN4_ploidy)</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">TN4_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb78-4" data-line-number="4">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb78-5" data-line-number="5">    <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb78-6" data-line-number="6">    <span class="st">&quot;CDKN1A&quot;</span>,</a>
+<a class="sourceLine" id="cb78-7" data-line-number="7">    <span class="st">&quot;ESR1&quot;</span>,</a>
+<a class="sourceLine" id="cb78-8" data-line-number="8">    <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb78-9" data-line-number="9">    <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb78-10" data-line-number="10">    <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb78-11" data-line-number="11">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb78-12" data-line-number="12">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb78-13" data-line-number="13">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb78-14" data-line-number="14">    <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb78-15" data-line-number="15">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb78-16" data-line-number="16">    <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb78-17" data-line-number="17">    <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb78-18" data-line-number="18">    <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb78-19" data-line-number="19">    <span class="st">&quot;CCNE1&quot;</span>,</a>
+<a class="sourceLine" id="cb78-20" data-line-number="20">    <span class="st">&quot;NCOA3&quot;</span>,</a>
+<a class="sourceLine" id="cb78-21" data-line-number="21">    <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb78-22" data-line-number="22">    <span class="st">&quot;IGF1R&quot;</span>,</a>
+<a class="sourceLine" id="cb78-23" data-line-number="23">    <span class="st">&quot;NCOA1&quot;</span></a>
+<a class="sourceLine" id="cb78-24" data-line-number="24">  )</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN4_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb79-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN4_ploidy,</a>
+<a class="sourceLine" id="cb79-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN4_ploidy)),</a>
+<a class="sourceLine" id="cb79-4" data-line-number="4">             <span class="dt">clusters =</span> TN4_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb79-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN4_gen_classes,</a>
+<a class="sourceLine" id="cb79-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN4_annotation_genes,</a>
+<a class="sourceLine" id="cb79-7" data-line-number="7">             <span class="dt">tree_order =</span> TN4_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb79-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN4_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN4_consensus,</a>
+<a class="sourceLine" id="cb81-2" data-line-number="2">                       <span class="dt">clusters =</span> TN4_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb81-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN4_ploidy,</a>
+<a class="sourceLine" id="cb81-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN4_ploidy)),</a>
+<a class="sourceLine" id="cb81-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN4_annotation_genes,</a>
+<a class="sourceLine" id="cb81-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN4_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb81-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb81-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN4_gen_classes)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN4_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn5" class="section level2">
+<h2><span class="header-section-number">3.5</span> TN5</h2>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb83-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb83-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb83-5" data-line-number="5">TN5_ploidy &lt;-<span class="st"> </span><span class="fl">2.65</span></a>
+<a class="sourceLine" id="cb83-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb83-7" data-line-number="7">TN5_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN5_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb83-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb83-9" data-line-number="9">TN5_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN5_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb83-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb83-11" data-line-number="11">TN5_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN5_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">TN5_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN5_umap,</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">41</span>,</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  52 0.04200323
+##       c2  53 0.04281099
+##       c3 573 0.46284330
+##       c4  27 0.02180937
+##       c5 389 0.31421648
+##       c6  26 0.02100162
+##       c7 118 0.09531502</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">TN5_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN5_popseg_long_ml,</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">                             <span class="dt">clustering =</span> TN5_clustering)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN5_umap,</a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">          <span class="dt">clustering =</span> TN5_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">TN5_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN5_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN5_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb92-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb92-4" data-line-number="4">TN5_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN5_consensus,</a>
+<a class="sourceLine" id="cb92-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN5_ploidy)</a>
+<a class="sourceLine" id="cb92-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb92-7" data-line-number="7">TN5_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN5_consensus,</a>
+<a class="sourceLine" id="cb92-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN5_clustering,</a>
+<a class="sourceLine" id="cb92-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN5_ploidy,</a>
+<a class="sourceLine" id="cb92-10" data-line-number="10">                                     <span class="dt">rotate_nodes =</span> <span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>))</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN5-2.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">TN5_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb93-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb93-4" data-line-number="4">    <span class="st">&quot;GADD45A&quot;</span>,</a>
+<a class="sourceLine" id="cb93-5" data-line-number="5">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-6" data-line-number="6">    <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb93-7" data-line-number="7">    <span class="st">&quot;FGFR4&quot;</span>,</a>
+<a class="sourceLine" id="cb93-8" data-line-number="8">    <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb93-9" data-line-number="9">    <span class="st">&quot;FGFR1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-10" data-line-number="10">    <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb93-11" data-line-number="11">    <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb93-12" data-line-number="12">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb93-13" data-line-number="13">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb93-14" data-line-number="14">    <span class="st">&quot;CCND1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-15" data-line-number="15">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb93-16" data-line-number="16">    <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb93-17" data-line-number="17">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-18" data-line-number="18">    <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb93-19" data-line-number="19">    <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-20" data-line-number="20">    <span class="st">&quot;PPM1D&quot;</span>,</a>
+<a class="sourceLine" id="cb93-21" data-line-number="21">    <span class="st">&quot;CCNE1&quot;</span>,</a>
+<a class="sourceLine" id="cb93-22" data-line-number="22">    <span class="st">&quot;ERBB2&quot;</span>,</a>
+<a class="sourceLine" id="cb93-23" data-line-number="23">    <span class="st">&quot;ESR1&quot;</span></a>
+<a class="sourceLine" id="cb93-24" data-line-number="24">  )</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN5_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN5_ploidy,</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN5_ploidy)),</a>
+<a class="sourceLine" id="cb94-4" data-line-number="4">             <span class="dt">clusters =</span> TN5_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb94-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN5_gen_classes,</a>
+<a class="sourceLine" id="cb94-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN5_annotation_genes,</a>
+<a class="sourceLine" id="cb94-7" data-line-number="7">             <span class="dt">tree_order =</span> TN5_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb94-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN5_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN5_consensus,</a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">                       <span class="dt">clusters =</span> TN5_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN5_ploidy,</a>
+<a class="sourceLine" id="cb96-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN5_ploidy)),</a>
+<a class="sourceLine" id="cb96-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN5_annotation_genes,</a>
+<a class="sourceLine" id="cb96-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN5_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb96-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb96-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN5_gen_classes)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN5_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn6" class="section level2">
+<h2><span class="header-section-number">3.6</span> TN6</h2>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb98-5" data-line-number="5">TN6_ploidy &lt;-<span class="st"> </span><span class="fl">3.17</span></a>
+<a class="sourceLine" id="cb98-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb98-7" data-line-number="7">TN6_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN6_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb98-9" data-line-number="9">TN6_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN6_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb98-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb98-11" data-line-number="11">TN6_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN6_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">TN6_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN6_umap,</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">51</span>,</a>
+<a class="sourceLine" id="cb100-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  31 0.02249637
+##      c10 211 0.15312046
+##      c11  31 0.02249637
+##      c12  82 0.05950653
+##      c13 111 0.08055152
+##      c14  37 0.02685051
+##      c15  37 0.02685051
+##      c16 197 0.14296081
+##       c2  25 0.01814224
+##       c3  37 0.02685051
+##       c4  33 0.02394775
+##       c5  42 0.03047896
+##       c6  51 0.03701016
+##       c7 393 0.28519594
+##       c8  18 0.01306241
+##       c9  42 0.03047896</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">TN6_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN6_popseg_long_ml,</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">                             <span class="dt">clustering =</span> TN6_clustering)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN6_umap,</a>
+<a class="sourceLine" id="cb105-5" data-line-number="5">          <span class="dt">clustering =</span> TN6_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">TN6_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN6_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN6_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb107-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb107-4" data-line-number="4">TN6_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN6_consensus,</a>
+<a class="sourceLine" id="cb107-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN6_ploidy)</a>
+<a class="sourceLine" id="cb107-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb107-7" data-line-number="7">TN6_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN6_consensus,</a>
+<a class="sourceLine" id="cb107-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN6_clustering,</a>
+<a class="sourceLine" id="cb107-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN6_ploidy,</a>
+<a class="sourceLine" id="cb107-10" data-line-number="10">                                     <span class="dt">rotate_nodes =</span> <span class="kw">c</span>(<span class="dv">17</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">29</span>))</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN6-2.png" width="672" /></p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">TN6_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb108-5" data-line-number="5">    <span class="st">&quot;RUVBL1&quot;</span>,</a>
+<a class="sourceLine" id="cb108-6" data-line-number="6">    <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb108-7" data-line-number="7">    <span class="st">&quot;CDKN1A&quot;</span>,</a>
+<a class="sourceLine" id="cb108-8" data-line-number="8">    <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb108-9" data-line-number="9">    <span class="st">&quot;FGFR1&quot;</span>,</a>
+<a class="sourceLine" id="cb108-10" data-line-number="10">    <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb108-11" data-line-number="11">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb108-12" data-line-number="12">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb108-13" data-line-number="13">    <span class="st">&quot;CDK4&quot;</span>,</a>
+<a class="sourceLine" id="cb108-14" data-line-number="14">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb108-15" data-line-number="15">    <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb108-16" data-line-number="16">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb108-17" data-line-number="17">    <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb108-18" data-line-number="18">    <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb108-19" data-line-number="19">    <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb108-20" data-line-number="20">    <span class="st">&quot;NCOA3&quot;</span>,</a>
+<a class="sourceLine" id="cb108-21" data-line-number="21">    <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb108-22" data-line-number="22">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb108-23" data-line-number="23">    <span class="st">&quot;PGR&quot;</span></a>
+<a class="sourceLine" id="cb108-24" data-line-number="24">  )</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN6_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN6_ploidy,</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN6_ploidy)),</a>
+<a class="sourceLine" id="cb109-4" data-line-number="4">             <span class="dt">clusters =</span> TN6_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN6_gen_classes,</a>
+<a class="sourceLine" id="cb109-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN6_annotation_genes,</a>
+<a class="sourceLine" id="cb109-7" data-line-number="7">             <span class="dt">tree_order =</span> TN6_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb109-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN6_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN6_consensus,</a>
+<a class="sourceLine" id="cb111-2" data-line-number="2">                       <span class="dt">clusters =</span> TN6_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN6_ploidy,</a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN6_ploidy)),</a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN6_annotation_genes,</a>
+<a class="sourceLine" id="cb111-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN6_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb111-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb111-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN6_gen_classes)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN6_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn7" class="section level2">
+<h2><span class="header-section-number">3.7</span> TN7</h2>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb113-5" data-line-number="5">TN7_ploidy &lt;-<span class="st"> </span><span class="fl">3.15</span></a>
+<a class="sourceLine" id="cb113-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7">TN7_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN7_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb113-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb113-9" data-line-number="9">TN7_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN7_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb113-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb113-11" data-line-number="11">TN7_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN7_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">TN7_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN7_umap,</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">35</span>,</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  17 0.01220388
+##      c10  59 0.04235463
+##      c11 110 0.07896626
+##      c12  63 0.04522613
+##      c13 152 0.10911701
+##      c14 365 0.26202441
+##      c15  30 0.02153625
+##      c16  37 0.02656138
+##      c17  40 0.02871500
+##      c18  53 0.03804738
+##       c2 114 0.08183776
+##       c3  51 0.03661163
+##       c4  45 0.03230438
+##       c5  40 0.02871500
+##       c6  55 0.03948313
+##       c7  56 0.04020101
+##       c8  80 0.05743001
+##       c9  26 0.01866475</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">TN7_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN7_popseg_long_ml,</a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">                             <span class="dt">clustering =</span> TN7_clustering)</a>
+<a class="sourceLine" id="cb120-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN7_umap,</a>
+<a class="sourceLine" id="cb120-5" data-line-number="5">          <span class="dt">clustering =</span> TN7_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">TN7_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN7_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb122-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN7_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb122-4" data-line-number="4">TN7_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN7_consensus,</a>
+<a class="sourceLine" id="cb122-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN7_ploidy)</a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb122-7" data-line-number="7">TN7_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN7_consensus,</a>
+<a class="sourceLine" id="cb122-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN7_clustering,</a>
+<a class="sourceLine" id="cb122-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN7_ploidy,</a>
+<a class="sourceLine" id="cb122-10" data-line-number="10">                                     <span class="dt">rotate_nodes =</span> <span class="kw">c</span>(<span class="dv">26</span>, <span class="dv">27</span>))</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">TN7_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb123-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb123-4" data-line-number="4">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb123-5" data-line-number="5">    <span class="st">&quot;RUVBL1&quot;</span>,</a>
+<a class="sourceLine" id="cb123-6" data-line-number="6">    <span class="st">&quot;PIK3CA&quot;</span>,</a>
+<a class="sourceLine" id="cb123-7" data-line-number="7">    <span class="st">&quot;CDKN1A&quot;</span>,</a>
+<a class="sourceLine" id="cb123-8" data-line-number="8">    <span class="st">&quot;EGFR&quot;</span>,</a>
+<a class="sourceLine" id="cb123-9" data-line-number="9">    <span class="st">&quot;FGFR1&quot;</span>,</a>
+<a class="sourceLine" id="cb123-10" data-line-number="10">    <span class="st">&quot;CDKN2A&quot;</span>,</a>
+<a class="sourceLine" id="cb123-11" data-line-number="11">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb123-12" data-line-number="12">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb123-13" data-line-number="13">    <span class="st">&quot;CDK4&quot;</span>,</a>
+<a class="sourceLine" id="cb123-14" data-line-number="14">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb123-15" data-line-number="15">    <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb123-16" data-line-number="16">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb123-17" data-line-number="17">    <span class="st">&quot;TP53&quot;</span>,</a>
+<a class="sourceLine" id="cb123-18" data-line-number="18">    <span class="st">&quot;BRCA1&quot;</span>,</a>
+<a class="sourceLine" id="cb123-19" data-line-number="19">    <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb123-20" data-line-number="20">    <span class="st">&quot;NCOA3&quot;</span>,</a>
+<a class="sourceLine" id="cb123-21" data-line-number="21">    <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb123-22" data-line-number="22">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb123-23" data-line-number="23">    <span class="st">&quot;PGR&quot;</span></a>
+<a class="sourceLine" id="cb123-24" data-line-number="24">  )</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN7_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb124-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN7_ploidy,</a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN7_ploidy)),</a>
+<a class="sourceLine" id="cb124-4" data-line-number="4">             <span class="dt">clusters =</span> TN7_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb124-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN7_gen_classes,</a>
+<a class="sourceLine" id="cb124-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN7_annotation_genes,</a>
+<a class="sourceLine" id="cb124-7" data-line-number="7">             <span class="dt">tree_order =</span> TN7_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb124-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN7_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN7_consensus,</a>
+<a class="sourceLine" id="cb126-2" data-line-number="2">                       <span class="dt">clusters =</span> TN7_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN7_ploidy,</a>
+<a class="sourceLine" id="cb126-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN7_ploidy)),</a>
+<a class="sourceLine" id="cb126-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN7_annotation_genes,</a>
+<a class="sourceLine" id="cb126-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN7_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb126-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb126-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN7_gen_classes)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN7_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="tn8" class="section level2">
+<h2><span class="header-section-number">3.8</span> TN8</h2>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:42 2020</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="co"># Tumors Heatmaps/Consensus/Trees</span></a>
+<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="co"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tue Nov 24 17:13:47 2020</span></a>
+<a class="sourceLine" id="cb128-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb128-5" data-line-number="5">TN8_ploidy &lt;-<span class="st"> </span><span class="fl">3.95</span></a>
+<a class="sourceLine" id="cb128-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb128-7" data-line-number="7">TN8_popseg &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/popseg/TN8_popseg.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb128-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb128-9" data-line-number="9">TN8_popseg_long_ml &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">here</span>(<span class="st">&quot;extdata/merge_levels/TN8_popseg_long_ml.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb128-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb128-11" data-line-number="11">TN8_umap &lt;-<span class="st"> </span><span class="kw">run_umap</span>(TN8_popseg_long_ml)</a></code></pre></div>
+<pre><code>## Constructing UMAP embedding.</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">TN8_clustering &lt;-<span class="st"> </span><span class="kw">run_clustering</span>(TN8_umap,</a>
+<a class="sourceLine" id="cb130-2" data-line-number="2">                                 <span class="dt">k_snn_major =</span> <span class="dv">43</span>,</a>
+<a class="sourceLine" id="cb130-3" data-line-number="3">                                 <span class="dt">k_snn_minor =</span> <span class="dv">17</span>)</a></code></pre></div>
+<pre><code>## Building SNN graph.</code></pre>
+<pre><code>## Running hdbscan.</code></pre>
+<pre><code>##  cluster   n    percent
+##       c1  38 0.03104575
+##      c10  29 0.02369281
+##      c11  52 0.04248366
+##      c12  45 0.03676471
+##      c13  43 0.03513072
+##      c14  44 0.03594771
+##      c15 263 0.21486928
+##       c2  54 0.04411765
+##       c3  96 0.07843137
+##       c4  55 0.04493464
+##       c5  88 0.07189542
+##       c6  22 0.01797386
+##       c7  35 0.02859477
+##       c8 325 0.26552288
+##       c9  35 0.02859477</code></pre>
+<pre><code>## Done.</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">TN8_ordered &lt;-<span class="st"> </span><span class="kw">order_dataset</span>(<span class="dt">popseg_long =</span> TN8_popseg_long_ml,</a>
+<a class="sourceLine" id="cb135-2" data-line-number="2">                             <span class="dt">clustering =</span> TN8_clustering)</a>
+<a class="sourceLine" id="cb135-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb135-4" data-line-number="4"><span class="kw">plot_umap</span>(<span class="dt">umap_df =</span> TN8_umap,</a>
+<a class="sourceLine" id="cb135-5" data-line-number="5">          <span class="dt">clustering =</span> TN8_clustering)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;cells&quot;</code></pre>
+<p><img src="_main_files/figure-html/TN8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">TN8_consensus &lt;-<span class="st"> </span><span class="kw">calculate_consensus</span>(<span class="dt">df =</span> TN8_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb137-2" data-line-number="2">                                     <span class="dt">clusters =</span> TN8_ordered<span class="op">$</span>clustering_ordered<span class="op">$</span>subclones)</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4">TN8_gen_classes &lt;-<span class="st"> </span><span class="kw">consensus_genomic_classes</span>(TN8_consensus,</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5">                                             <span class="dt">ploidy_VAL =</span> TN8_ploidy)</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb137-7" data-line-number="7">TN8_me_consensus_tree &lt;-<span class="st"> </span><span class="kw">run_me_tree</span>(<span class="dt">consensus_df =</span> TN8_consensus,</a>
+<a class="sourceLine" id="cb137-8" data-line-number="8">                                     <span class="dt">clusters =</span> TN8_clustering,</a>
+<a class="sourceLine" id="cb137-9" data-line-number="9">                                     <span class="dt">ploidy_VAL =</span> TN8_ploidy,</a>
+<a class="sourceLine" id="cb137-10" data-line-number="10">                                     <span class="dt">rotate_nodes =</span> <span class="kw">c</span>(<span class="dv">17</span>,<span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">29</span>))</a></code></pre></div>
+<p><img src="_main_files/figure-html/TN8-2.png" width="672" /></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">TN8_annotation_genes &lt;-</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="st">  </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">    <span class="st">&quot;CDKN2C&quot;</span>,</a>
+<a class="sourceLine" id="cb138-4" data-line-number="4">    <span class="st">&quot;SHC1&quot;</span>,</a>
+<a class="sourceLine" id="cb138-5" data-line-number="5">    <span class="st">&quot;ESR1&quot;</span>,</a>
+<a class="sourceLine" id="cb138-6" data-line-number="6">    <span class="st">&quot;MTDH&quot;</span>,</a>
+<a class="sourceLine" id="cb138-7" data-line-number="7">    <span class="st">&quot;MYC&quot;</span>,</a>
+<a class="sourceLine" id="cb138-8" data-line-number="8">    <span class="st">&quot;GATA3&quot;</span>,</a>
+<a class="sourceLine" id="cb138-9" data-line-number="9">    <span class="st">&quot;PTEN&quot;</span>,</a>
+<a class="sourceLine" id="cb138-10" data-line-number="10">    <span class="st">&quot;PGR&quot;</span>,</a>
+<a class="sourceLine" id="cb138-11" data-line-number="11">    <span class="st">&quot;MDM2&quot;</span>,</a>
+<a class="sourceLine" id="cb138-12" data-line-number="12">    <span class="st">&quot;BRCA2&quot;</span>,</a>
+<a class="sourceLine" id="cb138-13" data-line-number="13">    <span class="st">&quot;RB1&quot;</span>,</a>
+<a class="sourceLine" id="cb138-14" data-line-number="14">    <span class="st">&quot;BCL2&quot;</span>,</a>
+<a class="sourceLine" id="cb138-15" data-line-number="15">    <span class="st">&quot;NCOA3&quot;</span>,</a>
+<a class="sourceLine" id="cb138-16" data-line-number="16">    <span class="st">&quot;AURKA&quot;</span>,</a>
+<a class="sourceLine" id="cb138-17" data-line-number="17">    <span class="st">&quot;CHEK2&quot;</span></a>
+<a class="sourceLine" id="cb138-18" data-line-number="18">  )</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">plot_heatmap</span>(<span class="dt">df =</span> TN8_ordered<span class="op">$</span>dataset_ordered,</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">             <span class="dt">ploidy_VAL =</span> TN8_ploidy,</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">             <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN8_ploidy)),</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">             <span class="dt">clusters =</span> TN8_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5">             <span class="dt">genomic_classes =</span> TN8_gen_classes,</a>
+<a class="sourceLine" id="cb139-6" data-line-number="6">             <span class="dt">keep_gene =</span> TN8_annotation_genes,</a>
+<a class="sourceLine" id="cb139-7" data-line-number="7">             <span class="dt">tree_order =</span> TN8_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb139-8" data-line-number="8">             <span class="dt">show_legend =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN8_heatmap-1.png" width="672" /></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">plot_consensus_heatmap</span>(<span class="dt">df =</span> TN8_consensus,</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">                       <span class="dt">clusters =</span> TN8_ordered<span class="op">$</span>clustering_ordered,</a>
+<a class="sourceLine" id="cb141-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN8_ploidy,</a>
+<a class="sourceLine" id="cb141-4" data-line-number="4">                       <span class="dt">ploidy_trunc =</span> <span class="dv">2</span><span class="op">*</span>(<span class="kw">round</span>(TN8_ploidy)),</a>
+<a class="sourceLine" id="cb141-5" data-line-number="5">                       <span class="dt">keep_gene =</span> TN8_annotation_genes,</a>
+<a class="sourceLine" id="cb141-6" data-line-number="6">                       <span class="dt">tree_order =</span> TN8_me_consensus_tree<span class="op">$</span>cs_tree_order,</a>
+<a class="sourceLine" id="cb141-7" data-line-number="7">                       <span class="dt">plot_title =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb141-8" data-line-number="8">                       <span class="dt">genomic_classes =</span> TN8_gen_classes)</a></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<p><img src="_main_files/figure-html/TN8_consensus_ht-1.png" width="672" /></p>
+</div>
+<div id="clones-barplot" class="section level2">
+<h2><span class="header-section-number">3.9</span> Clones barplot</h2>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">n_clones_tumors &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">  <span class="dt">sample =</span> <span class="kw">rep</span>(<span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb143-3" data-line-number="3">    <span class="st">&quot;TN1&quot;</span>,</a>
+<a class="sourceLine" id="cb143-4" data-line-number="4">    <span class="st">&quot;TN2&quot;</span>,</a>
+<a class="sourceLine" id="cb143-5" data-line-number="5">    <span class="st">&quot;TN3&quot;</span>,</a>
+<a class="sourceLine" id="cb143-6" data-line-number="6">    <span class="st">&quot;TN4&quot;</span>,</a>
+<a class="sourceLine" id="cb143-7" data-line-number="7">    <span class="st">&quot;TN5&quot;</span>,</a>
+<a class="sourceLine" id="cb143-8" data-line-number="8">    <span class="st">&quot;TN6&quot;</span>,</a>
+<a class="sourceLine" id="cb143-9" data-line-number="9">    <span class="st">&quot;TN7&quot;</span>,</a>
+<a class="sourceLine" id="cb143-10" data-line-number="10">    <span class="st">&quot;TN8&quot;</span></a>
+<a class="sourceLine" id="cb143-11" data-line-number="11">  ),<span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb143-12" data-line-number="12">  <span class="dt">n_clones =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb143-13" data-line-number="13">    <span class="kw">length</span>(<span class="kw">unique</span>(TN1_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-14" data-line-number="14">    <span class="kw">length</span>(<span class="kw">unique</span>(TN2_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-15" data-line-number="15">    <span class="kw">length</span>(<span class="kw">unique</span>(TN3_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-16" data-line-number="16">    <span class="kw">length</span>(<span class="kw">unique</span>(TN4_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-17" data-line-number="17">    <span class="kw">length</span>(<span class="kw">unique</span>(TN5_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-18" data-line-number="18">    <span class="kw">length</span>(<span class="kw">unique</span>(TN6_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-19" data-line-number="19">    <span class="kw">length</span>(<span class="kw">unique</span>(TN7_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-20" data-line-number="20">    <span class="kw">length</span>(<span class="kw">unique</span>(TN8_clustering<span class="op">$</span>superclones)),</a>
+<a class="sourceLine" id="cb143-21" data-line-number="21">    <span class="kw">length</span>(<span class="kw">unique</span>(TN1_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-22" data-line-number="22">    <span class="kw">length</span>(<span class="kw">unique</span>(TN2_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-23" data-line-number="23">    <span class="kw">length</span>(<span class="kw">unique</span>(TN3_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-24" data-line-number="24">    <span class="kw">length</span>(<span class="kw">unique</span>(TN4_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-25" data-line-number="25">    <span class="kw">length</span>(<span class="kw">unique</span>(TN5_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-26" data-line-number="26">    <span class="kw">length</span>(<span class="kw">unique</span>(TN6_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-27" data-line-number="27">    <span class="kw">length</span>(<span class="kw">unique</span>(TN7_clustering<span class="op">$</span>subclones)),</a>
+<a class="sourceLine" id="cb143-28" data-line-number="28">    <span class="kw">length</span>(<span class="kw">unique</span>(TN8_clustering<span class="op">$</span>subclones))</a>
+<a class="sourceLine" id="cb143-29" data-line-number="29">  ),</a>
+<a class="sourceLine" id="cb143-30" data-line-number="30">  <span class="dt">group =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb143-31" data-line-number="31">    <span class="kw">rep</span>(<span class="st">&quot;superclones&quot;</span>,<span class="dv">8</span>),</a>
+<a class="sourceLine" id="cb143-32" data-line-number="32">    <span class="kw">rep</span>(<span class="st">&quot;subclones&quot;</span>, <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb143-33" data-line-number="33">  )</a>
+<a class="sourceLine" id="cb143-34" data-line-number="34">) </a>
+<a class="sourceLine" id="cb143-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb143-36" data-line-number="36">p_clones_tumors &lt;-<span class="st"> </span>n_clones_tumors <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-37" data-line-number="37"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-38" data-line-number="38"><span class="st">  </span><span class="kw">geom_col</span>(</a>
+<a class="sourceLine" id="cb143-39" data-line-number="39">    <span class="kw">aes</span>(</a>
+<a class="sourceLine" id="cb143-40" data-line-number="40">      <span class="dt">x =</span> sample,</a>
+<a class="sourceLine" id="cb143-41" data-line-number="41">      <span class="dt">y =</span> n_clones,</a>
+<a class="sourceLine" id="cb143-42" data-line-number="42">      <span class="dt">fill =</span> <span class="kw">fct_relevel</span>(group, <span class="kw">c</span>(<span class="st">&quot;superclones&quot;</span>,</a>
+<a class="sourceLine" id="cb143-43" data-line-number="43">                                  <span class="st">&quot;subclones&quot;</span>))</a>
+<a class="sourceLine" id="cb143-44" data-line-number="44">    ),</a>
+<a class="sourceLine" id="cb143-45" data-line-number="45">    <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span></a>
+<a class="sourceLine" id="cb143-46" data-line-number="46">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-47" data-line-number="47"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-48" data-line-number="48"><span class="st">  </span>my_theme <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-49" data-line-number="49"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-50" data-line-number="50"><span class="st">  </span><span class="kw">scale_y_continuous</span>(</a>
+<a class="sourceLine" id="cb143-51" data-line-number="51">    <span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb143-52" data-line-number="52">    <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">22</span>),</a>
+<a class="sourceLine" id="cb143-53" data-line-number="53">    <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb143-54" data-line-number="54">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-55" data-line-number="55"><span class="st">  </span>paletteer<span class="op">::</span><span class="kw">scale_fill_paletteer_d</span>(<span class="st">&quot;yarrr::info&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-56" data-line-number="56"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-57" data-line-number="57"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;number of clones&quot;</span>)</a>
+<a class="sourceLine" id="cb143-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb143-59" data-line-number="59">p_clones_tumors</a></code></pre></div>
+<p><img src="_main_files/figure-html/clones_barplot-1.png" width="672" /></p>
+</div>
+<div id="shannon-diversity" class="section level2">
+<h2><span class="header-section-number">3.10</span> Shannon diversity</h2>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">shan &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices) {</a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">  data_ind &lt;-<span class="st"> </span>data[indices]</a>
+<a class="sourceLine" id="cb144-3" data-line-number="3">  prop &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(data_ind) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent) </a>
+<a class="sourceLine" id="cb144-4" data-line-number="4">  div &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(prop<span class="op">*</span><span class="kw">log</span>(prop))</a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">  <span class="kw">return</span>(div)</a>
+<a class="sourceLine" id="cb144-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8">TN1_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN1_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-9" data-line-number="9">TN2_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN2_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-10" data-line-number="10">TN3_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN3_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-11" data-line-number="11">TN4_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN4_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-12" data-line-number="12">TN5_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN5_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-13" data-line-number="13">TN6_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN6_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-14" data-line-number="14">TN7_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN7_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-15" data-line-number="15">TN8_proportions &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">tabyl</span>(TN8_clustering<span class="op">$</span>subclones) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(percent)</a>
+<a class="sourceLine" id="cb144-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb144-17" data-line-number="17">TN1_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN1_proportions<span class="op">*</span><span class="kw">log</span>(TN1_proportions))</a>
+<a class="sourceLine" id="cb144-18" data-line-number="18">TN2_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN2_proportions<span class="op">*</span><span class="kw">log</span>(TN2_proportions))</a>
+<a class="sourceLine" id="cb144-19" data-line-number="19">TN3_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN3_proportions<span class="op">*</span><span class="kw">log</span>(TN3_proportions))</a>
+<a class="sourceLine" id="cb144-20" data-line-number="20">TN4_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN4_proportions<span class="op">*</span><span class="kw">log</span>(TN4_proportions))</a>
+<a class="sourceLine" id="cb144-21" data-line-number="21">TN5_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN5_proportions<span class="op">*</span><span class="kw">log</span>(TN5_proportions))</a>
+<a class="sourceLine" id="cb144-22" data-line-number="22">TN6_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN6_proportions<span class="op">*</span><span class="kw">log</span>(TN6_proportions))</a>
+<a class="sourceLine" id="cb144-23" data-line-number="23">TN7_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN7_proportions<span class="op">*</span><span class="kw">log</span>(TN7_proportions))</a>
+<a class="sourceLine" id="cb144-24" data-line-number="24">TN8_diver &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(TN8_proportions<span class="op">*</span><span class="kw">log</span>(TN8_proportions))</a>
+<a class="sourceLine" id="cb144-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb144-26" data-line-number="26">boot_TN1 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN1_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-27" data-line-number="27">boot_TN1_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN1)</a>
+<a class="sourceLine" id="cb144-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb144-29" data-line-number="29">boot_TN2 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN2_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-30" data-line-number="30">boot_TN2_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN2)</a>
+<a class="sourceLine" id="cb144-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb144-32" data-line-number="32">boot_TN3 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN3_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-33" data-line-number="33">boot_TN3_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN3)</a>
+<a class="sourceLine" id="cb144-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb144-35" data-line-number="35">boot_TN4 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN4_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-36" data-line-number="36">boot_TN4_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN4)</a>
+<a class="sourceLine" id="cb144-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb144-38" data-line-number="38">boot_TN5 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN5_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-39" data-line-number="39">boot_TN5_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN5)</a>
+<a class="sourceLine" id="cb144-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb144-41" data-line-number="41">boot_TN6 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN6_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-42" data-line-number="42">boot_TN6_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN6)</a>
+<a class="sourceLine" id="cb144-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb144-44" data-line-number="44">boot_TN7 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN7_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-45" data-line-number="45">boot_TN7_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN7)</a>
+<a class="sourceLine" id="cb144-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb144-47" data-line-number="47">boot_TN8 &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot</span>(TN8_clustering<span class="op">$</span>subclones, <span class="dt">statistic =</span> shan,  <span class="dt">R =</span> <span class="dv">3000</span>)</a>
+<a class="sourceLine" id="cb144-48" data-line-number="48">boot_TN8_ci &lt;-<span class="st"> </span>boot<span class="op">::</span><span class="kw">boot.ci</span>(boot_TN8)</a>
+<a class="sourceLine" id="cb144-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb144-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb144-51" data-line-number="51">div_table &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb144-52" data-line-number="52">  <span class="dt">sample =</span> <span class="kw">c</span>(<span class="st">&quot;TN1&quot;</span>,</a>
+<a class="sourceLine" id="cb144-53" data-line-number="53">             <span class="st">&quot;TN2&quot;</span>,</a>
+<a class="sourceLine" id="cb144-54" data-line-number="54">             <span class="st">&quot;TN3&quot;</span>,</a>
+<a class="sourceLine" id="cb144-55" data-line-number="55">             <span class="st">&quot;TN4&quot;</span>,</a>
+<a class="sourceLine" id="cb144-56" data-line-number="56">             <span class="st">&quot;TN5&quot;</span>,</a>
+<a class="sourceLine" id="cb144-57" data-line-number="57">             <span class="st">&quot;TN6&quot;</span>,</a>
+<a class="sourceLine" id="cb144-58" data-line-number="58">             <span class="st">&quot;TN7&quot;</span>,</a>
+<a class="sourceLine" id="cb144-59" data-line-number="59">             <span class="st">&quot;TN8&quot;</span>),</a>
+<a class="sourceLine" id="cb144-60" data-line-number="60">  <span class="dt">shannon_index =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb144-61" data-line-number="61">    TN1_diver,</a>
+<a class="sourceLine" id="cb144-62" data-line-number="62">    TN2_diver,</a>
+<a class="sourceLine" id="cb144-63" data-line-number="63">    TN3_diver,</a>
+<a class="sourceLine" id="cb144-64" data-line-number="64">    TN4_diver,</a>
+<a class="sourceLine" id="cb144-65" data-line-number="65">    TN5_diver,</a>
+<a class="sourceLine" id="cb144-66" data-line-number="66">    TN6_diver,</a>
+<a class="sourceLine" id="cb144-67" data-line-number="67">    TN7_diver,</a>
+<a class="sourceLine" id="cb144-68" data-line-number="68">    TN8_diver</a>
+<a class="sourceLine" id="cb144-69" data-line-number="69">  ),</a>
+<a class="sourceLine" id="cb144-70" data-line-number="70">  <span class="dt">lci =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb144-71" data-line-number="71">    boot_TN1_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-72" data-line-number="72">    boot_TN2_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-73" data-line-number="73">    boot_TN3_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-74" data-line-number="74">    boot_TN4_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-75" data-line-number="75">    boot_TN5_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-76" data-line-number="76">    boot_TN6_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-77" data-line-number="77">    boot_TN7_ci<span class="op">$</span>normal[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb144-78" data-line-number="78">    boot_TN8_ci<span class="op">$</span>normal[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb144-79" data-line-number="79">  ),</a>
+<a class="sourceLine" id="cb144-80" data-line-number="80">  <span class="dt">uci =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb144-81" data-line-number="81">    boot_TN1_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-82" data-line-number="82">    boot_TN2_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-83" data-line-number="83">    boot_TN3_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-84" data-line-number="84">    boot_TN4_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-85" data-line-number="85">    boot_TN5_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-86" data-line-number="86">    boot_TN6_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-87" data-line-number="87">    boot_TN7_ci<span class="op">$</span>normal[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb144-88" data-line-number="88">    boot_TN8_ci<span class="op">$</span>normal[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb144-89" data-line-number="89">  )</a>
+<a class="sourceLine" id="cb144-90" data-line-number="90">)</a>
+<a class="sourceLine" id="cb144-91" data-line-number="91"></a>
+<a class="sourceLine" id="cb144-92" data-line-number="92"><span class="co"># error bar = 95% confidence interval</span></a>
+<a class="sourceLine" id="cb144-93" data-line-number="93">p_tumors_diver &lt;-<span class="st"> </span>div_table <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-94" data-line-number="94"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-95" data-line-number="95"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(</a>
+<a class="sourceLine" id="cb144-96" data-line-number="96">    <span class="dt">x =</span> <span class="kw">fct_reorder</span>(sample, shannon_index),</a>
+<a class="sourceLine" id="cb144-97" data-line-number="97">    <span class="dt">ymin =</span> lci,</a>
+<a class="sourceLine" id="cb144-98" data-line-number="98">    <span class="dt">ymax =</span> uci</a>
+<a class="sourceLine" id="cb144-99" data-line-number="99">  ),</a>
+<a class="sourceLine" id="cb144-100" data-line-number="100">  <span class="dt">width =</span> <span class="fl">.1</span>,</a>
+<a class="sourceLine" id="cb144-101" data-line-number="101">  <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-102" data-line-number="102"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(</a>
+<a class="sourceLine" id="cb144-103" data-line-number="103">    <span class="dt">x =</span> <span class="kw">fct_reorder</span>(sample, shannon_index),</a>
+<a class="sourceLine" id="cb144-104" data-line-number="104">    <span class="dt">y =</span> shannon_index,</a>
+<a class="sourceLine" id="cb144-105" data-line-number="105">    <span class="dt">color =</span> sample</a>
+<a class="sourceLine" id="cb144-106" data-line-number="106">  ), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-107" data-line-number="107"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-108" data-line-number="108"><span class="st">  </span>my_theme <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-109" data-line-number="109"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,</a>
+<a class="sourceLine" id="cb144-110" data-line-number="110">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(</a>
+<a class="sourceLine" id="cb144-111" data-line-number="111">          <span class="dt">angle =</span> <span class="dv">90</span>,</a>
+<a class="sourceLine" id="cb144-112" data-line-number="112">          <span class="dt">vjust =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb144-113" data-line-number="113">          <span class="dt">hjust =</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb144-114" data-line-number="114">        )) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-115" data-line-number="115"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">12</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-116" data-line-number="116"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rcartocolor<span class="op">::</span><span class="kw">carto_pal</span>(<span class="dv">8</span>, <span class="st">&quot;Safe&quot;</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-117" data-line-number="117"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;shannon diversity index&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-118" data-line-number="118"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb144-119" data-line-number="119"></a>
+<a class="sourceLine" id="cb144-120" data-line-number="120">p_tumors_diver</a></code></pre></div>
+<p><img src="_main_files/figure-html/shannon_diversity-1.png" width="672" /></p>
+</div>
+<div id="gainslosses-plot" class="section level2">
+<h2><span class="header-section-number">3.11</span> Gains/Losses plot</h2>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">TN1_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN1_consensus,</a>
+<a class="sourceLine" id="cb145-3" data-line-number="3">                       <span class="dt">ploidy_VAL =</span> TN1_ploidy,</a>
+<a class="sourceLine" id="cb145-4" data-line-number="4">                       <span class="dt">sample =</span> <span class="st">&quot;TN1&quot;</span>)</a>
+<a class="sourceLine" id="cb145-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb145-6" data-line-number="6">TN2_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN2_consensus,</a>
+<a class="sourceLine" id="cb145-8" data-line-number="8">                       <span class="dt">ploidy =</span> TN2_ploidy,</a>
+<a class="sourceLine" id="cb145-9" data-line-number="9">                       <span class="dt">sample =</span> <span class="st">&quot;TN2&quot;</span>)</a>
+<a class="sourceLine" id="cb145-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb145-11" data-line-number="11">TN3_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-12" data-line-number="12"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN3_consensus,</a>
+<a class="sourceLine" id="cb145-13" data-line-number="13">                       <span class="dt">ploidy =</span> TN3_ploidy,</a>
+<a class="sourceLine" id="cb145-14" data-line-number="14">                       <span class="dt">sample =</span> <span class="st">&quot;TN3&quot;</span>)</a>
+<a class="sourceLine" id="cb145-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb145-16" data-line-number="16">TN4_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-17" data-line-number="17"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN4_consensus,</a>
+<a class="sourceLine" id="cb145-18" data-line-number="18">                       <span class="dt">ploidy =</span> TN4_ploidy,</a>
+<a class="sourceLine" id="cb145-19" data-line-number="19">                       <span class="dt">sample =</span> <span class="st">&quot;TN4&quot;</span>)</a>
+<a class="sourceLine" id="cb145-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb145-21" data-line-number="21">TN5_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-22" data-line-number="22"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN5_consensus,</a>
+<a class="sourceLine" id="cb145-23" data-line-number="23">                       <span class="dt">ploidy =</span> TN5_ploidy,</a>
+<a class="sourceLine" id="cb145-24" data-line-number="24">                       <span class="dt">sample =</span> <span class="st">&quot;TN5&quot;</span>)</a>
+<a class="sourceLine" id="cb145-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb145-26" data-line-number="26">TN6_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-27" data-line-number="27"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN6_consensus,</a>
+<a class="sourceLine" id="cb145-28" data-line-number="28">                       <span class="dt">ploidy =</span> TN6_ploidy,</a>
+<a class="sourceLine" id="cb145-29" data-line-number="29">                       <span class="dt">sample =</span> <span class="st">&quot;TN6&quot;</span>)</a>
+<a class="sourceLine" id="cb145-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb145-31" data-line-number="31">TN7_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-32" data-line-number="32"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN7_consensus,</a>
+<a class="sourceLine" id="cb145-33" data-line-number="33">                       <span class="dt">ploidy =</span> TN7_ploidy,</a>
+<a class="sourceLine" id="cb145-34" data-line-number="34">                       <span class="dt">sample =</span> <span class="st">&quot;TN7&quot;</span>)</a>
+<a class="sourceLine" id="cb145-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb145-36" data-line-number="36">TN8_alt_perc &lt;-</a>
+<a class="sourceLine" id="cb145-37" data-line-number="37"><span class="st">  </span><span class="kw">gain_loss_percentage</span>(<span class="dt">consensus =</span> TN8_consensus,</a>
+<a class="sourceLine" id="cb145-38" data-line-number="38">                       <span class="dt">ploidy =</span> TN8_ploidy,</a>
+<a class="sourceLine" id="cb145-39" data-line-number="39">                       <span class="dt">sample =</span> <span class="st">&quot;TN8&quot;</span>)</a>
+<a class="sourceLine" id="cb145-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb145-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb145-42" data-line-number="42">all_tumors_gainloss_percentage &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb145-43" data-line-number="43"><span class="st">  </span><span class="kw">bind_rows</span>(TN2_alt_perc,</a>
+<a class="sourceLine" id="cb145-44" data-line-number="44">            TN3_alt_perc,</a>
+<a class="sourceLine" id="cb145-45" data-line-number="45">            TN4_alt_perc,</a>
+<a class="sourceLine" id="cb145-46" data-line-number="46">            TN1_alt_perc,</a>
+<a class="sourceLine" id="cb145-47" data-line-number="47">            TN5_alt_perc,</a>
+<a class="sourceLine" id="cb145-48" data-line-number="48">            TN6_alt_perc,</a>
+<a class="sourceLine" id="cb145-49" data-line-number="49">            TN7_alt_perc,</a>
+<a class="sourceLine" id="cb145-50" data-line-number="50">            TN8_alt_perc</a>
+<a class="sourceLine" id="cb145-51" data-line-number="51">            ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb145-52" data-line-number="52"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">percent =</span> n)</a>
+<a class="sourceLine" id="cb145-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb145-54" data-line-number="54">p_gain_loss &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-55" data-line-number="55"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">data =</span> all_tumors_gainloss_percentage, </a>
+<a class="sourceLine" id="cb145-56" data-line-number="56">           <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_relevel</span>(clone, <span class="kw">rev</span>(<span class="kw">unique</span>(gtools<span class="op">::</span><span class="kw">mixedsort</span>(all_tumors_gainloss_percentage<span class="op">$</span>clone)))),</a>
+<a class="sourceLine" id="cb145-57" data-line-number="57">               <span class="dt">y =</span> percent,</a>
+<a class="sourceLine" id="cb145-58" data-line-number="58">               <span class="dt">fill =</span> class</a>
+<a class="sourceLine" id="cb145-59" data-line-number="59">           ),</a>
+<a class="sourceLine" id="cb145-60" data-line-number="60">           <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-61" data-line-number="61"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(sample), <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-62" data-line-number="62"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;ground_state&quot;</span> =<span class="st"> &quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb145-63" data-line-number="63">                               <span class="st">&quot;gain&quot;</span> =<span class="st"> &quot;firebrick3&quot;</span>,</a>
+<a class="sourceLine" id="cb145-64" data-line-number="64">                               <span class="st">&quot;loss&quot;</span> =<span class="st"> &quot;steelblue&quot;</span>),</a>
+<a class="sourceLine" id="cb145-65" data-line-number="65">                    <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;loss&quot;</span>,</a>
+<a class="sourceLine" id="cb145-66" data-line-number="66">                              <span class="st">&quot;neutral&quot;</span>,</a>
+<a class="sourceLine" id="cb145-67" data-line-number="67">                              <span class="st">&quot;gain&quot;</span>),</a>
+<a class="sourceLine" id="cb145-68" data-line-number="68">                    <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="st">&quot;loss&quot;</span>,</a>
+<a class="sourceLine" id="cb145-69" data-line-number="69">                               <span class="st">&quot;ground_state&quot;</span>,</a>
+<a class="sourceLine" id="cb145-70" data-line-number="70">                               <span class="st">&quot;gain&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-71" data-line-number="71"><span class="st">  </span><span class="kw">theme_cowplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-72" data-line-number="72"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>),</a>
+<a class="sourceLine" id="cb145-73" data-line-number="73">        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb145-74" data-line-number="74">        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</a>
+<a class="sourceLine" id="cb145-75" data-line-number="75">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-76" data-line-number="76"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-77" data-line-number="77"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) </a>
+<a class="sourceLine" id="cb145-78" data-line-number="78">  <span class="co"># ggtitle(&quot;Percentage of gain_loss per subclone&quot;)</span></a>
+<a class="sourceLine" id="cb145-79" data-line-number="79"></a>
+<a class="sourceLine" id="cb145-80" data-line-number="80">p_gain_loss</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="genomic-classes-plots" class="section level2">
+<h2><span class="header-section-number">3.12</span> Genomic classes plots</h2>
+<div id="counts" class="section level3">
+<h3><span class="header-section-number">3.12.1</span> Counts</h3>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">TN1_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN1_gen_classes,</a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">                                       <span class="dt">popseg =</span> TN1_popseg,</a>
+<a class="sourceLine" id="cb146-3" data-line-number="3">                                       <span class="dt">popseg_long =</span> TN1_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN1&quot;</span>)</a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6">TN2_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN2_gen_classes,</a>
+<a class="sourceLine" id="cb146-7" data-line-number="7">                                       <span class="dt">popseg =</span> TN2_popseg,</a>
+<a class="sourceLine" id="cb146-8" data-line-number="8">                                       <span class="dt">popseg_long =</span> TN2_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN2&quot;</span>)</a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb146-11" data-line-number="11">TN3_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN3_gen_classes,</a>
+<a class="sourceLine" id="cb146-12" data-line-number="12">                                       <span class="dt">popseg =</span> TN3_popseg,</a>
+<a class="sourceLine" id="cb146-13" data-line-number="13">                                       <span class="dt">popseg_long =</span> TN3_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN3&quot;</span>)</a>
+<a class="sourceLine" id="cb146-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb146-16" data-line-number="16">TN4_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN4_gen_classes,</a>
+<a class="sourceLine" id="cb146-17" data-line-number="17">                                       <span class="dt">popseg =</span> TN4_popseg,</a>
+<a class="sourceLine" id="cb146-18" data-line-number="18">                                       <span class="dt">popseg_long =</span> TN4_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-19" data-line-number="19"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN4&quot;</span>)</a>
+<a class="sourceLine" id="cb146-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb146-21" data-line-number="21">TN5_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN5_gen_classes,</a>
+<a class="sourceLine" id="cb146-22" data-line-number="22">                                       <span class="dt">popseg =</span> TN5_popseg,</a>
+<a class="sourceLine" id="cb146-23" data-line-number="23">                                       <span class="dt">popseg_long =</span> TN5_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-24" data-line-number="24"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN5&quot;</span>)</a>
+<a class="sourceLine" id="cb146-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb146-26" data-line-number="26">TN6_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN6_gen_classes,</a>
+<a class="sourceLine" id="cb146-27" data-line-number="27">                                       <span class="dt">popseg =</span> TN6_popseg,</a>
+<a class="sourceLine" id="cb146-28" data-line-number="28">                                       <span class="dt">popseg_long =</span> TN6_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-29" data-line-number="29"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN6&quot;</span>)</a>
+<a class="sourceLine" id="cb146-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb146-31" data-line-number="31">TN7_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN7_gen_classes,</a>
+<a class="sourceLine" id="cb146-32" data-line-number="32">                                       <span class="dt">popseg =</span> TN7_popseg,</a>
+<a class="sourceLine" id="cb146-33" data-line-number="33">                                       <span class="dt">popseg_long =</span> TN7_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-34" data-line-number="34"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN7&quot;</span>)</a>
+<a class="sourceLine" id="cb146-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb146-36" data-line-number="36">TN8_seg_length &lt;-<span class="st"> </span><span class="kw">calc_genclass_length</span>(TN8_gen_classes,</a>
+<a class="sourceLine" id="cb146-37" data-line-number="37">                                       <span class="dt">popseg =</span> TN8_popseg,</a>
+<a class="sourceLine" id="cb146-38" data-line-number="38">                                       <span class="dt">popseg_long =</span> TN8_popseg_long_ml) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-39" data-line-number="39"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sample =</span> <span class="st">&quot;TN8&quot;</span>)</a>
+<a class="sourceLine" id="cb146-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb146-41" data-line-number="41">df_cna &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(TN1_seg_length,</a>
+<a class="sourceLine" id="cb146-42" data-line-number="42">                    TN2_seg_length,</a>
+<a class="sourceLine" id="cb146-43" data-line-number="43">                    TN3_seg_length,</a>
+<a class="sourceLine" id="cb146-44" data-line-number="44">                    TN4_seg_length,</a>
+<a class="sourceLine" id="cb146-45" data-line-number="45">                    TN5_seg_length,</a>
+<a class="sourceLine" id="cb146-46" data-line-number="46">                    TN6_seg_length,</a>
+<a class="sourceLine" id="cb146-47" data-line-number="47">                    TN7_seg_length,</a>
+<a class="sourceLine" id="cb146-48" data-line-number="48">                    TN8_seg_length)</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">p_count_cna &lt;-<span class="st"> </span>df_cna <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(sample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">distinct</span>(seg_index, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(class) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">class =</span> <span class="kw">fct_relevel</span>(class,</a>
+<a class="sourceLine" id="cb147-6" data-line-number="6">                                    <span class="kw">c</span>(<span class="st">&quot;uCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-7" data-line-number="7">                                      <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-8" data-line-number="8">                                      <span class="st">&quot;cCNA&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="st">  </span><span class="kw">ggplot</span>()  <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>(</a>
+<a class="sourceLine" id="cb147-11" data-line-number="11">    <span class="kw">aes</span>(<span class="dt">x =</span>  sample,</a>
+<a class="sourceLine" id="cb147-12" data-line-number="12">        <span class="dt">y =</span> n,</a>
+<a class="sourceLine" id="cb147-13" data-line-number="13">        <span class="dt">fill =</span> class),</a>
+<a class="sourceLine" id="cb147-14" data-line-number="14">    <span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>,</a>
+<a class="sourceLine" id="cb147-15" data-line-number="15">    <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</a>
+<a class="sourceLine" id="cb147-16" data-line-number="16">    <span class="dt">width =</span> <span class="fl">.6</span></a>
+<a class="sourceLine" id="cb147-17" data-line-number="17">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-18" data-line-number="18"><span class="st">  </span><span class="kw">scale_fill_manual</span>(</a>
+<a class="sourceLine" id="cb147-19" data-line-number="19">    <span class="dt">values =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb147-20" data-line-number="20">      <span class="st">&quot;cCNA&quot;</span> =<span class="st"> &quot;#414451&quot;</span>,</a>
+<a class="sourceLine" id="cb147-21" data-line-number="21">      <span class="st">&quot;sCNA&quot;</span> =<span class="st"> &quot;#A5ACAF&quot;</span>,</a>
+<a class="sourceLine" id="cb147-22" data-line-number="22">      <span class="st">&quot;uCNA&quot;</span> =<span class="st"> &quot;#FF800E&quot;</span></a>
+<a class="sourceLine" id="cb147-23" data-line-number="23">    ),</a>
+<a class="sourceLine" id="cb147-24" data-line-number="24">    <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="st">&quot;cCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-25" data-line-number="25">               <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-26" data-line-number="26">               <span class="st">&quot;uCNA&quot;</span>),</a>
+<a class="sourceLine" id="cb147-27" data-line-number="27">    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;cCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-28" data-line-number="28">               <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb147-29" data-line-number="29">               <span class="st">&quot;uCNA&quot;</span>)</a>
+<a class="sourceLine" id="cb147-30" data-line-number="30">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-31" data-line-number="31"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">15</span>),</a>
+<a class="sourceLine" id="cb147-32" data-line-number="32">                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-33" data-line-number="33"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-34" data-line-number="34"><span class="st">  </span>my_theme <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-35" data-line-number="35"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&#39;top&#39;</span>,</a>
+<a class="sourceLine" id="cb147-36" data-line-number="36">        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>,</a>
+<a class="sourceLine" id="cb147-37" data-line-number="37">                                   <span class="dt">vjust =</span> <span class="fl">.5</span>,</a>
+<a class="sourceLine" id="cb147-38" data-line-number="38">                                   <span class="dt">hjust =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb147-39" data-line-number="39">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">color =</span> <span class="st">&#39;black&#39;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-40" data-line-number="40"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-41" data-line-number="41"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;CNA class count&quot;</span>)</a>
+<a class="sourceLine" id="cb147-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb147-43" data-line-number="43">p_count_cna</a></code></pre></div>
+<p><img src="_main_files/figure-html/gen_class_counts-1.png" width="672" /></p>
+</div>
+<div id="segment-length" class="section level3">
+<h3><span class="header-section-number">3.12.2</span> Segment length</h3>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">p_seg_box &lt;-<span class="st"> </span>df_cna <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(sample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">distinct</span>(seg_index, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">class =</span> <span class="kw">fct_relevel</span>(class,</a>
+<a class="sourceLine" id="cb148-5" data-line-number="5">                                    <span class="kw">c</span>(<span class="st">&quot;cCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-6" data-line-number="6">                                      <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-7" data-line-number="7">                                      <span class="st">&quot;uCNA&quot;</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_boxplot</span>(</a>
+<a class="sourceLine" id="cb148-10" data-line-number="10">    <span class="kw">aes</span>(<span class="dt">x =</span> sample,</a>
+<a class="sourceLine" id="cb148-11" data-line-number="11">        <span class="dt">y =</span> seg_length,</a>
+<a class="sourceLine" id="cb148-12" data-line-number="12">        <span class="dt">fill =</span> class),</a>
+<a class="sourceLine" id="cb148-13" data-line-number="13">    <span class="dt">outlier.shape =</span> <span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb148-14" data-line-number="14">    <span class="dt">outlier.alpha =</span> <span class="fl">.3</span></a>
+<a class="sourceLine" id="cb148-15" data-line-number="15">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-16" data-line-number="16"><span class="st">  </span><span class="kw">scale_fill_manual</span>(</a>
+<a class="sourceLine" id="cb148-17" data-line-number="17">    <span class="dt">values =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb148-18" data-line-number="18">      <span class="st">&quot;cCNA&quot;</span> =<span class="st"> &quot;#414451&quot;</span>,</a>
+<a class="sourceLine" id="cb148-19" data-line-number="19">      <span class="st">&quot;sCNA&quot;</span> =<span class="st"> &quot;#A5ACAF&quot;</span>,</a>
+<a class="sourceLine" id="cb148-20" data-line-number="20">      <span class="st">&quot;uCNA&quot;</span> =<span class="st"> &quot;#FF800E&quot;</span></a>
+<a class="sourceLine" id="cb148-21" data-line-number="21">    ),</a>
+<a class="sourceLine" id="cb148-22" data-line-number="22">    <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="st">&quot;cCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-23" data-line-number="23">               <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-24" data-line-number="24">               <span class="st">&quot;uCNA&quot;</span>),</a>
+<a class="sourceLine" id="cb148-25" data-line-number="25">    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;cCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-26" data-line-number="26">               <span class="st">&quot;sCNA&quot;</span>,</a>
+<a class="sourceLine" id="cb148-27" data-line-number="27">               <span class="st">&quot;uCNA&quot;</span>)</a>
+<a class="sourceLine" id="cb148-28" data-line-number="28">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-29" data-line-number="29"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-30" data-line-number="30"><span class="st">  </span>my_theme <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-31" data-line-number="31"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-32" data-line-number="32"><span class="st">  </span><span class="kw">scale_y_continuous</span>(</a>
+<a class="sourceLine" id="cb148-33" data-line-number="33">    <span class="dt">breaks =</span> scales<span class="op">::</span><span class="kw">pretty_breaks</span>(<span class="dt">n =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb148-34" data-line-number="34">    <span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">unit_format</span>(<span class="dt">unit =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb148-35" data-line-number="35">                                 <span class="dt">scale =</span> <span class="fl">1e-6</span>)</a>
+<a class="sourceLine" id="cb148-36" data-line-number="36">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-37" data-line-number="37"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-38" data-line-number="38"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;segment length (Mb)&quot;</span>)</a>
+<a class="sourceLine" id="cb148-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb148-40" data-line-number="40">p_seg_box</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">source</span>(<span class="kw">here</span>(<span class="st">&quot;R/setup.R&quot;</span>))</a>
+<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="kw">source</span>(<span class="kw">here</span>(<span class="st">&quot;R/calc_sctree_dists.R&quot;</span>))</a>
+<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="kw">source</span>(<span class="kw">here</span>(<span class="st">&quot;R/plot_sctree.R&quot;</span>))</a></code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="technical-properties.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="single-cell-trees.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

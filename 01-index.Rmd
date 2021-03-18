@@ -1,6 +1,7 @@
 ---
 title: "ACT Paper"
 output: bookdown::gitbook
+output_dir: "docs"
 ---
 
 # Instructions
