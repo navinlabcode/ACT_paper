@@ -256,7 +256,7 @@ cnt_avg <- cnt_avg %>%
 ```
 
 ## Moving averages
-```{r moving_averages, warning=FALSE, message=FALSE, fig.height=8}
+```{r moving_averages, warning=FALSE, message=FALSE, fig.height=10}
 # adding segments from population segmentation information
 mdamb231_bulk_cna_id <- mdamb231_sc_bulk_cna_popseg %>% 
   mutate(seg_index = 1:nrow(mdamb231_sc_bulk_cna_popseg))
