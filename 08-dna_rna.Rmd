@@ -435,6 +435,8 @@ p_pca <- ggplot(pcaData, aes(x = PC1,
                                     fill = NA,
                                     size = 2)) +
   labs(color = "subclone")
+
+p_pca
 ```
 
 ## FGSEA

@@ -81,7 +81,7 @@ plot_sctree(tn4_tree, title = "TN4", anno_y = 1450)
 plot_sctree(tn5_tree, title = "TN5", anno_y = 1350)
 plot_sctree(tn6_tree, title = "TN6", anno_y = 1550)
 plot_sctree(tn7_tree, title = "TN7", anno_y = 1550)
-plot_sctree(tn8_tree, title = "TN8")
+plot_sctree(tn8_tree, title = "TN8", anno_y = 1300)
 ```
 
 ```{r lolliplot}

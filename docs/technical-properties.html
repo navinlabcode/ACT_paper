@@ -10,16 +10,16 @@
 
   <meta property="og:title" content="2 Technical properties | ACT Paper" />
   <meta property="og:type" content="book" />
-
-
-
-
+  
+  
+  
+  
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2 Technical properties | ACT Paper" />
-
-
-
+  
+  
+  
 
 <meta name="author" content="Darlan Conterno Minussi" />
 
@@ -28,8 +28,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-
+  
+  
 <link rel="prev" href="instructions.html"/>
 <link rel="next" href="tumors.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -126,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instructions</a></li>
+<li class="chapter" data-level="1" data-path="instructions.html"><a href="instructions.html"><i class="fa fa-check"></i><b>1</b> Instructions</a></li>
 <li class="chapter" data-level="2" data-path="technical-properties.html"><a href="technical-properties.html"><i class="fa fa-check"></i><b>2</b> Technical properties</a><ul>
 <li class="chapter" data-level="2.1" data-path="technical-properties.html"><a href="technical-properties.html#breadth-of-coverage"><i class="fa fa-check"></i><b>2.1</b> Breadth of coverage</a></li>
 <li class="chapter" data-level="2.2" data-path="technical-properties.html"><a href="technical-properties.html#overdispersion"><i class="fa fa-check"></i><b>2.2</b> Overdispersion</a></li>
@@ -376,20 +376,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">kruskal_test</span>(breadth <span class="op">~</span><span class="st"> </span>tech) </a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
-##   .y.         n statistic    df         p method
-## * &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;
+##   .y.         n statistic    df         p method        
+## * &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;         
 ## 1 breadth   662      537.     3 4.06e-116 Kruskal-Wallis</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">all_cov <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">dunn_test</span>(breadth <span class="op">~</span><span class="st"> </span>tech)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 9
 ##   .y.     group1  group2     n1    n2 statistic        p    p.adj p.adj.signif
-## * &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
-## 1 breadth 10X CNA ACT       200   100      6.98 2.97e-12 5.95e-12 ****
-## 2 breadth 10X CNA DLP       200   228    -11.3  2.10e-29 6.29e-29 ****
-## 3 breadth 10X CNA DOP-PCR   200   134    -16.3  1.24e-59 6.18e-59 ****
-## 4 breadth ACT     DLP       100   228    -16.2  3.62e-59 1.45e-58 ****
-## 5 breadth ACT     DOP-PCR   100   134    -20.2  5.71e-91 3.43e-90 ****
+## * &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       
+## 1 breadth 10X CNA ACT       200   100      6.98 2.97e-12 5.95e-12 ****        
+## 2 breadth 10X CNA DLP       200   228    -11.3  2.10e-29 6.29e-29 ****        
+## 3 breadth 10X CNA DOP-PCR   200   134    -16.3  1.24e-59 6.18e-59 ****        
+## 4 breadth ACT     DLP       100   228    -16.2  3.62e-59 1.45e-58 ****        
+## 5 breadth ACT     DOP-PCR   100   134    -20.2  5.71e-91 3.43e-90 ****        
 ## 6 breadth DLP     DOP-PCR   228   134     -6.68 2.35e-11 2.35e-11 ****</code></pre>
 </div>
 <div id="overdispersion" class="section level2">
