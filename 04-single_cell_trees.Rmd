@@ -32,10 +32,10 @@ make_single_cell_tree <- function(tumor_log_segratio,
   }
   
   normal_long <- tibble(
-    C1 = rep.int(1e-3, nrow(tumor_log_segratio)),
-    C2 = rep.int(1e-3, nrow(tumor_log_segratio)),
-    C3 = rep.int(1e-3, nrow(tumor_log_segratio)),
-    C4 = rep.int(1e-3, nrow(tumor_log_segratio))
+    C1 = rep.int(1e-3, ncol(tumor_log_segratio)),
+    C2 = rep.int(1e-3, ncol(tumor_log_segratio)),
+    C3 = rep.int(1e-3, ncol(tumor_log_segratio)),
+    C4 = rep.int(1e-3, ncol(tumor_log_segratio))
   )
   normal_long <- as.data.frame(t(normal_long))
   n_ploidy <- ploidy_scale(ploidy_VAL_diploid, normal_long)
